@@ -7,13 +7,15 @@ import { LoginComponent } from './Common/Components/login/login.component';
 import { RegisterComponent } from './Common/Components/register/register.component';
 import { NavbarComponent } from './Common/Components/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
+import { PageNotFoundComponent } from './Common/Components/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     RegisterComponent,
-    NavbarComponent
+    NavbarComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
