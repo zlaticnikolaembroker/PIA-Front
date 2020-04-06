@@ -1,0 +1,23 @@
+.register-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    max-width: 700px;
+}
+
+.register-row{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.register-column{
+    width: 50%;
+}
+
+.message{
+    color: darkred;
+}

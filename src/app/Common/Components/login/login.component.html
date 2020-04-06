@@ -1,1 +1,37 @@
-<p>login works!</p>
+<form (ngSubmit)="onSubmit()">
+  
+    <div class="login-container">
+        
+        <div class="login-row">
+            <div class="login-column title">
+                LOGIN
+            </div>
+        </div>
+
+        <div class="login-row">
+            <div class="login-column">
+                <input type="text" placeholder="Enter Username" [(ngModel)]="username" name="username" required>
+            </div>
+        </div>
+
+        <div class="login-row">
+            <div class="login-column">
+                <input *ngIf="!showPassword" type="password" placeholder="Enter Password" [(ngModel)]="password" name="password" required>
+                <input *ngIf="showPassword" type="text" placeholder="Enter Password" [(ngModel)]="password" name="password" required>
+                <br />
+                <input type="checkbox" (change)="handleShowPassword()"/><div class="show-password">Show Password</div>
+            </div>
+        </div>
+
+        <div class="login-row">
+            <div class="login-column">
+                <button class="login-btn" ng-click="onSubmit()">Login</button>
+            </div>
+        </div>
+        <div class="login-row">
+            <div class="login-column message">
+                {{ message }}
+            </div>
+        </div>
+    </div>
+</form>
