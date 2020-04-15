@@ -1,4 +1,8 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient }    from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { user } from '../../Types/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'login',
@@ -12,7 +16,7 @@ export class LoginComponent implements OnInit {
   showPassword: boolean;
   message: string;
 
-  constructor() { 
+  constructor(private http: HttpClient, private cookieService : CookieService, private route : Router ) { 
     this.showPassword = false;
   }
 
@@ -25,9 +29,35 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit = () => {
-    console.log(this.username);
-    console.log(this.password);
-    this.message = this.password;
+      this.http.post('http://localhost:3000/users/get_user_by_username', {
+          username: this.username,
+      }).subscribe((data: user) => {
+         if (data === null) {
+            this.message = "User with provided username and password does not exist";
+            return;
+         }
+         if (data.password !== this.password) {
+            this.message = "User with provided username and password does not exist";
+            return;
+         }
+         this.cookieService.set('userRole' , data.role_id.toString());
+         this.cookieService.set('userId' , data.id.toString());
+         console.log(data.role_id);
+         switch(data.role_id) {
+            case 1: {
+              this.route.navigate(['/admin']);
+              break;
+            }
+            case 2: {
+              this.route.navigate(['/company']);
+              break;
+            }
+            case 3: {
+              this.route.navigate(['/farmer']);
+              break;
+            }
+         }
+      });
   }
 
 

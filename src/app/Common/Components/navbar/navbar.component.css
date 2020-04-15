@@ -28,6 +28,6 @@ li a:hover:not(.active) {
   background-color: blanchedalmond;
 }
 
-.active {
-  background-color: orange;
+.logout {
+  float: right;
 }

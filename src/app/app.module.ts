@@ -9,6 +9,10 @@ import { RegisterComponent } from './Common/Components/register/register.compone
 import { NavbarComponent } from './Common/Components/navbar/navbar.component';
 import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './Common/Components/page-not-found/page-not-found.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admin-dashboard.component';
+import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
+import { CompanyDashboardComponent } from './Company/company-dashboard/company-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -16,13 +20,16 @@ import { PageNotFoundComponent } from './Common/Components/page-not-found/page-n
     LoginComponent,
     RegisterComponent,
     NavbarComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    AdminDashboardComponent,
+    FarmerDashboardComponent,
+    CompanyDashboardComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    //HERE I CAN IMPORT OTHER MODULES!!!
+    HttpClientModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
