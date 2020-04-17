@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { UserType } from '../../Types/userType';
+import { Nullable } from '../../Types/nullable';
 
 @Component({
   selector: 'app-register',
@@ -7,55 +9,71 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegisterComponent implements OnInit {
 
-  data;
-
-  differentConfirmedPassword:boolean = false;
-  notUniqueUsername:boolean = false;
-  mailUsedThirdTime:boolean = false;
-  wrongJMBGFormat:boolean = false;
-  dateOfBirthInTheFuture:boolean = false;
-  showPassword:boolean = false;
-  showConfirmedPassword:boolean = false;
-  passwordNotStrong:boolean = false;
-  confirmedPasswordNotStrong:boolean = false;
-  jmbgFormatWrong:boolean = false;
-
-  firstNameEmpty:boolean = false;
-  lastNameEmpty:boolean = false;
-  usernameEmpty:boolean = false;
-  passwordEmpty:boolean = false;
-  confirmedPasswordEmpty:boolean = false;
-  dateOfBirthEmpty:boolean = false;
-  placeOfBirthEmpty:boolean = false;
-  jmbgEmpty:boolean = false;
-  phoneEmpty:boolean = false;
-  mailEmpty:boolean = false;
+  data: { 
+    first_name: string; 
+    last_name: string; 
+    username: string; 
+    password: string; 
+    confirmed_password: string; 
+    date_of_birth: Date; 
+    place_of_birth: string; 
+    jmbg: string; 
+    phone: string; 
+    mail: string; 
+    userType: Nullable<UserType>;
+  };
+  flags: {
+    differentConfirmedPassword:boolean;
+    notUniqueUsername:boolean;
+    mailUsedThirdTime:boolean;
+    wrongJMBGFormat:boolean;
+    dateOfBirthInTheFuture:boolean;
+    showPassword:boolean;
+    showConfirmedPassword:boolean;
+    passwordNotStrong:boolean;
+    confirmedPasswordNotStrong:boolean;
+    jmbgFormatWrong:boolean;
+    firstNameEmpty:boolean;
+    lastNameEmpty:boolean;
+    usernameEmpty:boolean;
+    passwordEmpty:boolean;
+    confirmedPasswordEmpty:boolean;
+    dateOfBirthEmpty:boolean;
+    placeOfBirthEmpty:boolean;
+    jmbgEmpty:boolean;
+    phoneEmpty:boolean;
+    mailEmpty:boolean;
+  }
 
   passRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
   jmbgRegex = new RegExp("^(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])[0-9]{9}$");
 
   refreshEmptyFlags(){
-    this.firstNameEmpty = false;
-    this.lastNameEmpty = false;
-    this.usernameEmpty = false;
-    this.passwordEmpty = false;
-    this.confirmedPasswordEmpty = false;
-    this.dateOfBirthEmpty = false;
-    this.placeOfBirthEmpty = false;
-    this.jmbgEmpty = false;
-    this.phoneEmpty = false;
-    this.mailEmpty = false;
-    this.differentConfirmedPassword = false;
-    this.notUniqueUsername = false;
-    this.mailUsedThirdTime = false;
-    this.wrongJMBGFormat = false;
-    this.dateOfBirthInTheFuture = false;
-    this.passwordNotStrong = false;
-    this.confirmedPasswordNotStrong = false;
-    this.jmbgFormatWrong = false;
+    this.flags = {
+      firstNameEmpty: false,
+      lastNameEmpty: false,
+      usernameEmpty: false,
+      passwordEmpty: false,
+      confirmedPasswordEmpty: false,
+      dateOfBirthEmpty: false,
+      placeOfBirthEmpty: false,
+      jmbgEmpty: false,
+      phoneEmpty: false,
+      mailEmpty: false,
+      differentConfirmedPassword: false,
+      notUniqueUsername: false,
+      mailUsedThirdTime: false,
+      wrongJMBGFormat: false,
+      dateOfBirthInTheFuture: false,
+      passwordNotStrong: false,
+      confirmedPasswordNotStrong: false,
+      jmbgFormatWrong: false,
+      showConfirmedPassword: false,
+      showPassword: false,
+    }
   }
 
-  constructor() { 
+  initDataValues(){
     this.data = {
       first_name :"",
       last_name : "",
@@ -67,60 +85,66 @@ export class RegisterComponent implements OnInit {
       jmbg: "",
       phone: "",
       mail: "",
+      userType: null,
     }
+  }
+
+  constructor() {
+    this.initDataValues();
+    this.refreshEmptyFlags();
   }
 
   ngOnInit() {
   }
 
   public handleShowPassword() {
-    this.showPassword = !this.showPassword;
+    this.flags.showPassword = !this.flags.showPassword;
   }
 
   public handleShowConfirmedPassword() {
-    this.showConfirmedPassword = !this.showConfirmedPassword;
+    this.flags.showConfirmedPassword = !this.flags.showConfirmedPassword;
   }
 
   checkForEmptyFields(){
     let somethingEmpty = false;
     if(this.data.first_name == ""){
-      this.firstNameEmpty = true;
+      this.flags.firstNameEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.last_name == ""){
-      this.lastNameEmpty = true;
+      this.flags.lastNameEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.username == ""){
-      this.usernameEmpty = true;
+      this.flags.usernameEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.password == ""){
-      this.passwordEmpty = true;
+      this.flags.passwordEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.confirmed_password == ""){
-      this.confirmedPasswordEmpty = true;
+      this.flags.confirmedPasswordEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.date_of_birth == null){
-      this.dateOfBirthEmpty = true;
+      this.flags.dateOfBirthEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.place_of_birth == ""){
-      this.placeOfBirthEmpty = true;
+      this.flags.placeOfBirthEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.jmbg == ""){
-      this.jmbgEmpty = true;
+      this.flags.jmbgEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.phone == ""){
-      this.phoneEmpty = true;
+      this.flags.phoneEmpty = true;
       somethingEmpty = true;
     }
     if(this.data.mail == ""){
-      this.mailEmpty = true;
+      this.flags.mailEmpty = true;
       somethingEmpty = true;
     }
     return somethingEmpty;
@@ -129,24 +153,24 @@ export class RegisterComponent implements OnInit {
   checkPasswordsAndJMBGFormats(){
 
     if(!this.passRegex.test(this.data.password)) {
-      this.passwordNotStrong = true;
+      this.flags.passwordNotStrong = true;
       return true;
     }
 
     if(!this.passRegex.test(this.data.confirmed_password)) {
-      this.confirmedPasswordNotStrong = true;
+      this.flags.confirmedPasswordNotStrong = true;
       return true;
     }
 
     if(!this.jmbgRegex.test(this.data.jmbg)){
-      this.jmbgFormatWrong = true;
+      this.flags.jmbgFormatWrong = true;
       return true;
     }
   }
 
   checkPassAndConfirmedPassMatch(){
     if(this.data.password !== this.data.confirmed_password){
-      this.differentConfirmedPassword = true;
+      this.flags.differentConfirmedPassword = true;
       return true;
     }
     return false;
@@ -156,10 +180,16 @@ export class RegisterComponent implements OnInit {
     let year18 = new Date();
     year18.setFullYear(2002);
     if(new Date(this.data.date_of_birth) > year18){
-      this.dateOfBirthInTheFuture = true;
+      this.flags.dateOfBirthInTheFuture = true;
       return true;
     }
     return false;
+  }
+
+  changeUserType(e) {
+
+    console.log(e.target.value);
+
   }
 
   public onSubmit(){
