@@ -38,8 +38,7 @@ export class NavbarComponent implements OnInit {
         break;
       }
     }
-
-    if(!currentRoute.includes(homeHref) && role) {
+    if(role && currentRoute !== '/login' && !currentRoute.includes(homeHref)) {
       this.router.navigate([homeHref]);
     }
     if(role) {

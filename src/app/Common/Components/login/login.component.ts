@@ -42,7 +42,6 @@ export class LoginComponent implements OnInit {
          }
          this.cookieService.set('userRole' , data.role_id.toString());
          this.cookieService.set('userId' , data.id.toString());
-         console.log(data.role_id);
          switch(data.role_id) {
             case 1: {
               this.route.navigate(['/admin']);
