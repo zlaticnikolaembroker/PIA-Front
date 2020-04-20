@@ -60,11 +60,21 @@
             </div>
 
             <div class = "register-row">
-                <div class = "register-column"><button>Register</button></div>
+                <div class = "register-column"><button [disabled]="!flags.recaptchaClicked">Register</button></div>
                 <div class = "register-column"> 
                     <div *ngIf = "flags.differentConfirmedPassword" class = "message">Password and confirmed password don't match.</div>
                     <div *ngIf = "flags.somethingWentWring" class = "message">{{message}}</div>
                 </div>
+            </div>
+            <div class = "register-row">
+                <div class = "register-column">
+                    <re-captcha
+                        (resolved)="recaptchaClicked()"
+                        siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+
+                    ></re-captcha>
+                </div>
+                <div class = "register-column"></div>
             </div>
         </div>
         <div *ngIf="userType === 'farmer'">
@@ -139,11 +149,20 @@
             </div>
 
             <div class = "register-row">
-                <div class = "register-column"><button>Register</button></div>
+                <div class = "register-column"><button [disabled]="!flags.recaptchaClicked">Register</button></div>
                 <div class = "register-column"> 
                     <div *ngIf = "flags.differentConfirmedPassword" class = "message">Passwords don't match.</div> 
                     <div *ngIf = "flags.somethingWentWring" class = "message">{{message}}</div>
                 </div>
+            </div>
+            <div class = "register-row">
+                <div class = "register-column">
+                    <re-captcha
+                        (resolved)="recaptchaClicked()"
+                        siteKey="6LcOuyYTAAAAAHTjFuqhA52fmfJ_j5iFk5PsfXaU"
+                    ></re-captcha>
+                </div>
+                <div class = "register-column"></div>
             </div>
         </div>
 

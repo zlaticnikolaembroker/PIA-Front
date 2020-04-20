@@ -36,6 +36,7 @@ export class RegisterComponent implements OnInit {
     mailFormatWrong: boolean;
     fullNameEmprty: boolean;
     somethingWentWring: boolean;
+    recaptchaClicked: boolean;
   }
 
   passRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
@@ -61,6 +62,7 @@ export class RegisterComponent implements OnInit {
       mailFormatWrong: false,
       fullNameEmprty: false,
       somethingWentWring: false,
+      recaptchaClicked: false,
     }
   }
 
@@ -218,6 +220,12 @@ export class RegisterComponent implements OnInit {
         }
         this.route.navigate(['login']);
       });
+  }
+
+  public recaptchaClicked(){
+    console.log(this.flags.recaptchaClicked);
+    this.flags.recaptchaClicked = true;
+    console.log(this.flags.recaptchaClicked);
   }
   
 }

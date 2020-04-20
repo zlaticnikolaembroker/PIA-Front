@@ -13,6 +13,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admin-dashboard.component';
 import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
 import { CompanyDashboardComponent } from './Company/company-dashboard/company-dashboard.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CompanyDashboardComponent } from './Company/company-dashboard/company-d
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    RecaptchaModule,
   ],
   providers: [CookieService],
   bootstrap: [AppComponent]
