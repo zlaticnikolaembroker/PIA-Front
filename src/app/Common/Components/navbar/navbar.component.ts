@@ -1,6 +1,7 @@
 import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { CookieService } from 'ngx-cookie-service';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd, NavigationStart } from '@angular/router';
+import { Location } from "@angular/common";
 
 interface Route {
   title: string;
@@ -15,13 +16,18 @@ interface Route {
 
 export class NavbarComponent implements OnInit {
   posibleRoutes: Route[];
+  currentUrl: string;
 
-  constructor(private cookieService : CookieService, private router: Router) { 
-    this.init();
+  constructor(private cookieService : CookieService, private router: Router, private location: Location) { 
+    this.router.events.subscribe((event) => {
+      if (event instanceof NavigationEnd) {
+        this.currentUrl = location.path();
+        this.init();
+      }
+    });
   }
 
   init(): void {
-    const currentRoute = this.router.url;
     const role = this.cookieService.get('userRole');
     let homeHref = ''; 
       switch(+role) {
@@ -38,7 +44,7 @@ export class NavbarComponent implements OnInit {
         break;
       }
     }
-    if(role && currentRoute !== '/login' && !currentRoute.includes(homeHref)) {
+    if(role && this.currentUrl && !this.currentUrl.includes(homeHref)) {
       this.router.navigate([homeHref]);
     }
     if(role) {
@@ -55,9 +61,6 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.router.events.subscribe(() => {
-      this.init();
-    })
   }
 
   logout = () => {

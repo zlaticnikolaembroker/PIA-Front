@@ -1,0 +1,27 @@
+.admin-container{
+    background-color: blanchedalmond;
+    margin: auto;
+    margin-top: 5%;
+    width: 500px;
+    height: 500px;
+}
+
+.admin-row{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 5% 0;
+    align-items: center;
+    text-align: center;
+}
+
+.admin-column{
+    width: 100%;
+    padding-top: 22.5%;
+}
+
+a {
+    color: darkgray;
+    font-size: 35px;
+    text-decoration: none;
+}

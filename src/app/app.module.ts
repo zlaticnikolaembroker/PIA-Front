@@ -14,6 +14,8 @@ import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admi
 import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
 import { CompanyDashboardComponent } from './Company/company-dashboard/company-dashboard.component';
 import { RecaptchaModule } from 'ng-recaptcha';
+import { RegistrationRequestsComponent } from './Admin/registration-requests/registration-requests.component';
+import { UserListComponent } from './Admin/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { RecaptchaModule } from 'ng-recaptcha';
     PageNotFoundComponent,
     AdminDashboardComponent,
     FarmerDashboardComponent,
-    CompanyDashboardComponent
+    CompanyDashboardComponent,
+    RegistrationRequestsComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,

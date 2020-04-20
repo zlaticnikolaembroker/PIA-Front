@@ -7,6 +7,8 @@ import { PageNotFoundComponent } from './Common/Components/page-not-found/page-n
 import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admin-dashboard.component';
 import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
 import { CompanyDashboardComponent } from './Company/company-dashboard/company-dashboard.component';
+import { RegistrationRequestsComponent } from './Admin/registration-requests/registration-requests.component';
+import { UserListComponent } from './Admin/user-list/user-list.component';
 
 
 const routes: Routes = [
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent},
   { path: 'register', component: RegisterComponent},
   { path: 'admin', component: AdminDashboardComponent},
+  { path: 'admin/registration-requests', component: RegistrationRequestsComponent},
+  { path: 'admin/user-list' , component: UserListComponent },
   { path: 'company', component: CompanyDashboardComponent },
   { path: 'farmer', component: FarmerDashboardComponent },
   { path: '**', component: PageNotFoundComponent},
