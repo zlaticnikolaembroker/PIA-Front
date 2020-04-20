@@ -1,95 +1,163 @@
 <form (ngSubmit)="onSubmit()" #heroForm="ngForm">
     <div class = "register-container">
-        <div class = "register-row">
-            <div class = "register-column"> Ime: </div>
-            <div class = "register-column"> <input type="text" name="first_name" [(ngModel)]="data.first_name" required/> <br/></div>
-            <div class = "register-column"> <div *ngIf = "flags.firstNameEmpty" class = "message">Niste uneli ime.</div> <br/></div>
-        </div>
-        <div class = "register-row">
-            <div class = "register-column">Prezime:</div>
-            <div class = "register-column"><input type="text" name="last_name" [(ngModel)]="data.last_name" required/> <br/> </div>
-            <div class = "register-column"> <div *ngIf = "flags.lastNameEmpty" class = "message">Niste uneli prezime.</div> <br/></div>
-        </div>
-        
-        <div class = "register-row">
-            <div class = "register-column">Korisnicko ime:</div> 
-            <div class = "register-column"><input type="text" name="username" [(ngModel)]="data.username" required/> <br/></div>  
-            <div class = "register-column"> <div *ngIf = "flags.usernameEmpty" class = "message">Niste uneli korisnicko ime.</div> <br/></div>  
-        </div>
-        
-        <div class = "register-row">
-            <div class = "register-column">Lozinka:</div>
-            <div class = "register-column">
-                <input *ngIf = "!flags.showPassword" type="password" name="password" [(ngModel)]="data.password" required/> 
-                <input *ngIf = "flags.showPassword" type="text" name="password" [(ngModel)]="data.password" required/> 
-                <input type="checkbox" (change)="handleShowPassword()"/>Show Password <br/>
-            </div> 
-            <div class = "register-column"> 
-                <div *ngIf = "flags.passwordEmpty" class = "message">Niste uneli lozinku.</div> 
-                <div *ngIf = "flags.passwordNotStrong" class = "message">Format lozinke nije dobar.</div> 
+        <div *ngIf="userType === 'company'">
+            <div class = "register-row">
+                <div class = "register-column">Full name: </div>
+                <div class = "register-column"> <input type="text" name="name" [(ngModel)]="user.fullName" required/> </div>
+                <div class = "register-column"> <div *ngIf = "flags.firstNameEmpty" class = "message">Please, provide company's full name.</div> </div>
+            </div>
+            <div class = "register-row">
+                <div class = "register-column">Short name:</div>
+                <div class = "register-column"><input type="text" name="username" [(ngModel)]="user.username" required/>  </div>
+                <div class = "register-column"> <div *ngIf = "flags.usernameEmpty" class = "message">Please, provide company's short name.</div> </div>
+            </div>
+            
+            <div class = "register-row">
+                <div class = "register-column">Password:</div>
+                <div class = "register-column">
+                    <input *ngIf = "!flags.showPassword" type="password" name="password" [(ngModel)]="user.password" required/> 
+                    <input *ngIf = "flags.showPassword" type="text" name="password" [(ngModel)]="user.password" required/> 
+                    <input type="checkbox" (change)="handleShowPassword()"/>Show Password 
+                </div> 
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.passwordEmpty" class = "message">Please, provide your password.</div> 
+                    <div *ngIf = "flags.passwordNotStrong" class = "message">Wrong password format.</div> 
+                </div>
+            </div>
+            
+            <div class = "register-row">
+                <div class = "register-column">Confirm password:</div>
+                <div class = "register-column">
+                    <input *ngIf = "!flags.showConfirmedPassword" type="password" name="confirmedPassword" [(ngModel)]="confirmedPassword" required/> 
+                    <input *ngIf = "flags.showConfirmedPassword" type="text" name="confirmedPassword" [(ngModel)]="confirmedPassword" required/> 
+                    <input type="checkbox" (change)="handleShowConfirmedPassword()"/>Show Password 
+                </div> 
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.confirmedPasswordEmpty" class = "message">Please, confirm password.</div> 
+                    <div *ngIf = "flags.confirmedPasswordNotStrong" class = "message">Wrong password format.</div> 
+                </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Establishment date:</div>
+                <div class = "register-column"><input type="date" name="date" [(ngModel)]="user.date" required/> </div> 
+                <div class = "register-column"> <div *ngIf = "flags.dateOfBirthEmpty" class = "message">Please, provide company's date of establishment.</div> </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Place:</div>
+                <div class = "register-column"><input type="text" name="place" [(ngModel)]="user.place" required/> </div>
+                <div class = "register-column"> <div *ngIf = "flags.placeOfBirthEmpty" class = "message">Please, provide company's place.</div> </div> 
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Email:</div>
+                <div class = "register-column"><input type="text" name="email" [(ngModel)]="user.email" required/> </div> 
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.mailEmpty" class = "message">Please, provide your email.</div> 
+                    <div *ngIf = "flags.mailFormatWrong" class = "message">Wrong email format.</div>
+                </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column"><button>Register</button></div>
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.differentConfirmedPassword" class = "message">Password and confirmed password don't match.</div>
+                    <div *ngIf = "flags.somethingWentWring" class = "message">{{message}}</div>
+                </div>
             </div>
         </div>
-        
-        <div class = "register-row">
-            <div class = "register-column">Potvrda lozinke:</div>
-            <div class = "register-column">
-                <input *ngIf = "!flags.showConfirmedPassword" type="password" name="confirmed_password" [(ngModel)]="data.confirmed_password" required/> 
-                <input *ngIf = "flags.showConfirmedPassword" type="text" name="confirmed_password" [(ngModel)]="data.confirmed_password" required/> 
-                <input type="checkbox" (change)="handleShowConfirmedPassword()"/>Show Password <br/>
-            </div> 
-            <div class = "register-column"> 
-                <div *ngIf = "flags.confirmedPasswordEmpty" class = "message">Niste uneli potvrdu lozinke.</div> <br/>
-                <div *ngIf = "flags.confirmedPasswordNotStrong" class = "message">Format lozinke nije dobar.</div> <br/>
+        <div *ngIf="userType === 'farmer'">
+            <div class = "register-row">
+                <div class = "register-column">Name:</div>
+                <div class = "register-column"> <input type="text" name="name" [(ngModel)]="user.name" required/> </div>
+                <div class = "register-column"> <div *ngIf = "flags.firstNameEmpty" class = "message">Please, provide your name.</div> </div>
+            </div>
+            <div class = "register-row">
+                <div class = "register-column">Lastname:</div>
+                <div class = "register-column"><input type="text" name="lastname" [(ngModel)]="user.lastname" required/>  </div>
+                <div class = "register-column"> <div *ngIf = "flags.lastNameEmpty" class = "message">Please, provide your lastname.</div> </div>
+            </div>
+            
+            <div class = "register-row">
+                <div class = "register-column">Username:</div> 
+                <div class = "register-column"><input type="text" name="username" [(ngModel)]="user.username" required/> </div>  
+                <div class = "register-column"> <div *ngIf = "flags.usernameEmpty" class = "message">Please, provide your username.</div> </div>  
+            </div>
+            
+            <div class = "register-row">
+                <div class = "register-column">Password:</div>
+                <div class = "register-column">
+                    <input *ngIf = "!flags.showPassword" type="password" name="password" [(ngModel)]="user.password" required/> 
+                    <input *ngIf = "flags.showPassword" type="text" name="password" [(ngModel)]="user.password" required/> 
+                    <input type="checkbox" (change)="handleShowPassword()"/>Show Password 
+                </div> 
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.passwordEmpty" class = "message">Please, provide your password.</div> 
+                    <div *ngIf = "flags.passwordNotStrong" class = "message">Wrong password format.</div> 
+                </div>
+            </div>
+            
+            <div class = "register-row">
+                <div class = "register-column">Confirm password:</div>
+                <div class = "register-column">
+                    <input *ngIf = "!flags.showConfirmedPassword" type="password" name="confirmedPassword" [(ngModel)]="confirmedPassword" required/> 
+                    <input *ngIf = "flags.showConfirmedPassword" type="text" name="confirmedPassword" [(ngModel)]="confirmedPassword" required/> 
+                    <input type="checkbox" (change)="handleShowConfirmedPassword()"/>Show Password
+                </div> 
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.confirmedPasswordEmpty" class = "message">Please, confirm password.</div> 
+                    <div *ngIf = "flags.confirmedPasswordNotStrong" class = "message">Wrong password format.</div> 
+                </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Date of birth:</div>
+                <div class = "register-column"><input type="date" name="date" [(ngModel)]="user.date" required/> </div> 
+                <div class = "register-column"> <div *ngIf = "flags.dateOfBirthEmpty" class = "message">Please, provide your date of birth.</div> </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Place of birth:</div>
+                <div class = "register-column"><input type="text" name="place" [(ngModel)]="user.place" required/> </div>
+                <div class = "register-column"> <div *ngIf = "flags.placeOfBirthEmpty" class = "message">Please, provide your place of birth.</div> </div> 
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Phone:</div>
+                <div class = "register-column"><input type="text" name="phone" [(ngModel)]="user.phone" required/> </div> 
+                <div class = "register-column"> <div *ngIf = "flags.phoneEmpty" class = "message">Please, provide your phone.</div> </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column">Email:</div>
+                <div class = "register-column"><input type="text" name="email" [(ngModel)]="user.email" required/> </div> 
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.mailEmpty" class = "message">Please, provide your email.</div> 
+                    <div *ngIf = "flags.mailFormatWrong" class = "message">Wrong email format.</div>
+                </div>
+            </div>
+
+            <div class = "register-row">
+                <div class = "register-column"><button>Register</button></div>
+                <div class = "register-column"> 
+                    <div *ngIf = "flags.differentConfirmedPassword" class = "message">Passwords don't match.</div> 
+                    <div *ngIf = "flags.somethingWentWring" class = "message">{{message}}</div>
+                </div>
             </div>
         </div>
 
         <div class = "register-row">
-            <div class = "register-column">Datum rodjenja:</div>
-            <div class = "register-column"><input type="date" name="date_of_birth" [(ngModel)]="data.date_of_birth" required/> <br/></div> 
-            <div class = "register-column"> <div *ngIf = "flags.dateOfBirthEmpty" class = "message">Niste uneli datum rodjenja.</div> <br/></div>
-        </div>
-
-        <div class = "register-row">
-            <div class = "register-column">Mesto rodjenja:</div>
-            <div class = "register-column"><input type="text" name="place_of_birth" [(ngModel)]="data.place_of_birth" required/> <br/></div>
-            <div class = "register-column"> <div *ngIf = "flags.placeOfBirthEmpty" class = "message">Niste uneli mesto rodjenja.</div> <br/></div> 
-        </div>
-
-        <div class = "register-row">
-            <div class = "register-column">JMBG:</div>
-            <div class = "register-column"><input type="text" name="jmbg" [(ngModel)]="data.jmbg" required/> <br/></div> 
             <div class = "register-column"> 
-                <div *ngIf = "flags.jmbgEmpty" class = "message">Niste uneli JMBG.</div> <br/>
-                <div *ngIf = "flags.jmbgFormatWrong" class = "message">Los format JMBGa.</div> <br/>
+                <label for="male">Choose user type</label>
             </div>
-        </div>
-
-        <div class = "register-row">
-            <div class = "register-column">Telefon:</div>
-            <div class = "register-column"><input type="text" name="phone" [(ngModel)]="data.phone" required/> <br/></div> 
-            <div class = "register-column"> <div *ngIf = "flags.phoneEmpty" class = "message">Niste uneli telefon.</div> <br/></div>
-        </div>
-
-        <div class = "register-row">
-            <div class = "register-column">Mail:</div>
-            <div class = "register-column"><input type="text" name="mail" [(ngModel)]="data.mail" required/> <br/></div> 
-            <div class = "register-column"> <div *ngIf = "flags.mailEmpty" class = "message">Niste uneli mail.</div> <br/></div>
-        </div>
-
-        <div class = "register-row">
-            <div class = "register-column"><button>Register</button></div>
             <div class = "register-column"> 
-                <div *ngIf = "flags.differentConfirmedPassword" class = "message">Lozinka i potvrda lozinke se ne poklapaju. <br/></div> 
-                <div *ngIf = "flags.dateOfBirthInTheFuture" class = "message">Nemate 18 godina. <br/></div>
+                <input type="radio" id="farmer" name="userType" value="farmer" (change)="changeUserType($event)">
+                <label for="male">Farmer</label>
+                <input type="radio" id="company" name="userType" value="company" (change)="changeUserType($event)">
+                <label for="female">Company</label>
             </div>
-        </div>
-
-        <div class = "register-row">
-            <label for="male">Choose user type</label><br>
-            <input type="radio" id="farmer" name="userType" value="farmer" (change)="changeUserType($event)">
-            <label for="male">Farmer</label><br>
-            <input type="radio" id="company" name="userType" value="company" (change)="changeUserType($event)">
-            <label for="female">Company</label><br>
+            <div class = "register-column"></div>
         </div>
         
     </div>

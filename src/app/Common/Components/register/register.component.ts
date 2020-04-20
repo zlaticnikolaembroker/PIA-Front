@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserType } from '../../Types/userType';
-import { Nullable } from '../../Types/nullable';
+import { UserType, UserTypeCompany, UserTypeFarmer, UserTypeListList } from '../../Types/userType';
+import Joi from '@hapi/joi';
+import { User } from '../../Types/user';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,46 +12,35 @@ import { Nullable } from '../../Types/nullable';
 })
 export class RegisterComponent implements OnInit {
 
-  data: { 
-    first_name: string; 
-    last_name: string; 
-    username: string; 
-    password: string; 
-    confirmed_password: string; 
-    date_of_birth: Date; 
-    place_of_birth: string; 
-    jmbg: string; 
-    phone: string; 
-    mail: string; 
-    userType: Nullable<UserType>;
-  };
+  user: User;
+  confirmedPassword: string;
+  userType: UserType;
+  message: string;
   flags: {
-    differentConfirmedPassword:boolean;
-    notUniqueUsername:boolean;
-    mailUsedThirdTime:boolean;
-    wrongJMBGFormat:boolean;
-    dateOfBirthInTheFuture:boolean;
-    showPassword:boolean;
-    showConfirmedPassword:boolean;
-    passwordNotStrong:boolean;
-    confirmedPasswordNotStrong:boolean;
-    jmbgFormatWrong:boolean;
-    firstNameEmpty:boolean;
-    lastNameEmpty:boolean;
-    usernameEmpty:boolean;
-    passwordEmpty:boolean;
-    confirmedPasswordEmpty:boolean;
-    dateOfBirthEmpty:boolean;
-    placeOfBirthEmpty:boolean;
-    jmbgEmpty:boolean;
-    phoneEmpty:boolean;
-    mailEmpty:boolean;
+    differentConfirmedPassword: boolean;
+    notUniqueUsername: boolean;
+    mailUsedThirdTime: boolean;
+    showPassword: boolean;
+    showConfirmedPassword: boolean;
+    passwordNotStrong: boolean;
+    confirmedPasswordNotStrong: boolean;
+    firstNameEmpty: boolean;
+    lastNameEmpty: boolean;
+    usernameEmpty: boolean;
+    passwordEmpty: boolean;
+    confirmedPasswordEmpty: boolean;
+    dateOfBirthEmpty: boolean;
+    placeOfBirthEmpty: boolean;
+    phoneEmpty: boolean;
+    mailEmpty: boolean;
+    mailFormatWrong: boolean;
+    fullNameEmprty: boolean;
+    somethingWentWring: boolean;
   }
 
   passRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
-  jmbgRegex = new RegExp("^(0[1-9]|[12][0-9]|3[01])(0[1-9]|1[012])[0-9]{9}$");
 
-  refreshEmptyFlags(){
+  refreshEmptyFlags() {
     this.flags = {
       firstNameEmpty: false,
       lastNameEmpty: false,
@@ -57,39 +49,41 @@ export class RegisterComponent implements OnInit {
       confirmedPasswordEmpty: false,
       dateOfBirthEmpty: false,
       placeOfBirthEmpty: false,
-      jmbgEmpty: false,
       phoneEmpty: false,
       mailEmpty: false,
       differentConfirmedPassword: false,
       notUniqueUsername: false,
       mailUsedThirdTime: false,
-      wrongJMBGFormat: false,
-      dateOfBirthInTheFuture: false,
       passwordNotStrong: false,
       confirmedPasswordNotStrong: false,
-      jmbgFormatWrong: false,
       showConfirmedPassword: false,
       showPassword: false,
+      mailFormatWrong: false,
+      fullNameEmprty: false,
+      somethingWentWring: false,
     }
   }
 
-  initDataValues(){
-    this.data = {
-      first_name :"",
-      last_name : "",
-      username : "",
-      password : "",
-      confirmed_password : "",
-      date_of_birth: null,
-      place_of_birth: "",
-      jmbg: "",
-      phone: "",
-      mail: "",
-      userType: null,
+  initDataValues() {
+    this.user = {
+      email: "",
+      fullName: null,
+      id: null,
+      lastname: null,
+      name: null,
+      password: "",
+      phone: null,
+      role_id: null,
+      username: "",
+      date: null,
+      place: "",
     }
+    this.confirmedPassword = "";
+    this.userType = "";
+    this.message = "";
   }
 
-  constructor() {
+  constructor(private http: HttpClient, private route : Router) {
     this.initDataValues();
     this.refreshEmptyFlags();
   }
@@ -105,113 +99,125 @@ export class RegisterComponent implements OnInit {
     this.flags.showConfirmedPassword = !this.flags.showConfirmedPassword;
   }
 
-  checkForEmptyFields(){
+  checkForEmptyFields() {
     let somethingEmpty = false;
-    if(this.data.first_name == ""){
-      this.flags.firstNameEmpty = true;
-      somethingEmpty = true;
-    }
-    if(this.data.last_name == ""){
-      this.flags.lastNameEmpty = true;
-      somethingEmpty = true;
-    }
-    if(this.data.username == ""){
+    if (this.user.username == "") {
       this.flags.usernameEmpty = true;
       somethingEmpty = true;
     }
-    if(this.data.password == ""){
+    if (this.user.password == "") {
       this.flags.passwordEmpty = true;
       somethingEmpty = true;
     }
-    if(this.data.confirmed_password == ""){
+    if (this.confirmedPassword == "") {
       this.flags.confirmedPasswordEmpty = true;
       somethingEmpty = true;
     }
-    if(this.data.date_of_birth == null){
+    if (this.user.date == null) {
       this.flags.dateOfBirthEmpty = true;
       somethingEmpty = true;
     }
-    if(this.data.place_of_birth == ""){
+    if (this.user.place == "") {
       this.flags.placeOfBirthEmpty = true;
       somethingEmpty = true;
     }
-    if(this.data.jmbg == ""){
-      this.flags.jmbgEmpty = true;
-      somethingEmpty = true;
-    }
-    if(this.data.phone == ""){
-      this.flags.phoneEmpty = true;
-      somethingEmpty = true;
-    }
-    if(this.data.mail == ""){
+    if (this.user.email == "") {
       this.flags.mailEmpty = true;
       somethingEmpty = true;
+    }
+    if (this.userType === UserTypeCompany) {
+      if (this.user.fullName == "") {
+        this.flags.fullNameEmprty = true;
+        somethingEmpty = true;
+      }
+    }
+    if (this.userType === UserTypeFarmer) {
+      if (this.user.phone == "") {
+        this.flags.phoneEmpty = true;
+        somethingEmpty = true;
+      }
+      if (this.user.name == "") {
+        this.flags.firstNameEmpty = true;
+        somethingEmpty = true;
+      }
+      if (this.user.lastname == "") {
+        this.flags.lastNameEmpty = true;
+        somethingEmpty = true;
+      }
     }
     return somethingEmpty;
   }
 
-  checkPasswordsAndJMBGFormats(){
-
-    if(!this.passRegex.test(this.data.password)) {
+  checkPasswordsAndMailFormats() {
+    let schema = Joi.string().email({
+      tlds: false,
+      allowUnicode: false,
+    });
+    if (schema.validate(this.user.email).error) {
+      this.flags.mailFormatWrong = true;
+      return true;
+    }
+    if (!this.passRegex.test(this.user.password)) {
       this.flags.passwordNotStrong = true;
       return true;
     }
 
-    if(!this.passRegex.test(this.data.confirmed_password)) {
+    if (!this.passRegex.test(this.confirmedPassword)) {
       this.flags.confirmedPasswordNotStrong = true;
-      return true;
-    }
-
-    if(!this.jmbgRegex.test(this.data.jmbg)){
-      this.flags.jmbgFormatWrong = true;
       return true;
     }
   }
 
   checkPassAndConfirmedPassMatch(){
-    if(this.data.password !== this.data.confirmed_password){
+    if (this.user.password !== this.confirmedPassword) {
       this.flags.differentConfirmedPassword = true;
       return true;
     }
     return false;
   }
 
-  check18YearsOld(){
-    let year18 = new Date();
-    year18.setFullYear(2002);
-    if(new Date(this.data.date_of_birth) > year18){
-      this.flags.dateOfBirthInTheFuture = true;
-      return true;
-    }
-    return false;
-  }
-
   changeUserType(e) {
-
-    console.log(e.target.value);
-
+    this.initDataValues();
+    this.refreshEmptyFlags();
+    this.userType = e.currentTarget.id as UserType;
   }
 
-  public onSubmit(){
+  public onSubmit() {
+
+    this.checkPasswordsAndMailFormats();
     
     this.refreshEmptyFlags();
 
-    if(this.checkForEmptyFields()){
+    if (this.checkForEmptyFields()) {
       return;
     } 
 
-    if(this.checkPasswordsAndJMBGFormats()){
+    if (this.checkPasswordsAndMailFormats()) {
       return;
     }
 
-    if(this.checkPassAndConfirmedPassMatch()){
+    if (this.checkPassAndConfirmedPassMatch()) {
       return;
     }
-    
-    if(this.check18YearsOld()){
-      return;
-    }
-    
+
+    this.http.post('http://localhost:3000/users', {
+        username: this.user.username, 
+        password: this.user.password, 
+        email: this.user.email, 
+        date: this.user.date, 
+        place: this.user.place, 
+        role_id: UserTypeListList.indexOf(this.userType) + 1, 
+        fullName: this.user.fullName, 
+        name: this.user.name, 
+        lastname: this.user.lastname, 
+        phone: this.user.phone,
+      }).subscribe((result: any) => {
+        if (result.error) {
+          this.flags.somethingWentWring = true;
+          this.message = result.error;
+        }
+        this.route.navigate(['login']);
+      });
   }
   
 }

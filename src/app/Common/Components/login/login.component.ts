@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient }    from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
-import { user } from '../../Types/user';
+import { User } from '../../Types/user';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
   showPassword: boolean;
   message: string;
 
-  constructor(private http: HttpClient, private cookieService : CookieService, private route : Router ) { 
+  constructor(private http: HttpClient, private cookieService : CookieService, private route : Router) { 
     this.showPassword = false;
   }
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   onSubmit = () => {
       this.http.post('http://localhost:3000/users/get_user_by_username', {
           username: this.username,
-      }).subscribe((data: user) => {
+      }).subscribe((data: User) => {
          if (data === null) {
             this.message = "User with provided username and password does not exist";
             return;
