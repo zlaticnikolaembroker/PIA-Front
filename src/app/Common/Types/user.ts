@@ -14,28 +14,28 @@ export class User {
     lastname: Nullable<string>;
     phone: Nullable<string>;
     fullName: Nullable<string>;
-    toFarmer(): Farmer {
+    static toFarmer(user: User): Farmer {
         return {
-            id: this.id,
-            name: this.name,
-            date: this.date,
-            email: this.email,
-            lastname: this.lastname,
-            password: this.password,
-            phone: this.phone,
-            place: this.place,
-            username: this.username,
+            id: user.id,
+            name: user.name,
+            date: user.date,
+            email: user.email,
+            lastname: user.lastname,
+            password: user.password,
+            phone: user.phone,
+            place: user.place,
+            username: user.username,
         } as Farmer;
     };
-    toCompany(): Company {
+    static toCompany(user: User): Company {
         return {
-            date: this.date,
-            email: this.email,
-            fullname: this.fullName,
-            id: this.id,
-            password: this.password,
-            place: this.place,
-            username: this.username,
+            date: user.date,
+            email: user.email,
+            fullname: user.fullName,
+            id: user.id,
+            password: user.password,
+            place: user.place,
+            username: user.username,
         } as Company;
     }
 };
