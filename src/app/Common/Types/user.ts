@@ -13,7 +13,7 @@ export class User {
     place: string;
     lastname: Nullable<string>;
     phone: Nullable<string>;
-    fullName: Nullable<string>;
+    fullname: Nullable<string>;
     static toFarmer(user: User): Farmer {
         return {
             id: user.id,
@@ -31,7 +31,7 @@ export class User {
         return {
             date: user.date,
             email: user.email,
-            fullname: user.fullName,
+            fullname: user.fullname,
             id: user.id,
             password: user.password,
             place: user.place,

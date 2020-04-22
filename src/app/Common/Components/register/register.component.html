@@ -3,7 +3,7 @@
         <div *ngIf="userType === 'company'">
             <div class = "register-row">
                 <div class = "register-column">Full name: </div>
-                <div class = "register-column"> <input type="text" name="name" [(ngModel)]="user.fullName" required/> </div>
+                <div class = "register-column"> <input type="text" name="name" [(ngModel)]="user.fullname" required/> </div>
                 <div class = "register-column"> <div *ngIf = "flags.firstNameEmpty" class = "message">Please, provide company's full name.</div> </div>
             </div>
             <div class = "register-row">

@@ -69,7 +69,7 @@ export class RegisterComponent implements OnInit {
   initDataValues() {
     this.user = {
       email: "",
-      fullName: null,
+      fullname: null,
       id: null,
       lastname: null,
       name: null,
@@ -128,7 +128,7 @@ export class RegisterComponent implements OnInit {
       somethingEmpty = true;
     }
     if (this.userType === UserTypeCompany) {
-      if (this.user.fullName == "") {
+      if (this.user.fullname == "") {
         this.flags.fullNameEmprty = true;
         somethingEmpty = true;
       }
@@ -209,7 +209,7 @@ export class RegisterComponent implements OnInit {
         date: this.user.date, 
         place: this.user.place, 
         role_id: UserTypeListList.indexOf(this.userType) + 1, 
-        fullName: this.user.fullName, 
+        fullName: this.user.fullname, 
         name: this.user.name, 
         lastname: this.user.lastname, 
         phone: this.user.phone,

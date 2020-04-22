@@ -1,1 +1,56 @@
-<p>registration-requests works!</p>
+<div *ngIf="farmerList.length > 0">
+    <div class = "registration-request-container">
+        <div class="table-name">Farmers:</div>
+        <div class = "registration-request-row header">
+            <div class = "registration-request-farmer-column">Name: </div>
+            <div class = "registration-request-farmer-column">Lastname: </div>
+            <div class = "registration-request-farmer-column">Username: </div>
+            <div class = "registration-request-farmer-column">Email: </div>
+            <div class = "registration-request-farmer-column">Date of birth: </div>
+            <div class = "registration-request-farmer-column">Place of birth: </div>
+            <div class = "registration-request-farmer-column">Phone: </div>
+            <div class = "registration-request-farmer-column"></div>
+        </div>
+        <div *ngFor="let farmer of farmerList">
+            <div class = "registration-request-row">
+                <div class = "registration-request-farmer-column">{{farmer.name}} </div>
+                <div class = "registration-request-farmer-column">{{farmer.lastname}}</div>
+                <div class = "registration-request-farmer-column">{{farmer.username}}</div>
+                <div class = "registration-request-farmer-column">{{farmer.email}}</div>
+                <div class = "registration-request-farmer-column">{{farmer.date}}</div>
+                <div class = "registration-request-farmer-column">{{farmer.place}}</div>
+                <div class = "registration-request-farmer-column">{{farmer.phone}}</div>
+                <div class = "registration-request-farmer-column">
+                    <button>Accept</button>
+                    <button>Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="companyList.length > 0">
+    <div class = "registration-request-container">
+        <div class="table-name">Companies:</div>
+        <div class = "registration-request-row header">
+            <div class = "registration-request-company-column">Full name: </div>
+            <div class = "registration-request-company-column">Short name: </div>
+            <div class = "registration-request-company-column">Email: </div>
+            <div class = "registration-request-company-column">Date of establishment: </div>
+            <div class = "registration-request-company-column">Location: </div>
+            <div class = "registration-request-company-column"></div>
+        </div>
+        <div *ngFor="let company of companyList">
+            <div class = "registration-request-row">
+                <div class = "registration-request-company-column">{{company.fullname}} </div>
+                <div class = "registration-request-company-column">{{company.username}}</div>
+                <div class = "registration-request-company-column">{{company.email}}</div>
+                <div class = "registration-request-company-column">{{company.date}}</div>
+                <div class = "registration-request-company-column">{{company.place}}</div>
+                <div class = "registration-request-company-column">
+                    <button>Accept</button>
+                    <button>Reject</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
