@@ -214,18 +214,17 @@ export class RegisterComponent implements OnInit {
         lastname: this.user.lastname, 
         phone: this.user.phone,
       }).subscribe((result: any) => {
-        if (result.error) {
+        if (result !== null && result.error) {
           this.flags.somethingWentWring = true;
           this.message = result.error;
+        } else {
+          this.route.navigate(['login']);
         }
-        this.route.navigate(['login']);
       });
   }
 
   public recaptchaClicked(){
-    console.log(this.flags.recaptchaClicked);
     this.flags.recaptchaClicked = true;
-    console.log(this.flags.recaptchaClicked);
   }
   
 }
