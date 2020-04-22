@@ -64,7 +64,9 @@ export class NavbarComponent implements OnInit {
   }
 
   logout = () => {
-    this.cookieService.deleteAll();
+    this.cookieService.delete('userRole','/');
+    this.cookieService.delete('userId','/');
+    this.router.navigate(['/login']);
   }
 
 }

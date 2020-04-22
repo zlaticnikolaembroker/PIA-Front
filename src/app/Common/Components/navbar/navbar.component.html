@@ -1,6 +1,6 @@
 <ul >
     <li *ngFor="let item of posibleRoutes">
         <a *ngIf ="item.title !== 'Logout'" href={{item.href}} (click) = "init()">{{item.title}}</a>
-        <a class="logout" *ngIf ="item.title === 'Logout'" href={{item.href}} (click) = "logout()">{{item.title}}</a>
+        <a class="logout" *ngIf ="item.title === 'Logout'" [routerLink]="" (click) = "logout()">{{item.title}}</a>
     </li>
 </ul>
