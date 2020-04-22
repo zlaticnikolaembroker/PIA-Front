@@ -14,6 +14,20 @@ export class RegistrationRequestsComponent implements OnInit {
   companyList: Company[] = [] as Company[];
   constructor(private http: HttpClient) { }
 
+  confirmUser(id: number, confirmation: boolean){
+    this.http.post('http://localhost:3000/users/confirm_user', {
+      id,
+      confirmation,
+    }).subscribe((data) => {
+        this.companyList = this.companyList.filter((company) => {
+          return company.id !=id;
+        });
+        this.farmerList = this.farmerList.filter((farmer) => {
+          return farmer.id !=id;
+        })
+      });
+  }
+
   ngOnInit(): void {
     this.http.get('http://localhost:3000/users_unconfirmed').subscribe((data: User[]) => {
           if (data && data !== null) {

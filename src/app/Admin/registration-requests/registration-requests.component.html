@@ -21,8 +21,8 @@
                 <div class = "registration-request-farmer-column">{{farmer.place}}</div>
                 <div class = "registration-request-farmer-column">{{farmer.phone}}</div>
                 <div class = "registration-request-farmer-column">
-                    <button>Accept</button>
-                    <button>Reject</button>
+                    <button (click) = "confirmUser(farmer.id, true)">Accept</button>
+                    <button (click) = "confirmUser(farmer.id, false)">Reject</button>
                 </div>
             </div>
         </div>
@@ -47,8 +47,8 @@
                 <div class = "registration-request-company-column">{{company.date}}</div>
                 <div class = "registration-request-company-column">{{company.place}}</div>
                 <div class = "registration-request-company-column">
-                    <button>Accept</button>
-                    <button>Reject</button>
+                    <button (click) = "confirmUser(company.id, true)">Accept</button>
+                    <button (click) = "confirmUser(company.id, false)">Reject</button>
                 </div>
             </div>
         </div>
