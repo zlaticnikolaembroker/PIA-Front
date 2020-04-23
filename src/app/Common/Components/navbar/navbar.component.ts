@@ -48,6 +48,7 @@ export class NavbarComponent implements OnInit {
       this.posibleRoutes  = [
         {href:  homeHref, title: 'Home'},
         {href: '/login', title:'Logout'},
+        { href: '/change-password', title: 'Change password' }
       ];
     } else {
         this.posibleRoutes  = [
