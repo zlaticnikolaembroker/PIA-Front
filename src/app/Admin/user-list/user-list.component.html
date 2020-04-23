@@ -1,1 +1,74 @@
-<p>user-list works!</p>
+<div *ngIf="adminList.length > 0">
+    <div class = "user-list-container admin-table">
+        <div class="table-name">Admins:</div>
+        <div class = "user-list-row header">
+            <div class = "user-list-admin-column">Username: </div>
+            <div class = "user-list-admin-column"></div>
+        </div>
+        <div *ngFor="let admin of adminList">
+            <div class = "user-list-row">
+                <div class = "user-list-admin-column">{{admin.username}} </div>
+                <div class = "user-list-admin-column">
+                    <button (click) = "deleteUser(admin.id)">Delete</button>
+                    <button (click) = "editUser(admin.id)">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="farmerList.length > 0">
+    <div class = "user-list-container">
+        <div class="table-name">Farmers:</div>
+        <div class = "user-list-row header">
+            <div class = "user-list-farmer-column">Name: </div>
+            <div class = "user-list-farmer-column">Lastname: </div>
+            <div class = "user-list-farmer-column">Username: </div>
+            <div class = "user-list-farmer-column">Email: </div>
+            <div class = "user-list-farmer-column">Date of birth: </div>
+            <div class = "user-list-farmer-column">Place of birth: </div>
+            <div class = "user-list-farmer-column">Phone: </div>
+            <div class = "user-list-farmer-column"></div>
+        </div>
+        <div *ngFor="let farmer of farmerList">
+            <div class = "user-list-row">
+                <div class = "user-list-farmer-column">{{farmer.name}} </div>
+                <div class = "user-list-farmer-column">{{farmer.lastname}}</div>
+                <div class = "user-list-farmer-column">{{farmer.username}}</div>
+                <div class = "user-list-farmer-column">{{farmer.email}}</div>
+                <div class = "user-list-farmer-column">{{farmer.date}}</div>
+                <div class = "user-list-farmer-column">{{farmer.place}}</div>
+                <div class = "user-list-farmer-column">{{farmer.phone}}</div>
+                <div class = "user-list-farmer-column">
+                    <button (click) = "deleteUser(farmer.id)">Delete</button>
+                    <button (click) = "editUser(farmer.id)">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="companyList.length > 0">
+    <div class = "user-list-container">
+        <div class="table-name">Companies:</div>
+        <div class = "user-list-row header">
+            <div class = "user-list-company-column">Full name: </div>
+            <div class = "user-list-company-column">Short name: </div>
+            <div class = "user-list-company-column">Email: </div>
+            <div class = "user-list-company-column">Date of establishment: </div>
+            <div class = "user-list-company-column">Location: </div>
+            <div class = "user-list-company-column"></div>
+        </div>
+        <div *ngFor="let company of companyList">
+            <div class = "user-list-row">
+                <div class = "user-list-company-column">{{company.fullname}} </div>
+                <div class = "user-list-company-column">{{company.username}}</div>
+                <div class = "user-list-company-column">{{company.email}}</div>
+                <div class = "user-list-company-column">{{company.date}}</div>
+                <div class = "user-list-company-column">{{company.place}}</div>
+                <div class = "user-list-company-column">
+                    <button (click) = "deleteUser(company.id)">Delete</button>
+                    <button (click) = "editUser(company.id)">Edit</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

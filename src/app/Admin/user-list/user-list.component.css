@@ -1,0 +1,52 @@
+.user-list-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+}
+
+.admin-table{
+    width: 50%;
+    min-width: 100px;
+}
+
+.header{
+    background-color: #45aba6;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.table-name{
+    font-weight: bold;
+    font-size: large;
+    width: 100%;
+    padding-top: 7px;
+    padding-left: 10px;
+}
+
+.user-list-row{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.user-list-farmer-column{
+    width: 12.5%;
+}
+
+.user-list-company-column{
+    width: 16.66%;
+}
+
+.user-list-admin-column{
+    width: 50%;
+}
+
+.message{
+    color: darkred;
+}
