@@ -16,6 +16,7 @@ import { CompanyDashboardComponent } from './Company/company-dashboard/company-d
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RegistrationRequestsComponent } from './Admin/registration-requests/registration-requests.component';
 import { UserListComponent } from './Admin/user-list/user-list.component';
+import { ChangePasswordComponent } from './Common/Components/change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { UserListComponent } from './Admin/user-list/user-list.component';
     FarmerDashboardComponent,
     CompanyDashboardComponent,
     RegistrationRequestsComponent,
-    UserListComponent
+    UserListComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,

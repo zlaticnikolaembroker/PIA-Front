@@ -9,6 +9,7 @@ import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashb
 import { CompanyDashboardComponent } from './Company/company-dashboard/company-dashboard.component';
 import { RegistrationRequestsComponent } from './Admin/registration-requests/registration-requests.component';
 import { UserListComponent } from './Admin/user-list/user-list.component';
+import { ChangePasswordComponent } from './Common/Components/change-password/change-password.component';
 
 
 const routes: Routes = [
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminDashboardComponent},
   { path: 'admin/registration-requests', component: RegistrationRequestsComponent},
   { path: 'admin/user-list' , component: UserListComponent },
+  { path: 'change-password', component:ChangePasswordComponent },
   { path: 'company', component: CompanyDashboardComponent },
   { path: 'farmer', component: FarmerDashboardComponent },
   { path: '**', component: PageNotFoundComponent},

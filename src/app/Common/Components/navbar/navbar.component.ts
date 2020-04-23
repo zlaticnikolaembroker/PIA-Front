@@ -44,9 +44,6 @@ export class NavbarComponent implements OnInit {
         break;
       }
     }
-    if(role && this.currentUrl && !this.currentUrl.includes(homeHref)) {
-      this.router.navigate([homeHref]);
-    }
     if(role) {
       this.posibleRoutes  = [
         {href:  homeHref, title: 'Home'},
@@ -57,7 +54,13 @@ export class NavbarComponent implements OnInit {
           {href: '/login', title: 'Login'},
           {href: '/register', title:'Register'},
         ];
+        if (this.currentUrl !== '/login' && this.currentUrl !== '/register') {
+          this.router.navigate(['login']);
+        }
       }
+    if(role && this.currentUrl && !this.currentUrl.includes(homeHref) && this.currentUrl !== '/change-password') {
+      this.router.navigate([homeHref]);
+    }
   }
 
   ngOnInit(): void {
