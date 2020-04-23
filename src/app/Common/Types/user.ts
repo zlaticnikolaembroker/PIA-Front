@@ -1,6 +1,7 @@
 import { Nullable } from './nullable';
 import { Farmer } from './farmer';
 import { Company } from './company';
+import { Admin } from './admin';
 
 export class User {
     id: Nullable<number>;
@@ -37,6 +38,13 @@ export class User {
             place: user.place,
             username: user.username,
         } as Company;
+    };
+    static toAdmin(user: User): Admin {
+        return {
+            id: user.id,
+            password: user.password,
+            username: user.username,
+        } as Admin;
     }
 };
 
