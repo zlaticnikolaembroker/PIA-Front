@@ -9,7 +9,7 @@
             <div class = "user-list-row">
                 <div class = "user-list-admin-column">{{admin.username}} </div>
                 <div class = "user-list-admin-column">
-                    <button (click) = "deleteUser(admin.id)">Delete</button>
+                    <button (click) = "deleteUser(admin.id)" [disabled]="currentUserId === admin.id">Delete</button>
                     <button (click) = "editUser(admin.id)">Edit</button>
                 </div>
             </div>
