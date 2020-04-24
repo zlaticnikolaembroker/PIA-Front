@@ -10,6 +10,7 @@ import { CompanyDashboardComponent } from './Company/company-dashboard/company-d
 import { RegistrationRequestsComponent } from './Admin/Components/registration-requests/registration-requests.component';
 import { UserListComponent } from './Admin/Components/user-list/user-list.component';
 import { ChangePasswordComponent } from './Common/Components/change-password/change-password.component';
+import { UserComponent } from './Admin/Components/user/user.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'admin', component: AdminDashboardComponent},
   { path: 'admin/registration-requests', component: RegistrationRequestsComponent},
   { path: 'admin/user-list' , component: UserListComponent },
+  { path: 'admin/user-list/:id' , component: UserComponent },
   { path: 'change-password', component:ChangePasswordComponent },
   { path: 'company', component: CompanyDashboardComponent },
   { path: 'farmer', component: FarmerDashboardComponent },

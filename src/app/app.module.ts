@@ -17,6 +17,10 @@ import { RecaptchaModule } from 'ng-recaptcha';
 import { RegistrationRequestsComponent } from './Admin/Components/registration-requests/registration-requests.component';
 import { UserListComponent } from './Admin/Components/user-list/user-list.component';
 import { ChangePasswordComponent } from './Common/Components/change-password/change-password.component';
+import { UserComponent } from './Admin/Components/user/user.component';
+import { AdminComponent } from './Admin/Components/admin/admin.component';
+import { FarmerComponent } from './Admin/Components/farmer/farmer.component';
+import { CompanyComponent } from './Admin/Components/company/company.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,11 @@ import { ChangePasswordComponent } from './Common/Components/change-password/cha
     CompanyDashboardComponent,
     RegistrationRequestsComponent,
     UserListComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    UserComponent,
+    AdminComponent,
+    FarmerComponent,
+    CompanyComponent
   ],
   imports: [
     BrowserModule,
