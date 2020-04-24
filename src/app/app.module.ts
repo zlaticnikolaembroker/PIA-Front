@@ -14,8 +14,8 @@ import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admi
 import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
 import { CompanyDashboardComponent } from './Company/company-dashboard/company-dashboard.component';
 import { RecaptchaModule } from 'ng-recaptcha';
-import { RegistrationRequestsComponent } from './Admin/registration-requests/registration-requests.component';
-import { UserListComponent } from './Admin/user-list/user-list.component';
+import { RegistrationRequestsComponent } from './Admin/Components/registration-requests/registration-requests.component';
+import { UserListComponent } from './Admin/Components/user-list/user-list.component';
 import { ChangePasswordComponent } from './Common/Components/change-password/change-password.component';
 
 @NgModule({
