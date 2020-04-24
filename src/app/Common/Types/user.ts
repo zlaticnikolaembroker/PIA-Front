@@ -44,6 +44,7 @@ export class User {
             id: user.id,
             password: user.password,
             username: user.username,
+            email: user.email,
         } as Admin;
     }
 };
