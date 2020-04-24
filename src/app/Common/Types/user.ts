@@ -10,8 +10,8 @@ export class User {
     password: string;
     email: string;
     role_id: number;
-    date: Date;
-    place: string;
+    date: Nullable<Date>;
+    place: Nullable<string>;
     lastname: Nullable<string>;
     phone: Nullable<string>;
     fullname: Nullable<string>;

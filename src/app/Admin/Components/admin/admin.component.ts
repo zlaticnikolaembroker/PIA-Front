@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Admin } from 'src/app/Common/Types/admin';
 
 @Component({
   selector: 'app-admin',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./admin.component.css']
 })
 export class AdminComponent implements OnInit {
-
+  @Input() user: Admin;
   constructor() { }
 
   ngOnInit(): void {
+    console.log(this.user);
   }
 
 }

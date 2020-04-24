@@ -43,7 +43,6 @@ export class ChangePasswordComponent implements OnInit {
           if (data && data !== null) {
             this.currentUser = data;
           }
-          console.log(this.currentUser);
       });
   }
 

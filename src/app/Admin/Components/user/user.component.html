@@ -1,1 +1,5 @@
-<p>user works!</p>
+<div *ngIf="user !== undefined">
+    <app-admin *ngIf="user.role_id === 1" [user]="toAdmin()"></app-admin>
+    <app-company *ngIf="user.role_id === 2" [user]="toCompany()"></app-company>
+    <app-farmer *ngIf="user.role_id === 3" [user]="toFarmer()"></app-farmer>
+</div>

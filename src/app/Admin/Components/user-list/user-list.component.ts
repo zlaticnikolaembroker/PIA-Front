@@ -5,6 +5,7 @@ import { Farmer } from 'src/app/Common/Types/farmer';
 import { Company } from 'src/app/Common/Types/company';
 import { Admin } from 'src/app/Common/Types/admin';
 import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-list',
@@ -16,7 +17,7 @@ export class UserListComponent implements OnInit {
   companyList: Company[] = [];
   adminList: Admin[] = [];
   currentUserId: number;
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) { }
 
   getUsers(){
     this.http.get('http://localhost:3000/users')
@@ -56,7 +57,7 @@ export class UserListComponent implements OnInit {
   }
 
   editUser(id: number) {
-    console.log(id);
+    this.router.navigate(['/admin/user-list/' + id.toString()]);
   }
 
 }
