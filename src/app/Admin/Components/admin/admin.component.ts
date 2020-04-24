@@ -8,10 +8,12 @@ import { Admin } from 'src/app/Common/Types/admin';
 })
 export class AdminComponent implements OnInit {
   @Input() user: Admin;
+  @Input() update: Function;
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.user);
+    this.update(this.user);
   }
 
 }

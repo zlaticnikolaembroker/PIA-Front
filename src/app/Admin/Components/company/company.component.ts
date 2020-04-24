@@ -9,11 +9,12 @@ import { Company } from 'src/app/Common/Types/company';
 export class CompanyComponent implements OnInit {
 
   @Input() user: Company;
-
+  @Input() update: Function;
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.user);
+    this.update(this.user);
   }
 
 }

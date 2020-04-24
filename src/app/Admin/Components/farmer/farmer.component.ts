@@ -8,10 +8,12 @@ import { Farmer } from 'src/app/Common/Types/farmer';
 })
 export class FarmerComponent implements OnInit {
   @Input() user: Farmer;
+  @Input() update: Function;
   constructor() { }
 
   ngOnInit(): void {
     console.log(this.user);
+    this.update(this.user);
   }
 
 }
