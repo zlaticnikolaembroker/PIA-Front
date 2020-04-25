@@ -35,10 +35,6 @@ export class UserComponent implements OnInit {
     return User.toFarmer(this.user);
   }
 
-  updateAdmin(admin: Admin) {
-    console.log(admin);
-  }
-
   updateFarmer(farmer: Farmer) {
     console.log(farmer);
   }

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Admin } from 'src/app/Common/Types/admin';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin',
@@ -9,22 +10,14 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent implements OnInit {
   @Input() user: Admin;
-  @Input() update: Function;
-
-  userEdited: boolean;
-  passwordNotStrong: boolean;
 
   passRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 
-  initFlags(){
-    this.userEdited = false;
-    this.passwordNotStrong = false;
-  }
-
-  constructor(private router: Router) { 
+  constructor(private router: Router, private http: HttpClient) { 
   }
 
   tempUser: Admin;
+  message: string;
 
   ngOnInit(): void {
     this.tempUser = this.user;
@@ -32,7 +25,7 @@ export class AdminComponent implements OnInit {
 
   checkIsUserEdited() {
     if (this.user.email === this.tempUser.email && this.user.password === this.tempUser.password && this.user.username === this.tempUser.username) {
-      this.userEdited = true;
+      this.message = "User not edited";
       return false;
     }
     return true;
@@ -40,13 +33,14 @@ export class AdminComponent implements OnInit {
 
   checkIsEmailFormatOK(){
     if (!this.passRegex.test(this.tempUser.password)) {
-      this.passwordNotStrong = true;
+      this.message = "Password not strong";
       return false;
     }
     return true;
   }
 
   checkData(){
+    this.message = "";
     if (!this.checkIsUserEdited()) {
       return false;
     }
@@ -55,12 +49,19 @@ export class AdminComponent implements OnInit {
     }
     return true;
   }
+
   handleUpdate() {
     if (!this.checkData()){
       return;
     }
-    this.update(this.user);
-    this.update(this.tempUser);
+    this.http.post('http://localhost:3000/users/update_admin', {
+      id: this.tempUser.id,
+      email: this.tempUser.email,
+      username: this.tempUser.username,
+      password: this.tempUser.password,
+    }).subscribe((data) => {
+        this.back();
+      });
   }
 
   back() {
