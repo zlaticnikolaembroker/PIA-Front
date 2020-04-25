@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Farmer } from 'src/app/Common/Types/farmer';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-farmer',
@@ -9,11 +10,16 @@ import { Farmer } from 'src/app/Common/Types/farmer';
 export class FarmerComponent implements OnInit {
   @Input() user: Farmer;
   @Input() update: Function;
-  constructor() { }
+
+  tempUser: Farmer;
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
-    console.log(this.user);
-    this.update(this.user);
+    this.tempUser = this.user;
+  }
+
+  back() {
+    this.router.navigate(['/admin/user-list'])
   }
 
 }

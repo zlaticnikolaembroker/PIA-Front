@@ -1,0 +1,94 @@
+<div class="farmer-container">
+    <div class="farmer-row">
+        <div class="farmer-option-column">
+            
+        </div>
+        <div class="farmer-option-column">
+            
+        </div>
+        <div class="farmer-option-column">
+        </div>
+        <div class="farmer-option-column">
+            <button (click)="back()">Back to list </button>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Name
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.name" name="name" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Lastname
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.lastname" name="lastname" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Email
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.email" name="email" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Username
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.username" name="username" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Passoword
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.password" name="password" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Date of birth
+        </div>
+        <div class="farmer-column">
+            <input type="date"  [ngModel]="tempUser.date | date:'yyyy-MM-dd'" 
+                 (ngModelChange)="tempUser.date = $event" name="date">
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Place of birth
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.place" name="place" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-column">
+            Phone
+        </div>
+        <div class="farmer-column">
+            <input type="text" [(ngModel)]="tempUser.phone" name="phone" required>
+        </div>
+    </div>
+    <div class="farmer-row">
+        <div class="farmer-option-column message">
+            {{message}}
+        </div>
+        <div class="farmer-option-column">
+            
+        </div>
+        <div class="farmer-option-column">
+            <button (click)="handleUpdate()">Update</button>
+        </div>
+        <div class="farmer-option-column">
+            <button (click)="back()">Cancel</button>
+        </div>
+    </div>
+</div>
