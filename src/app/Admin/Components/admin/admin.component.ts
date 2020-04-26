@@ -3,6 +3,7 @@ import { Admin } from 'src/app/Common/Types/admin';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Nullable } from 'src/app/Common/Types/nullable';
+import Joi from '@hapi/joi';
 
 @Component({
   selector: 'app-admin',
@@ -39,6 +40,25 @@ export class AdminComponent implements OnInit {
     return true;
   }
 
+  checkEmailFormat() {
+    const schema = Joi.string().email({
+      tlds: false,
+      allowUnicode: false,
+    });
+    if (this.user !== null) {
+      if (schema.validate(this.tempUser.email).error) {
+        this.message = 'Email format wrong';
+        return false;
+      }
+    } else {
+      if (schema.validate(this.email).error) {
+        this.message = 'Email format wrong';
+        return false;
+      }
+    }
+    return true;
+  }
+
   checkForEmptyFields() {
     if (this.user !== null) {
       const userFields = Object.getOwnPropertyNames(this.tempUser);
@@ -61,7 +81,7 @@ export class AdminComponent implements OnInit {
     return true;
   }
 
-  checkIsEmailFormatOK(){
+  checkIsPasswordStrong(){
     if (this.user !== null) {
       if (!this.passRegex.test(this.tempUser.password)) {
         this.message = "Password not strong";
@@ -84,7 +104,10 @@ export class AdminComponent implements OnInit {
     if (!this.checkIsUserEdited()) {
       return false;
     }
-    if (!this.checkIsEmailFormatOK()) {
+    if (!this.checkIsPasswordStrong()) {
+      return false;
+    }
+    if (!this.checkEmailFormat()) {
       return false;
     }
     return true;

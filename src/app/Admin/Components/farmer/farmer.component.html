@@ -17,7 +17,8 @@
             Name
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.name" name="name" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.name" name="name" required>
+            <input *ngIf="user == null" type="text" [(ngModel)]="addFarmer.name" name="name" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -25,7 +26,8 @@
             Lastname
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.lastname" name="lastname" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.lastname" name="lastname" required>
+            <input *ngIf="user == null" type="text" [(ngModel)]="addFarmer.lastname" name="lastname" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -33,7 +35,8 @@
             Email
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.email" name="email" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.email" name="email" required>
+            <input *ngIf="user == null" type="text" [(ngModel)]="addFarmer.email" name="email" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -41,7 +44,8 @@
             Username
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.username" name="username" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.username" name="username" required>
+            <input *ngIf="user == null" type="text" [(ngModel)]="addFarmer.username" name="username" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -49,7 +53,8 @@
             Passoword
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.password" name="password" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.password" name="password" required>
+            <input *ngIf="user == null" type="text" [(ngModel)]="addFarmer.password" name="password" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -57,8 +62,10 @@
             Date of birth
         </div>
         <div class="farmer-column">
-            <input type="date"  [ngModel]="tempUser.date | date:'yyyy-MM-dd'" 
-                 (ngModelChange)="tempUser.date = $event" name="date">
+            <input *ngIf="user !== null" type="date"  [ngModel]="tempUser.date | date:'yyyy-MM-dd'" 
+                (ngModelChange)="tempUser.date = $event" name="date">
+            <input *ngIf="user === null" type="date"  [ngModel]="addFarmer.date | date:'yyyy-MM-dd'" 
+                (ngModelChange)="addFarmer.date = $event" name="date">
         </div>
     </div>
     <div class="farmer-row">
@@ -66,7 +73,8 @@
             Place of birth
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.place" name="place" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.place" name="place" required>
+            <input *ngIf="user === null" type="text" [(ngModel)]="addFarmer.place" name="place" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -74,7 +82,8 @@
             Phone
         </div>
         <div class="farmer-column">
-            <input type="text" [(ngModel)]="tempUser.phone" name="phone" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.phone" name="phone" required>
+            <input *ngIf="user == null" type="text" [(ngModel)]="addFarmer.phone" name="phone" required>
         </div>
     </div>
     <div class="farmer-row">
@@ -85,7 +94,8 @@
             
         </div>
         <div class="farmer-option-column">
-            <button (click)="handleUpdate()">Update</button>
+            <button *ngIf="user !== null" (click)="handleUpdate()">Update</button>
+            <button *ngIf="user === null" (click)="handleUpdate()">Add</button>
         </div>
         <div class="farmer-option-column">
             <button (click)="back()">Cancel</button>
