@@ -54,12 +54,8 @@ export class AdminComponent implements OnInit {
     if (!this.checkData()){
       return;
     }
-    this.http.post('http://localhost:3000/users/update_admin', {
-      id: this.tempUser.id,
-      email: this.tempUser.email,
-      username: this.tempUser.username,
-      password: this.tempUser.password,
-    }).subscribe((data) => {
+    this.http.post('http://localhost:3000/users/update',this.tempUser)
+      .subscribe((data) => {
         this.back();
       });
   }

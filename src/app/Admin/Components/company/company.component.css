@@ -1,0 +1,28 @@
+.company-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+    width: 35%;
+}
+
+.company-row{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.company-column{
+    width: 33%;
+}
+
+.company-option-column{
+    width: 25%;
+}
+
+.message{
+    color: darkred;
+}

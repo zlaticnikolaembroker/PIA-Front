@@ -92,8 +92,8 @@ export class FarmerComponent implements OnInit {
     }
     console.log("should be here");
 
-    this.http.post('http://localhost:3000/users/update_farmer', this.tempUser).subscribe((data) => {
-
+    this.http.post('http://localhost:3000/users/update', this.tempUser)
+      .subscribe((data) => {
         this.back();
       });
   }

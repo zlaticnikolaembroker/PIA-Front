@@ -1,0 +1,78 @@
+<div class="company-container">
+    <div class="company-row">
+        <div class="company-option-column">
+            
+        </div>
+        <div class="company-option-column">
+            
+        </div>
+        <div class="company-option-column">
+        </div>
+        <div class="company-option-column">
+            <button (click)="back()">Back to list </button>
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Full name
+        </div>
+        <div class="company-column">
+            <input type="text" [(ngModel)]="tempUser.fullname" name="fullname" required>
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Shortname
+        </div>
+        <div class="company-column">
+            <input type="text" [(ngModel)]="tempUser.username" name="username" required>
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Email
+        </div>
+        <div class="company-column">
+            <input type="text" [(ngModel)]="tempUser.email" name="email" required>
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Passoword
+        </div>
+        <div class="company-column">
+            <input type="text" [(ngModel)]="tempUser.password" name="password" required>
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Date of establishment
+        </div>
+        <div class="company-column">
+            <input type="date"  [ngModel]="tempUser.date | date:'yyyy-MM-dd'" 
+                 (ngModelChange)="tempUser.date = $event" name="date">
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Place of company
+        </div>
+        <div class="company-column">
+            <input type="text" [(ngModel)]="tempUser.place" name="place" required>
+        </div>
+    </div>
+    <div class="company-row">
+        <div class="company-option-column message">
+            {{message}}
+        </div>
+        <div class="company-option-column">
+            
+        </div>
+        <div class="company-option-column">
+            <button (click)="handleUpdate()">Update</button>
+        </div>
+        <div class="company-option-column">
+            <button (click)="back()">Cancel</button>
+        </div>
+    </div>
+</div>
