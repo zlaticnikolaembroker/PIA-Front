@@ -2,16 +2,23 @@
     <div class="table-name">Admins:</div>
     <div class = "user-list-row header">
         <div class = "user-list-admin-column">Username: </div>
+        <div class = "user-list-admin-column">Email</div>
         <div class = "user-list-admin-column"></div>
     </div>
     <div *ngFor="let admin of adminList">
         <div class = "user-list-row">
             <div class = "user-list-admin-column">{{admin.username}} </div>
+            <div class = "user-list-admin-column">{{admin.email}} </div>
             <div class = "user-list-admin-column">
                 <button (click) = "deleteUser(admin.id)" [disabled]="currentUserId === admin.id">Delete</button>
                 <button (click) = "editUser(admin.id)">Edit</button>
             </div>
         </div>
+    </div>
+    <div class = "user-list-row">
+        <div class = "user-list-admin-column"><button>Add admin</button></div>
+        <div class = "user-list-admin-column"></div>
+        <div class = "user-list-admin-column"></div>
     </div>
 </div>
 <div class = "user-list-container">
@@ -41,6 +48,16 @@
             </div>
         </div>
     </div>
+    <div class = "user-list-row">
+        <div class = "user-list-farmer-column"><button>Add farmer</button> </div>
+        <div class = "user-list-farmer-column"></div>
+        <div class = "user-list-farmer-column"></div>
+        <div class = "user-list-farmer-column"></div>
+        <div class = "user-list-farmer-column"></div>
+        <div class = "user-list-farmer-column"></div>
+        <div class = "user-list-farmer-column"></div>
+        <div class = "user-list-farmer-column"> </div>
+    </div>
 </div>
 <div class = "user-list-container">
     <div class="table-name">Companies:</div>
@@ -64,5 +81,13 @@
                 <button (click) = "editUser(company.id)">Edit</button>
             </div>
         </div>
+    </div>
+    <div class = "user-list-row">
+        <div class = "user-list-company-column"><button>Add company</button></div>
+        <div class = "user-list-company-column"></div>
+        <div class = "user-list-company-column"></div>
+        <div class = "user-list-company-column"></div>
+        <div class = "user-list-company-column"></div>
+        <div class = "user-list-company-column"></div>
     </div>
 </div>
