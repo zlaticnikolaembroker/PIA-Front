@@ -33,6 +33,7 @@
     margin: 10px 0;
     align-items: center;
     text-align: center;
+    align-content: center;
 }
 
 .user-list-farmer-column{

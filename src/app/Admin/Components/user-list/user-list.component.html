@@ -39,7 +39,9 @@
             <div class = "user-list-farmer-column">{{farmer.lastname}}</div>
             <div class = "user-list-farmer-column">{{farmer.username}}</div>
             <div class = "user-list-farmer-column">{{farmer.email}}</div>
-            <div class = "user-list-farmer-column">{{farmer.date}}</div>
+            <div class = "user-list-company-column">
+                <input readonly type="date" [ngModel]="farmer.date | date:'yyyy-MM-dd'" name="date">
+            </div>
             <div class = "user-list-farmer-column">{{farmer.place}}</div>
             <div class = "user-list-farmer-column">{{farmer.phone}}</div>
             <div class = "user-list-farmer-column">
@@ -74,7 +76,9 @@
             <div class = "user-list-company-column">{{company.fullname}} </div>
             <div class = "user-list-company-column">{{company.username}}</div>
             <div class = "user-list-company-column">{{company.email}}</div>
-            <div class = "user-list-company-column">{{company.date}}</div>
+            <div class = "user-list-company-column">
+                <input readonly type="date" [ngModel]="company.date | date:'yyyy-MM-dd'" name="date">
+            </div>
             <div class = "user-list-company-column">{{company.place}}</div>
             <div class = "user-list-company-column">
                 <button (click) = "deleteUser(company.id)">Delete</button>
