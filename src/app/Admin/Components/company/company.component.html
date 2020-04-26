@@ -17,7 +17,8 @@
             Full name
         </div>
         <div class="company-column">
-            <input type="text" [(ngModel)]="tempUser.fullname" name="fullname" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.fullname" name="fullname" required>
+            <input *ngIf="user === null" type="text" [(ngModel)]="addCompany.fullname" name="fullname" required>
         </div>
     </div>
     <div class="company-row">
@@ -25,7 +26,8 @@
             Shortname
         </div>
         <div class="company-column">
-            <input type="text" [(ngModel)]="tempUser.username" name="username" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.username" name="username" required>
+            <input *ngIf="user === null" type="text" [(ngModel)]="addCompany.username" name="username" required>
         </div>
     </div>
     <div class="company-row">
@@ -33,15 +35,17 @@
             Email
         </div>
         <div class="company-column">
-            <input type="text" [(ngModel)]="tempUser.email" name="email" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.email" name="email" required>
+            <input *ngIf="user === null" type="text" [(ngModel)]="addCompany.email" name="email" required>
         </div>
     </div>
     <div class="company-row">
         <div class="company-column">
-            Passoword
+            Password
         </div>
         <div class="company-column">
-            <input type="text" [(ngModel)]="tempUser.password" name="password" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.password" name="password" required>
+            <input *ngIf="user === null" type="text" [(ngModel)]="addCompany.password" name="password" required>
         </div>
     </div>
     <div class="company-row">
@@ -49,8 +53,10 @@
             Date of establishment
         </div>
         <div class="company-column">
-            <input type="date"  [ngModel]="tempUser.date | date:'yyyy-MM-dd'" 
-                 (ngModelChange)="tempUser.date = $event" name="date">
+            <input *ngIf="user !== null" type="date"  [ngModel]="tempUser.date | date:'yyyy-MM-dd'" 
+                (ngModelChange)="tempUser.date = $event" name="date">
+            <input *ngIf="user === null" type="date"  [ngModel]="addCompany.date | date:'yyyy-MM-dd'" 
+                (ngModelChange)="addCompany.date = $event" name="date">
         </div>
     </div>
     <div class="company-row">
@@ -58,7 +64,8 @@
             Place of company
         </div>
         <div class="company-column">
-            <input type="text" [(ngModel)]="tempUser.place" name="place" required>
+            <input *ngIf="user !== null" type="text" [(ngModel)]="tempUser.place" name="place" required>
+            <input *ngIf="user === null" type="text" [(ngModel)]="addCompany.place" name="place" required>
         </div>
     </div>
     <div class="company-row">

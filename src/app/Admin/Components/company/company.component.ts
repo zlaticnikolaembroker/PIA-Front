@@ -4,6 +4,15 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Joi from '@hapi/joi';
 
+interface AddCompany {
+  username: string;
+  email: string;
+  password: string;
+  date: Date;
+  place: string;
+  fullname: string;
+}
+
 @Component({
   selector: 'app-company',
   templateUrl: './company.component.html',
@@ -12,8 +21,8 @@ import Joi from '@hapi/joi';
 export class CompanyComponent implements OnInit {
 
   @Input() user: Company;
-  @Input() update: Function;
 
+  addCompany: AddCompany;
   passRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
   message: string;
   tempUser: Company;
@@ -22,6 +31,9 @@ export class CompanyComponent implements OnInit {
 
 
   checkIsUserEdited() {
+    if (this.user === null) {
+      return true;
+    }
     const userFields = Object.getOwnPropertyNames(this.tempUser);
     let fieldsChanged: number = 0;
     userFields.forEach((field) => {
@@ -37,16 +49,30 @@ export class CompanyComponent implements OnInit {
   }
 
   checkForEmptyFields() {
-    const userFields = Object.getOwnPropertyNames(this.tempUser);
-    let emptyFields: number = 0;
-    userFields.forEach((field) => {
-      if (this.tempUser[field] === undefined || this.tempUser[field] === null || this.tempUser[field] === ''){
-        emptyFields++;
+    if (this.user !== null) {
+      const userFields = Object.getOwnPropertyNames(this.tempUser);
+      let emptyFields: number = 0;
+      userFields.forEach((field) => {
+        if (this.tempUser[field] === undefined || this.tempUser[field] === null || this.tempUser[field] === ''){
+          emptyFields++;
+        }
+      })
+      if (emptyFields > 0) {
+        this.message = 'Please, fill all fields';
+        return false;
       }
-    })
-    if (emptyFields > 0) {
-      this.message = 'Please, fill all fields';
-      return false;
+    } else {
+      const userFields = Object.getOwnPropertyNames(this.addCompany);
+      let emptyFields: number = 0;
+      userFields.forEach((field) => {
+        if (this.addCompany[field] === undefined || this.addCompany[field] === null || this.addCompany[field] === ''){
+          emptyFields++;
+        }
+      })
+      if (emptyFields > 0) {
+        this.message = 'Please, fill all fields';
+        return false;
+      }
     }
     return true;
   }
@@ -56,23 +82,40 @@ export class CompanyComponent implements OnInit {
       tlds: false,
       allowUnicode: false,
     });
-    if (schema.validate(this.tempUser.email).error) {
-      this.message = 'Email format wrong';
-      return false;
+    if (this.user !== null) {
+      if (schema.validate(this.tempUser.email).error) {
+        this.message = 'Email format wrong';
+        return false;
+      }
+    } else {
+      if (schema.validate(this.addCompany.email).error) {
+        this.message = 'Email format wrong';
+        return false;
+      }
     }
     return true;
   }
   
   checkIsPasswordFormatOK(){
-    if (!this.passRegex.test(this.tempUser.password)) {
-      this.message = "Password not strong";
-      return false;
+    if (this.user !== null) {
+      if (!this.passRegex.test(this.tempUser.password)) {
+        this.message = "Password not strong";
+        return false;
+      }
+    } else {
+      if (!this.passRegex.test(this.addCompany.password)) {
+        this.message = "Password not strong";
+        return false;
+      }
     }
     return true;
   }
 
   checkData(){
     this.message = "";
+    if (!this.checkForEmptyFields()) {
+      return false;
+    }
     if (!this.checkIsUserEdited()) {
       return false;
     }
@@ -82,9 +125,6 @@ export class CompanyComponent implements OnInit {
     if (!this.checkEmailFormat()) {
       return false;
     }
-    if (!this.checkForEmptyFields()) {
-      return false;
-    }
     return true;
   }
 
@@ -92,15 +132,34 @@ export class CompanyComponent implements OnInit {
     if (!this.checkData()){
       return;
     }
-
-    this.http.post('http://localhost:3000/users/update', this.tempUser)
-      .subscribe((data) => {
-        this.back();
-      });
+    if (this.user !== null) {
+      this.http.post('http://localhost:3000/users/update', this.tempUser)
+        .subscribe((data) => {
+          this.back();
+        });
+    } else {
+      this.http.post('http://localhost:3000/users',{
+       ...this.addCompany,
+       role_id: 2,
+      })
+        .subscribe((data) => {
+          this.back();
+        });
+    }
   }
 
   ngOnInit(): void {
     this.tempUser = this.user;
+    if (this.user === null) {
+      this.addCompany = {
+        date: null,
+        email: '',
+        fullname: '',
+        password: '',
+        place: '',
+        username: '',
+      };
+    }
   }
 
   back() {
