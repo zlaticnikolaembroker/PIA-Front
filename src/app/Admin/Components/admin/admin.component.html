@@ -17,7 +17,8 @@
             Email
         </div>
         <div class="admin-column">
-            <input type="text" [(ngModel)]="tempUser.email" name="email" required>
+            <input *ngIf="this.user !== null" type="text" [(ngModel)]="tempUser.email" name="email" required>
+            <input *ngIf="this.user === null" type="text" [(ngModel)]="email" name="email" required>
         </div>
     </div>
     <div class="admin-row">
@@ -25,7 +26,8 @@
             Username
         </div>
         <div class="admin-column">
-            <input type="text" [(ngModel)]="tempUser.username" name="username" required>
+            <input *ngIf="this.user !== null" type="text" type="text" [(ngModel)]="tempUser.username" name="username" required>
+            <input *ngIf="this.user === null" type="text" type="text" [(ngModel)]="username" name="username" required>
         </div>
     </div>
     <div class="admin-row">
@@ -33,7 +35,8 @@
             Passoword
         </div>
         <div class="admin-column">
-            <input type="text" [(ngModel)]="tempUser.password" name="password" required>
+            <input *ngIf="this.user !== null" type="text" [(ngModel)]="tempUser.password" name="password" required>
+            <input *ngIf="this.user === null" type="text" [(ngModel)]="password" name="password" required>
         </div>
     </div>
     <div class="admin-row">

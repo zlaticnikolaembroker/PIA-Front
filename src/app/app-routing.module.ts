@@ -21,6 +21,7 @@ const routes: Routes = [
   { path: 'admin/registration-requests', component: RegistrationRequestsComponent},
   { path: 'admin/user-list' , component: UserListComponent },
   { path: 'admin/user-list/:id' , component: UserComponent },
+  { path: 'admin/user-list/add/:role_id' , component: UserComponent },
   { path: 'change-password', component:ChangePasswordComponent },
   { path: 'company', component: CompanyDashboardComponent },
   { path: 'farmer', component: FarmerDashboardComponent },

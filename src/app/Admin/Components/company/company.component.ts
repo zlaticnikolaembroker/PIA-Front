@@ -92,7 +92,6 @@ export class CompanyComponent implements OnInit {
     if (!this.checkData()){
       return;
     }
-    console.log("should be here");
 
     this.http.post('http://localhost:3000/users/update', this.tempUser)
       .subscribe((data) => {

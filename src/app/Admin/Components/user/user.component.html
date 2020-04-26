@@ -1,5 +1,8 @@
 <div *ngIf="user !== undefined">
-    <app-admin *ngIf="user.role_id === 1" [user]="toAdmin()" ></app-admin>
-    <app-company *ngIf="user.role_id === 2" [user]="toCompany()" [update]="updateCompany"></app-company>
-    <app-farmer *ngIf="user.role_id === 3" [user]="toFarmer()" [update]="updateFarmer"></app-farmer>
+    <app-admin *ngIf="user !== null && user.role_id === 1" [user]="toAdmin()" ></app-admin>
+    <app-admin *ngIf="role_id === 1" [user]="null"></app-admin>
+    <app-company *ngIf="user !== null && user.role_id === 2" [user]="toCompany()"></app-company>
+    <app-company *ngIf="role_id === 2" [user]="null"></app-company>
+    <app-farmer *ngIf="user !== null && user.role_id === 3" [user]="toFarmer()"></app-farmer>
+    <app-farmer *ngIf="role_id === 3" [user]="null"></app-farmer>
 </div>

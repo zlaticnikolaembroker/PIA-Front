@@ -59,5 +59,9 @@ export class UserListComponent implements OnInit {
   editUser(id: number) {
     this.router.navigate(['/admin/user-list/' + id.toString()]);
   }
+  
+  addUser(role_id: number){
+    this.router.navigate(['/admin/user-list/add/' + role_id.toString()]);
+  }
 
 }
