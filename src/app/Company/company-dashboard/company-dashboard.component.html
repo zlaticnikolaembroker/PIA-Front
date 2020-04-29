@@ -3,33 +3,79 @@
         Products:
     </div>
     <div class="company-row">
-        <div class="company-product-column">
+        <div class="company-column">
             Name
         </div>
-        <div class="company-product-column">
+        <div class="company-column">
             Price
         </div>
-        <div class="company-product-column">
+        <div class="company-column">
             Available
         </div>
-        <div class="company-product-column">
+        <div class="company-column">
             Details
         </div>
     </div>
     <div *ngIf="products !== undefined && products.length > 0">
         <div *ngFor="let product of products">
             <div class="company-row">
-                <div class="company-product-column">
+                <div class="company-column">
                     {{product.name}}
                 </div>
-                <div class="company-product-column">
+                <div class="company-column">
                     {{product.price}}
                 </div>
-                <div class="company-product-column">
+                <div class="company-column">
                     {{product.available}}
                 </div>
-                <div class="company-product-column">
+                <div class="company-column">
                     <button (click) = "handleProductDetailsClicked(product)">Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="company-container">
+    <div class="company-row header">
+        Orders:
+    </div>
+    <div class="company-row">
+        <div class="company-column">
+            Farmer's name:
+        </div>
+        <div class="company-column">
+            Date of order:
+        </div>
+        <div class="company-column">
+            Status:
+        </div>
+        <div class="company-column">
+            Date of completion:
+        </div>
+    </div>
+    <div *ngIf="orders !== undefined && orders.length > 0">
+        <div *ngFor="let order of orders">
+            <div class="company-row">
+                <div class="company-column">
+                    {{order.farmername}}
+                </div>
+                <div class="company-column">
+                    <input type="date"  [ngModel]="order.date_of_order | date:'yyyy-MM-dd'" 
+                        readonly name="date">
+                </div>
+                <div class="company-column">
+                    <div *ngIf="order.status !== 'Received'">
+                        {{order.status}}
+                    </div>
+                    <div *ngIf="order.status == 'Received'">
+                        <button>Accept</button>
+                        <button>Reject</button>
+                    </div>
+                </div>
+                <div class="company-column">
+
+                    <input *ngIf="order.date_of_completion !== null" type="date"  [ngModel]="order.date_of_completion | date:'yyyy-MM-dd'" 
+                        readonly name="date">
                 </div>
             </div>
         </div>
