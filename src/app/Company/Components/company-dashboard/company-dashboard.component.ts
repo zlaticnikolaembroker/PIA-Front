@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Product } from 'src/app/Common/Types/product';
-import { OrderDetails } from '../types/OrderDetails';
+import { OrderDetails } from '../../types/OrderDetails';
 
 @Component({
   selector: 'app-company-dashboard',

@@ -21,6 +21,8 @@ import { UserComponent } from './Admin/Components/user/user.component';
 import { AdminComponent } from './Admin/Components/admin/admin.component';
 import { FarmerComponent } from './Admin/Components/farmer/farmer.component';
 import { CompanyComponent } from './Admin/Components/company/company.component';
+import { ProductComponent } from './Company/Components/product/product.component';
+import { OrderComponent } from './Company/Components/order/order.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { CompanyComponent } from './Admin/Components/company/company.component';
     UserComponent,
     AdminComponent,
     FarmerComponent,
-    CompanyComponent
+    CompanyComponent,
+    ProductComponent,
+    OrderComponent
   ],
   imports: [
     BrowserModule,
