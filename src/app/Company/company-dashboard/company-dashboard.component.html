@@ -1,1 +1,37 @@
-<p>company-dashboard works!</p>
+<div class="company-container">
+    <div class="company-row header">
+        Products:
+    </div>
+    <div class="company-row">
+        <div class="company-product-column">
+            Name
+        </div>
+        <div class="company-product-column">
+            Price
+        </div>
+        <div class="company-product-column">
+            Available
+        </div>
+        <div class="company-product-column">
+            Details
+        </div>
+    </div>
+    <div *ngIf="products !== undefined && products.length > 0">
+        <div *ngFor="let product of products">
+            <div class="company-row">
+                <div class="company-product-column">
+                    {{product.name}}
+                </div>
+                <div class="company-product-column">
+                    {{product.price}}
+                </div>
+                <div class="company-product-column">
+                    {{product.available}}
+                </div>
+                <div class="company-product-column">
+                    <button (click) = "handleProductDetailsClicked(product)">Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
