@@ -11,6 +11,8 @@ import { RegistrationRequestsComponent } from './Admin/Components/registration-r
 import { UserListComponent } from './Admin/Components/user-list/user-list.component';
 import { ChangePasswordComponent } from './Common/Components/change-password/change-password.component';
 import { UserComponent } from './Admin/Components/user/user.component';
+import { OrderComponent } from './Company/Components/order/order.component';
+import { ProductComponent } from './Company/Components/product/product.component';
 
 
 const routes: Routes = [
@@ -24,6 +26,8 @@ const routes: Routes = [
   { path: 'admin/user-list/add/:role_id' , component: UserComponent },
   { path: 'change-password', component:ChangePasswordComponent },
   { path: 'company', component: CompanyDashboardComponent },
+  { path: 'company/orders/:orderId', component: OrderComponent },
+  { path: 'company/products/:productId', component: ProductComponent },
   { path: 'farmer', component: FarmerDashboardComponent },
   { path: '**', component: PageNotFoundComponent},
 ];
