@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Product } from 'src/app/Common/Types/product';
 import { OrderDetails } from '../../types/OrderDetails';
+import { Nullable } from 'src/app/Common/Types/nullable';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -14,7 +15,11 @@ export class CompanyDashboardComponent implements OnInit {
   products: Product[];
   orders: OrderDetails[];
 
-  constructor(private http: HttpClient, private cookieService: CookieService) { }
+  sortOrdersByDateAsc: Nullable<boolean>;
+
+  constructor(private http: HttpClient, private cookieService: CookieService) {
+    this.sortOrdersByDateAsc = null;
+  }
   
   ngOnInit(): void {
     this.getProducts();
@@ -34,6 +39,29 @@ export class CompanyDashboardComponent implements OnInit {
     .subscribe((data: Product[]) => {
       this.products = data;
     });
+  }
+
+  sortOrders() {
+    if (this.sortOrdersByDateAsc === null) {
+      this.sortOrdersByDateAsc = true;
+    } else {
+      this.sortOrdersByDateAsc = !this.sortOrdersByDateAsc;
+    }
+    this.orders = this.orders.sort((a,b) => {
+      if (a.date_of_order === b.date_of_order){
+        return 0;
+      }
+      if (a.date_of_order > b.date_of_order) {
+        if (this.sortOrdersByDateAsc === true) {
+          return 1;
+        }
+        return -1;
+      }
+      if (this.sortOrdersByDateAsc === true) {
+        return -1;
+      }
+      return 1;
+    })
   }
 
   getOrders() {

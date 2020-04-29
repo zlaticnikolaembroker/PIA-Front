@@ -27,6 +27,15 @@
     color: darkred;
 }
 
+.btn {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.default {color: black;}
+
 .header{
     background-color: #45aba6;
     padding-top: 0.2%;
