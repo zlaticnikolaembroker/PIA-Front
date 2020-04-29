@@ -15,20 +15,45 @@ export class CompanyDashboardComponent implements OnInit {
   orders: OrderDetails[];
 
   constructor(private http: HttpClient, private cookieService: CookieService) { }
-
+  
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/company/products/' + this.cookieService.get('userId'))
-      .subscribe((data: Product[]) => {
-        this.products = data;
-      });
-    this.http.get('http://localhost:3000/company/orders/' + this.cookieService.get('userId'))
-      .subscribe((data: OrderDetails[]) => {
-        console.log(data);
-        this.orders = data;
-      });
+    this.getProducts();
+    this.getOrders();
   }
 
   handleProductDetailsClicked(product: Product) {
     console.log(product)
+  }
+
+  getProducts() {
+    this.http.get('http://localhost:3000/company/products/' + this.cookieService.get('userId'))
+    .subscribe((data: Product[]) => {
+      this.products = data;
+    });
+  }
+
+  getOrders() {
+    this.http.get('http://localhost:3000/company/orders/' + this.cookieService.get('userId'))
+    .subscribe((data: OrderDetails[]) => {
+      this.orders = data;
+    });
+  }
+
+  orderChangeStatus(orderId: number, acceptOrder: boolean) {
+    this.http.post('http://localhost:3000/company/order_set_status', {
+      id: orderId,
+      acceptOrder,
+    })
+    .subscribe(() => {
+      this.orders = this.orders.map((order) => {
+        if(order.id !== orderId) {
+          return order;
+        } 
+        return {
+          ...order,
+          status: acceptOrder === true ? 'On wait' : 'Rejected',
+        };
+      });
+    });
   }
 }

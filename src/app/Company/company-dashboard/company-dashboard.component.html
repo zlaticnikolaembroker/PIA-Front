@@ -68,8 +68,8 @@
                         {{order.status}}
                     </div>
                     <div *ngIf="order.status == 'Received'">
-                        <button>Accept</button>
-                        <button>Reject</button>
+                        <button (click) = "orderChangeStatus(order.id, true)">Accept</button>
+                        <button (click) = "orderChangeStatus(order.id, false)">Reject</button>
                     </div>
                 </div>
                 <div class="company-column">
