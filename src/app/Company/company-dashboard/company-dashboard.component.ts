@@ -25,6 +25,10 @@ export class CompanyDashboardComponent implements OnInit {
     console.log(product)
   }
 
+  handleOrderDetailsClicked(order: OrderDetails) {
+    console.log(order);
+  }
+
   getProducts() {
     this.http.get('http://localhost:3000/company/products/' + this.cookieService.get('userId'))
     .subscribe((data: Product[]) => {

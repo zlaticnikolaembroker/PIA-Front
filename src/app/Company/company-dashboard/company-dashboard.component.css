@@ -15,8 +15,12 @@
     text-align: center;
 }
 
-.company-column{
+.company-column-product{
     width: 25%;
+}
+
+.company-column-order{
+    width: 20%;
 }
 
 .message{
