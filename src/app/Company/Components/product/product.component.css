@@ -1,0 +1,33 @@
+.product-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+    width: 50%;
+}
+
+.product-row{
+    width: 90%;
+    display: flex;
+    flex-flow: row;
+    margin: auto;
+    padding: auto;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.product-column-title{
+    font-size: medium;
+    font-weight: bold;
+    float: left;
+    width: 20%;
+}
+
+.product-column-value{
+    float: left;
+    width: 80%;
+}
+
+.message{
+    color: darkred;
+}
