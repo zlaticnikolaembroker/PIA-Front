@@ -29,7 +29,7 @@ const routes: Routes = [
   { path: 'company', component: CompanyDashboardComponent },
   { path: 'company/orders/:orderId', component: OrderComponent },
   { path: 'company/products/:productId', component: ProductComponent },
-  { path: 'company/add', component: AddProductComponent },
+  { path: 'company/add-product', component: AddProductComponent },
   { path: 'farmer', component: FarmerDashboardComponent },
   { path: '**', component: PageNotFoundComponent},
 ];

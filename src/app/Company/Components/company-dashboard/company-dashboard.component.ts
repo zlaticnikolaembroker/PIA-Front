@@ -89,4 +89,7 @@ export class CompanyDashboardComponent implements OnInit {
       });
     });
   }
+  handleAddProductClicked() {
+    this.router.navigate(['/company/add-product'])
+  }
 }
