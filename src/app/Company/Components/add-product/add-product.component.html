@@ -4,7 +4,7 @@
     <mat-step [stepControl]="firstFormGroup" label="Name" [completed]="false">
       <form [formGroup]="firstFormGroup">
         <ng-template matStepLabel>Fill out name of the product:</ng-template>
-          <input matInput formControlName="firstCtrl" placeholder="Name" required>
+          <input matInput type="text" formControlName="firstCtrl" placeholder="Name" required>
         <div>
           <button mat-button matStepperNext>Next</button>
         </div>
@@ -14,7 +14,7 @@
     <mat-step [stepControl]="secondFormGroup" label="Price" [completed]="false">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Fill out price of the product:</ng-template>
-          <input matInput formControlName="secondCtrl" placeholder="Price" required>
+          <input type="number" step=".01" matInput formControlName="secondCtrl" placeholder="Price" required>
         <div>
           <button mat-button matStepperNext>Next</button>
           <button mat-button matStepperPrevious>Back</button>
@@ -25,7 +25,7 @@
     <mat-step [stepControl]="thirdFormGroup" label="Available" [completed]="false">
       <form [formGroup]="thirdFormGroup">
         <ng-template matStepLabel>Fill out number of available products:</ng-template>
-          <input matInput formControlName="thirdCtrl" placeholder="Available" required>
+          <input type="number" matInput formControlName="thirdCtrl" placeholder="Available" required>
         <div>
           <button mat-button matStepperNext>Next</button>
           <button mat-button matStepperPrevious>Back</button>
@@ -34,11 +34,13 @@
     </mat-step>
 
     <mat-step [completed]="false">
-      <ng-template matStepLabel>Done</ng-template>
-      <p>You are now done.</p>
+      <ng-template matStepLabel>Finish</ng-template>
       <div>
         <button mat-button (click) = "handleFinishClicked()">Finish</button>
         <button mat-button matStepperPrevious>Back</button>
+      </div>
+      <div class="message" *ngIf = 'message.length > 0'>
+        {{message}}
       </div>
     </mat-step>
     

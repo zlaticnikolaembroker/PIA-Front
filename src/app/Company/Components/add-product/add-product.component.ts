@@ -11,24 +11,48 @@ export class AddProductComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  message: string;
 
   constructor(private _formBuilder: FormBuilder) {
+    this.message = '';
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
+      firstCtrl: ['', Validators.minLength(1)]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      secondCtrl: [0, Validators.min(0)]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+      thirdCtrl: [0, Validators.min(0)]
     });
   }
   ngOnInit(): void {
     
   }
 
+  checkValues(): boolean {
+    this.message = '';
+    if (this.firstFormGroup.get('firstCtrl').status === 'INVALID') {
+      this.message = 'Invalid name value.';
+      return false;
+    }
+
+    if (this.secondFormGroup.get('secondCtrl').status === 'INVALID') {
+      this.message = 'Invalid price value.';
+      return false;
+    }
+
+    if (this.thirdFormGroup.get('thirdCtrl').status === 'INVALID') {
+      this.message = 'Invalid available value.';
+      return false;
+    }
+
+    return true;
+  }
+
   handleFinishClicked() {
-    //console.log('reactive form submit', this.form.value);
+    if (this.checkValues()) {
+
+    }
   }
 
 }
