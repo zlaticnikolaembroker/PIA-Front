@@ -10,6 +10,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ProductComponent implements OnInit {
   productDetails: ProductDetails;
+  tempProductDetails: ProductDetails;
   message: string;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { 
@@ -24,6 +25,10 @@ export class ProductComponent implements OnInit {
             ...data,
             averagerating: +(+data.averagerating).toFixed(2),
           };
+          this.tempProductDetails = {
+            ...data,
+            averagerating: +(+data.averagerating).toFixed(2),
+          }
         });
       }
     });
@@ -41,6 +46,21 @@ export class ProductComponent implements OnInit {
     return true;
   }
 
+  checkDateEdit(): boolean {
+    const userFields = Object.getOwnPropertyNames(this.productDetails);
+    let fieldsChanged: number = 0;
+    userFields.forEach((field) => {
+      if (this.tempProductDetails[field] !== this.productDetails[field]){
+        fieldsChanged++;
+      }
+    })
+    if (fieldsChanged === 0) {
+      this.message = 'Nothing changed';
+      return false;
+    }
+    return true;
+  }
+
   checkValues(): boolean {
     if (this.productDetails.available === null || this.productDetails.available === undefined ||
       this.productDetails.price === null || this.productDetails.price === undefined ||
@@ -49,14 +69,14 @@ export class ProductComponent implements OnInit {
       this.message = 'Please fill out all fields.';
       return false;
     }
-
     return true;
   }
 
   handleUpdate() {
     this.message = '';
-    this.checkValues();
-    this.checkDataCorrectness();
+    if(this.checkValues() && this.checkDataCorrectness() && this.checkDateEdit()) {
+
+    }
   }
 
 }
