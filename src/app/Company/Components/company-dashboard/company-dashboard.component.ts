@@ -4,6 +4,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { Product } from 'src/app/Common/Types/product';
 import { OrderDetails } from '../../types/OrderDetails';
 import { Nullable } from 'src/app/Common/Types/nullable';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -17,7 +18,7 @@ export class CompanyDashboardComponent implements OnInit {
 
   sortOrdersByDateAsc: Nullable<boolean>;
 
-  constructor(private http: HttpClient, private cookieService: CookieService) {
+  constructor(private http: HttpClient, private cookieService: CookieService, private router: Router) {
     this.sortOrdersByDateAsc = null;
   }
   
@@ -27,7 +28,7 @@ export class CompanyDashboardComponent implements OnInit {
   }
 
   handleProductDetailsClicked(product: Product) {
-    console.log(product)
+    this.router.navigate(['/company/products/' + product.id])
   }
 
   handleOrderDetailsClicked(order: OrderDetails) {

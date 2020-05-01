@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductDetails } from '../../types/ProductDetails';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product',
@@ -8,14 +9,17 @@ import { ProductDetails } from '../../types/ProductDetails';
   styleUrls: ['./product.component.css']
 })
 export class ProductComponent implements OnInit {
-
-  constructor(private http: HttpClient) { }
-
+  productDetails: ProductDetails;
+  constructor(private http: HttpClient, private route: ActivatedRoute) { }
   ngOnInit(): void {
-    this.http.get('http://localhost:3000/company/get_product_details/2')
-    .subscribe((data: ProductDetails) => {
-          console.log(data);
-          });
+    this.route.params.subscribe( params => {
+      if (params['productId']) {
+        this.http.get('http://localhost:3000/company/get_product_details/' + params['productId'])
+        .subscribe((data: ProductDetails) => {
+          this.productDetails = data; 
+        });
+      }
+    });
     }
 
 }
