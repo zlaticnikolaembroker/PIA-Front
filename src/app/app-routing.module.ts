@@ -13,6 +13,7 @@ import { ChangePasswordComponent } from './Common/Components/change-password/cha
 import { UserComponent } from './Admin/Components/user/user.component';
 import { OrderComponent } from './Company/Components/order/order.component';
 import { ProductComponent } from './Company/Components/product/product.component';
+import { AddProductComponent } from './Company/Components/add-product/add-product.component';
 
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'company', component: CompanyDashboardComponent },
   { path: 'company/orders/:orderId', component: OrderComponent },
   { path: 'company/products/:productId', component: ProductComponent },
+  { path: 'company/add', component: AddProductComponent },
   { path: 'farmer', component: FarmerDashboardComponent },
   { path: '**', component: PageNotFoundComponent},
 ];

@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, FormBuilder } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,7 +23,9 @@ import { FarmerComponent } from './Admin/Components/farmer/farmer.component';
 import { CompanyComponent } from './Admin/Components/company/company.component';
 import { ProductComponent } from './Company/Components/product/product.component';
 import { OrderComponent } from './Company/Components/order/order.component';
-
+import { AddProductComponent } from './Company/Components/add-product/add-product.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +44,8 @@ import { OrderComponent } from './Company/Components/order/order.component';
     FarmerComponent,
     CompanyComponent,
     ProductComponent,
-    OrderComponent
+    OrderComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +53,10 @@ import { OrderComponent } from './Company/Components/order/order.component';
     FormsModule,
     HttpClientModule,
     RecaptchaModule,
+    MatStepperModule,
+    BrowserAnimationsModule,
   ],
-  providers: [CookieService],
+  providers: [CookieService,FormBuilder],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
