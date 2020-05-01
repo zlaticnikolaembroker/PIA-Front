@@ -16,8 +16,10 @@ export class ProductComponent implements OnInit {
       if (params['productId']) {
         this.http.get('http://localhost:3000/company/get_product_details/' + params['productId'])
         .subscribe((data: ProductDetails) => {
-          this.productDetails = data;
-          console.log(this.productDetails.comments.split(', '));
+          this.productDetails = {
+            ...data,
+            averagerating: +(+data.averagerating).toFixed(2),
+          };
         });
       }
     });

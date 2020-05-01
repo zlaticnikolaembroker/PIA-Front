@@ -1,10 +1,11 @@
 <div *ngIf="productDetails !== undefined && productDetails !== null" class="product-container">
+    <br />
     <div class="product-row">
         <div class="product-column-title">
             Name:
         </div>
         <div class ="product-column-value">
-            {{productDetails.name}}
+            <input type="text" [(ngModel)]="productDetails.name" name="name" required>
         </div>
     </div>
     <div class="product-row">
@@ -12,7 +13,7 @@
             Price:
         </div>
         <div class ="product-column-value">
-            {{productDetails.price}}
+            <input type="text" [(ngModel)]="productDetails.price" name="price" required>
         </div>
     </div>
     <div class="product-row">
@@ -20,33 +21,47 @@
             Available:
         </div>
         <div class ="product-column-value">
-            {{productDetails.available}}
+            <input type="number" [(ngModel)]="productDetails.available" name="available" required>
         </div>
     </div>
     <div class="product-row">
         <div class="product-column-title">
+            <button>Update</button>
+        </div>
+        <div class ="product-column-title">
+        </div>
+    </div>
+    <br />
+    <div class="product-row">
+        <div class="product-column-title">
             Avarage rating:
         </div>
-        <div *ngIf = "productDetails.averagerating !== undefined && productDetails.averagerating !== null" class ="product-column-value">
+        <div *ngIf = "productDetails.averagerating !== undefined && productDetails.averagerating !== null" style="font-weight: bolder; font-size: larger;" class ="product-column-value">
             {{productDetails.averagerating}}
         </div>
         <div *ngIf = "productDetails.averagerating === undefined || productDetails.averagerating === null" class ="product-column-value">
             No ratings yet for this product.
         </div>
     </div>
+    <br />
     <div class="product-row">
         <div class="product-column-title">
             Comments:
         </div>
+        <div class="product-column-value"></div>
     </div>
     <div *ngIf = "productDetails.comments !== null && productDetails.comments !== undefined">
         <div *ngFor = "let comment of productDetails.comments.split(', ')">
+            <br />
             <div class ="product-row">
-                {{comment}}
+                <div class="product-column-comment">
+                    {{comment}}
+                </div>
             </div>
         </div>
     </div>
-    <div *ngIf = "productDetails.comments === null && productDetails.comments === undefined" class ="product-column-value">
+    <div *ngIf = "productDetails.comments === null && productDetails.comments === undefined" class ="product-column-title">
         No comments yet for this product.
     </div>
+    <br />
 </div>
