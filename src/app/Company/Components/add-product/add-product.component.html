@@ -1,15 +1,46 @@
-<mat-vertical-stepper>
- 
-  <mat-step label="Step 1">
-    Step 1 content
-  </mat-step>
- 
-  <mat-step label="Step 2">
-    Step 2 content
-  </mat-step>
- 
-  <mat-step label="Step 3">
-    You are now done.
-  </mat-step>
+<div class="add-product-container">
+  <mat-vertical-stepper>
   
-</mat-vertical-stepper>
+    <mat-step [stepControl]="firstFormGroup" label="Name" [completed]="false">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Fill out name of the product:</ng-template>
+          <input matInput formControlName="firstCtrl" placeholder="Name" required>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step [stepControl]="secondFormGroup" label="Price" [completed]="false">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Fill out price of the product:</ng-template>
+          <input matInput formControlName="secondCtrl" placeholder="Price" required>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+  
+    <mat-step [stepControl]="thirdFormGroup" label="Available" [completed]="false">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Fill out number of available products:</ng-template>
+          <input matInput formControlName="thirdCtrl" placeholder="Available" required>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [completed]="false">
+      <ng-template matStepLabel>Done</ng-template>
+      <p>You are now done.</p>
+      <div>
+        <button mat-button (click) = "handleFinishClicked()">Finish</button>
+        <button mat-button matStepperPrevious>Back</button>
+      </div>
+    </mat-step>
+    
+  </mat-vertical-stepper>
+</div>

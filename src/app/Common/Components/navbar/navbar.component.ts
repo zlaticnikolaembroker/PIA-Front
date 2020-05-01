@@ -22,7 +22,6 @@ export class NavbarComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.currentUrl = location.path();
-        console.log(this.currentUrl);
         this.init();
       }
     });
@@ -57,7 +56,6 @@ export class NavbarComponent implements OnInit {
           {href: '/register', title:'Register'},
         ];
         if (this.currentUrl !== '/login' && this.currentUrl !== '/register') {
-          console.log(this.currentUrl);
           this.router.navigate(['login']);
         }
       }

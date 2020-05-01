@@ -8,30 +8,27 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AddProductComponent implements OnInit {
 
-  form: FormGroup;
+  firstFormGroup: FormGroup;
+  secondFormGroup: FormGroup;
+  thirdFormGroup: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
-    this.form = this.formBuilder.group({
-      name: this.formBuilder.group({
-        first: ['Luke', Validators.required],
-        last: ['Skywalker', Validators.required],
-      }),
-      contact: this.formBuilder.group({
-        email: [],
-        phone: [],
-      }),
-      password: this.formBuilder.group({
-        password: [],
-        confirm: [],
-      }),
+  constructor(private _formBuilder: FormBuilder) {
+    this.firstFormGroup = this._formBuilder.group({
+      firstCtrl: ['', Validators.required]
+    });
+    this.secondFormGroup = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.thirdFormGroup = this._formBuilder.group({
+      thirdCtrl: ['', Validators.required]
     });
   }
   ngOnInit(): void {
     
   }
 
-  submit() {
-    console.log('reactive form submit', this.form.value);
+  handleFinishClicked() {
+    //console.log('reactive form submit', this.form.value);
   }
 
 }

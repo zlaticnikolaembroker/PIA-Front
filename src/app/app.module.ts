@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, FormBuilder } from '@angular/forms';
+import { FormsModule, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -55,6 +55,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     RecaptchaModule,
     MatStepperModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
   ],
   providers: [CookieService,FormBuilder],
   bootstrap: [AppComponent]
