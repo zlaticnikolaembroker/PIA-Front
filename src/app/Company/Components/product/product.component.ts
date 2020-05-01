@@ -12,6 +12,7 @@ export class ProductComponent implements OnInit {
   productDetails: ProductDetails;
   tempProductDetails: ProductDetails;
   message: string;
+  productId: number;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { 
     this.message = '';
@@ -19,6 +20,7 @@ export class ProductComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe( params => {
       if (params['productId']) {
+        this.productId = +params['productId'];
         this.http.get('http://localhost:3000/company/get_product_details/' + params['productId'])
         .subscribe((data: ProductDetails) => {
           this.productDetails = {
@@ -75,7 +77,15 @@ export class ProductComponent implements OnInit {
   handleUpdate() {
     this.message = '';
     if(this.checkValues() && this.checkDataCorrectness() && this.checkDateEdit()) {
-
+      this.http.post('http://localhost:3000/company/update_product',{
+        id: this.productId,
+        available: this.productDetails.available,
+        name: this.productDetails.name,
+        price: this.productDetails.price,
+      })
+      .subscribe((data) => {
+        this.message = "Product successfully updated.";
+      });
     }
   }
 
