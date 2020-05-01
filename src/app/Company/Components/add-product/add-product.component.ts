@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-product',
@@ -13,7 +16,11 @@ export class AddProductComponent implements OnInit {
   thirdFormGroup: FormGroup;
   message: string;
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(private _formBuilder: FormBuilder, 
+      private http: HttpClient, 
+      private cookieService: CookieService,
+      private router: Router,
+      ) {
     this.message = '';
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.minLength(1)]
@@ -24,6 +31,8 @@ export class AddProductComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: [0, Validators.min(0)]
     });
+    console.log(this.cookieService.get('userId'));
+    console.log(this.cookieService.getAll());
   }
   ngOnInit(): void {
     
@@ -51,7 +60,15 @@ export class AddProductComponent implements OnInit {
 
   handleFinishClicked() {
     if (this.checkValues()) {
-
+      this.http.post('http://localhost:3000/company/product',{
+        name: this.firstFormGroup.get('firstCtrl').value,
+        price: this.secondFormGroup.get('secondCtrl').value,
+        available: this.thirdFormGroup.get('thirdCtrl').value,
+        company_id: +this.cookieService.get('userId'),
+      })
+        .subscribe((data) => {
+          this.router.navigate(['company']);
+        });
     }
   }
 
