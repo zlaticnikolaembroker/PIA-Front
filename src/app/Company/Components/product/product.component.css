@@ -33,8 +33,11 @@
     float: left;
     width: 90%;
     margin: auto;
+    font-size: medium;
 }
 
 .message{
     color: darkred;
+    font-size: medium;
+    font-weight: bold;
 }

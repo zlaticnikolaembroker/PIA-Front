@@ -26,9 +26,12 @@
     </div>
     <div class="product-row">
         <div class="product-column-title">
-            <button>Update</button>
+            <button (click) = "handleUpdate()">Update</button>
         </div>
-        <div class ="product-column-title">
+        <div class ="product-column-value">
+            <div class="message" *ngIf = "message !== ''">
+                {{message}}
+            </div>
         </div>
     </div>
     <br />
@@ -55,7 +58,7 @@
             <br />
             <div class ="product-row">
                 <div class="product-column-comment">
-                    {{comment}}
+                    "{{comment}}"
                 </div>
             </div>
         </div>
