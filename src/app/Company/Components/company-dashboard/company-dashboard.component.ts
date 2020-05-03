@@ -32,7 +32,7 @@ export class CompanyDashboardComponent implements OnInit {
   }
 
   handleOrderDetailsClicked(order: OrderDetails) {
-    console.log(order);
+    this.router.navigate(['company/orders/' + order.id]);
   }
 
   getProducts() {

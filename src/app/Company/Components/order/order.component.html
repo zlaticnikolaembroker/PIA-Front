@@ -1,1 +1,109 @@
-<p>order works!</p>
+<div class="order-container" *ngIf = "orderDetails">
+    <div class="info-container">
+        <div class="title">
+            Order info:
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                Date of order:
+            </div>
+            <div class="order-column-value">
+                <input type="date"  [ngModel]="orderDetails.orderInfo.dateOfOrder | date:'yyyy-MM-dd'" readonly>
+            </div>
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                Status:
+            </div>
+            <div class="order-column-value">
+                {{orderDetails.orderInfo.status}}
+            </div>
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                Date of completion:
+            </div>
+            <div class="order-column-value">
+                <input *ngIf = "orderDetails.orderInfo.dateOfCompletion" type="date"  [ngModel]="orderDetails.orderInfo.dateOfCompletion | date:'yyyy-MM-dd'" readonly>
+            </div>
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                TotalPrice:
+            </div>
+            <div class="order-column-value">
+                {{orderDetails.orderInfo.totalPrice}}
+            </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="title">
+            Farmer Info:
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                Name:
+            </div>
+            <div class="order-column-value">
+                {{orderDetails.farmerInfo.name}}
+            </div>
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                Lastname:
+            </div>
+            <div class="order-column-value">
+                {{orderDetails.farmerInfo.lastname}}
+            </div>
+        </div>
+        <div class="order-row">
+            <div class="order-column-title">
+                Place:
+            </div>
+            <div class="order-column-value">
+                {{orderDetails.farmerInfo.place}}
+            </div>
+        </div>
+    </div>
+    <div class="info-container">
+        <div class="title">
+            Products:
+        </div>
+        <div *ngFor = "let product of orderDetails.products">
+            <div class="product-container">
+                <div class="order-row">
+                    <div class="order-column-title">
+                        Name:
+                    </div>
+                    <div class="order-column-value">
+                        {{product.name}}
+                    </div>
+                </div>
+                <div class="order-row">
+                    <div class="order-column-title">
+                        Amount:
+                    </div>
+                    <div class="order-column-value">
+                        {{product.amount}}
+                    </div>
+                </div>
+                <div class="order-row">
+                    <div class="order-column-title">
+                        Price:
+                    </div>
+                    <div class="order-column-value">
+                        {{product.price}}
+                    </div>
+                </div>
+                <div class="order-row">
+                    <div class="order-column-title">
+                        Total price:
+                    </div>
+                    <div class="order-column-value">
+                        {{product.totalPrice}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
