@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductDetails } from '../../types/ProductDetails';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Nullable } from 'src/app/Common/Types/nullable';
 
 @Component({
@@ -16,7 +16,7 @@ export class ProductComponent implements OnInit {
   productId: number;
   archived: Nullable<boolean>;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) { 
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
     this.message = '';
   }
   ngOnInit(): void {
@@ -90,6 +90,10 @@ export class ProductComponent implements OnInit {
         this.message = "Product successfully updated.";
       });
     }
+  }
+
+  handleBackClicked() {
+    this.router.navigate(['company']);
   }
 
 }
