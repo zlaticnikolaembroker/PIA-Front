@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
+import { promise } from 'protractor';
 
 @Component({
   selector: 'app-add-product',
@@ -15,6 +16,8 @@ export class AddProductComponent implements OnInit {
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   message: string;
+  message2: string;
+  files: FileList;
 
   constructor(private _formBuilder: FormBuilder, 
       private http: HttpClient, 
@@ -22,6 +25,7 @@ export class AddProductComponent implements OnInit {
       private router: Router,
       ) {
     this.message = '';
+    this.message2 = '';
     this.firstFormGroup = this._formBuilder.group({
       firstCtrl: ['', Validators.minLength(1)]
     });
@@ -31,8 +35,6 @@ export class AddProductComponent implements OnInit {
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: [0, Validators.min(0)]
     });
-    console.log(this.cookieService.get('userId'));
-    console.log(this.cookieService.getAll());
   }
   ngOnInit(): void {
     
@@ -71,5 +73,100 @@ export class AddProductComponent implements OnInit {
         });
     }
   }
+
+  handleFileSelect(files) {
+    this.message2 = '';
+    const reader = new FileReader();
+    const self = this;
+    reader.onload = async function(e) { 
+    try {
+      const json = JSON.parse(e.target.result as string);
+      const productsToInsert= [];
+      if (json.length) {
+        json.forEach(element => {
+          productsToInsert.push({
+            name: element.name,
+            available: element.available,
+            price: element.price,
+          });
+        });
+      } else {
+        productsToInsert.push({
+          name: json.name,
+          available: json.available,
+          price: json.price,
+        });
+      }
+      let somethingWrong = false;
+      productsToInsert.forEach((product, index) => {
+        if (typeof product.name !== 'string') {
+          self.message2 += ('Wrong type of field "name" in product number:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
+        if (isNaN(+product.price)) {
+          self.message2 += ('Wrong type of field "price" in product number:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
+        if (isNaN(+product.available)) {
+          self.message2 += ('Wrong type of field "available" in product number:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
+        if (+product.price <= 0) {
+          self.message2 += ('Field "price" less or equal to 0 in product number:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        } 
+        if (+product.available < 0) {
+          self.message2 += ('Field "available" less than 0 in product number:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
+      });
+      if (somethingWrong) {
+        return;
+      } else {   
+        function insertProduct(productIndex) {
+          self.http.post('http://localhost:3000/company/product',{
+            ...productsToInsert[productIndex],
+            company_id: +self.cookieService.get('userId'),
+          })
+          .toPromise()
+          .then(() => {
+            if(productIndex < productsToInsert.length -1) {
+              productIndex++;
+              insertProduct(productIndex);
+            }
+          })
+          .catch((error) => {
+           self.message2 = error.message;
+          });
+        }     
+        somethingWrong = false;
+        insertProduct(0);
+        
+      }
+      } catch (error) {
+        self.message2 = error;
+      }
+    }
+
+    for (let i = 0, f; f = files[i]; i++) {
+      reader.readAsText(f);
+    }
+  
+  }
+
+  back() {
+    this.router.navigate(['company']);
+  }
+  
+
+  uploadDocument() {
+    let fileReader = new FileReader();
+    fileReader.readAsText(this.files[0]);
+}
 
 }

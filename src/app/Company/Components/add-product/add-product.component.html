@@ -46,3 +46,15 @@
     
   </mat-vertical-stepper>
 </div>
+
+<div class="add-product-container">
+  <label for="file">Choose File</label>
+  <input type="file"
+         id="file"
+         ng-multiple="false"
+         accept="application/json"
+         (change)="handleFileSelect($event.target.files)">
+  <div class="message">
+    {{message2}}
+  </div>
+</div>
