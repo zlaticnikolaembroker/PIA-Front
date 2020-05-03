@@ -24,6 +24,7 @@
     "@hapi/joi": "^17.1.1",
     "@types/d3": "^5.7.2",
     "d3": "^5.16.0",
+    "jspdf": "^1.5.3",
     "ng-recaptcha": "^5.0.0",
     "ngx-cookie-service": "^3.0.3",
     "rxjs": "~6.5.4",

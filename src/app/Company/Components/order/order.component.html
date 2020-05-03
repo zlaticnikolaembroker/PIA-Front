@@ -1,4 +1,4 @@
-<div class="order-container" *ngIf = "orderDetails">
+<div #pdfTable class="order-container" *ngIf = "orderDetails">
     <div class="info-container">
         <div class="title">
             Order info:
@@ -106,4 +106,5 @@
             </div>
         </div>
     </div>
+    <button (click) = "downloadAsPDF()">Download</button>
 </div>
