@@ -7,4 +7,5 @@ export interface ProductDetails{
     available: number;
     comments: Nullable<string>;
     averagerating: Nullable<number>;
+    archived: Nullable<boolean>;
 }

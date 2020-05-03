@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ProductDetails } from '../../types/ProductDetails';
 import { ActivatedRoute } from '@angular/router';
+import { Nullable } from 'src/app/Common/Types/nullable';
 
 @Component({
   selector: 'app-product',
@@ -13,6 +14,7 @@ export class ProductComponent implements OnInit {
   tempProductDetails: ProductDetails;
   message: string;
   productId: number;
+  archived: Nullable<boolean>;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) { 
     this.message = '';
@@ -82,6 +84,7 @@ export class ProductComponent implements OnInit {
         available: this.productDetails.available,
         name: this.productDetails.name,
         price: this.productDetails.price,
+        archived: this.productDetails.archived,
       })
       .subscribe((data) => {
         this.message = "Product successfully updated.";

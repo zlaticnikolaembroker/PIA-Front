@@ -26,6 +26,14 @@
     </div>
     <div class="product-row">
         <div class="product-column-title">
+            Archived:
+        </div>
+        <div class ="product-column-value">
+            <input type="checkbox" [(ngModel)]="productDetails.archived" name="archived">
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
             <button (click) = "handleUpdate()">Update</button>
         </div>
         <div class ="product-column-value">
