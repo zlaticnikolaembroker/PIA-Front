@@ -32,11 +32,20 @@
     </div>
     <div class="admin-row">
         <div class="admin-column">
-            Passoword
+            Password
         </div>
         <div class="admin-column">
             <input *ngIf="this.user !== null" type="text" [(ngModel)]="tempUser.password" name="password" required>
             <input *ngIf="this.user === null" type="text" [(ngModel)]="password" name="password" required>
+        </div>
+    </div>
+    <div class="admin-row">
+        <div class="admin-column">
+            Confirmed
+        </div>
+        <div class="admin-column">
+            <input *ngIf="this.user !== null" type="checkbox" [(ngModel)]="tempUser.confirmed" name="confirmed">
+            <input *ngIf="this.user === null" type="checkbox" [(ngModel)]="confirmed" name="confirmed">
         </div>
     </div>
     <div class="admin-row">

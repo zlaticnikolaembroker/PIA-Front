@@ -87,6 +87,15 @@
         </div>
     </div>
     <div class="farmer-row">
+        <div class="farmer-column">
+            Confirmed
+        </div>
+        <div class="farmer-column">
+            <input *ngIf="user !== null" type="checkbox" [(ngModel)]="tempUser.confirmed" name="confirmed">
+            <input *ngIf="user == null" type="checkbox" [(ngModel)]="addFarmer.confirmed" name="confirmed">
+        </div>
+    </div>
+    <div class="farmer-row">
         <div class="farmer-option-column message">
             {{message}}
         </div>

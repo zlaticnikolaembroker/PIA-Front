@@ -79,6 +79,7 @@ export class RegisterComponent implements OnInit {
       username: "",
       date: null,
       place: "",
+      confirmed: null,
     }
     this.confirmedPassword = "";
     this.userType = "";

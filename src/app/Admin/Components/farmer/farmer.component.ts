@@ -14,6 +14,7 @@ interface AddFarmer {
   date: Date;
   place: string;
   phone: string;
+  confirmed: Nullable<boolean>;
 }
 @Component({
   selector: 'app-farmer',
@@ -55,7 +56,7 @@ export class FarmerComponent implements OnInit {
       const userFields = Object.getOwnPropertyNames(this.tempUser);
       let emptyFields: number = 0;
       userFields.forEach((field) => {
-        if (this.tempUser[field] === undefined || this.tempUser[field] === null || this.tempUser[field] === ''){
+        if ((this.tempUser[field] === undefined || this.tempUser[field] === null || this.tempUser[field] === '') && field !== 'confirmed'){
           emptyFields++;
         }
       })
@@ -67,7 +68,7 @@ export class FarmerComponent implements OnInit {
       const userFields = Object.getOwnPropertyNames(this.addFarmer);
       let emptyFields: number = 0;
       userFields.forEach((field) => {
-        if (this.addFarmer[field] === undefined || this.addFarmer[field] === null || this.addFarmer[field] === ''){
+        if ((this.addFarmer[field] === undefined || this.addFarmer[field] === null || this.addFarmer[field] === '') && field !== 'confirmed'){
           emptyFields++;
         }
       })
@@ -162,6 +163,7 @@ export class FarmerComponent implements OnInit {
         phone: '',
         place: '',
         username: '',
+        confirmed: null,
       }
     }
   }

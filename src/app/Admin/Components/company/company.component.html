@@ -69,6 +69,15 @@
         </div>
     </div>
     <div class="company-row">
+        <div class="company-column">
+            Confirmed
+        </div>
+        <div class="company-column">
+            <input *ngIf="user !== null" type="checkbox" [(ngModel)]="tempUser.confirmed" name="confirmed">
+                <input *ngIf="user == null" type="checkbox" [(ngModel)]="addCompany.confirmed" name="confirmed">
+        </div>
+    </div>
+    <div class="company-row">
         <div class="company-option-column message">
             {{message}}
         </div>

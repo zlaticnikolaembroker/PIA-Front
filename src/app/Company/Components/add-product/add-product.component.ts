@@ -30,7 +30,7 @@ export class AddProductComponent implements OnInit {
       firstCtrl: ['', Validators.minLength(1)]
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: [0, Validators.min(0)]
+      secondCtrl: [0, Validators.min(0.000000000000000000000000000000000000001)]
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: [0, Validators.min(0)]
@@ -69,7 +69,10 @@ export class AddProductComponent implements OnInit {
         company_id: +this.cookieService.get('userId'),
       })
         .subscribe((data) => {
-          this.router.navigate(['company']);
+          this.message = 'Product successfully inserted';
+          setTimeout(() => {
+            this.router.navigate(['company']);
+          }, 2500);
         });
     }
   }
@@ -146,6 +149,12 @@ export class AddProductComponent implements OnInit {
         }     
         somethingWrong = false;
         insertProduct(0);
+        if (self.message2 === '') {
+          self.message2 = 'Products successfully inserted';
+          setTimeout(() => {
+            self.router.navigate(['company']);
+          }, 2500);
+        }
         
       }
       } catch (error) {

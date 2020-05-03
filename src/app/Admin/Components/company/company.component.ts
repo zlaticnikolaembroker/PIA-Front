@@ -3,6 +3,7 @@ import { Company } from 'src/app/Common/Types/company';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import Joi from '@hapi/joi';
+import { Nullable } from 'src/app/Common/Types/nullable';
 
 interface AddCompany {
   username: string;
@@ -11,6 +12,7 @@ interface AddCompany {
   date: Date;
   place: string;
   fullname: string;
+  confirmed: Nullable<boolean>;
 }
 
 @Component({
@@ -53,7 +55,7 @@ export class CompanyComponent implements OnInit {
       const userFields = Object.getOwnPropertyNames(this.tempUser);
       let emptyFields: number = 0;
       userFields.forEach((field) => {
-        if (this.tempUser[field] === undefined || this.tempUser[field] === null || this.tempUser[field] === ''){
+        if ((this.tempUser[field] === undefined || this.tempUser[field] === null || this.tempUser[field] === '') && field !== 'confirmed'){
           emptyFields++;
         }
       })
@@ -65,7 +67,7 @@ export class CompanyComponent implements OnInit {
       const userFields = Object.getOwnPropertyNames(this.addCompany);
       let emptyFields: number = 0;
       userFields.forEach((field) => {
-        if (this.addCompany[field] === undefined || this.addCompany[field] === null || this.addCompany[field] === ''){
+        if ((this.addCompany[field] === undefined || this.addCompany[field] === null || this.addCompany[field] === '') && field !== 'confirmed'){
           emptyFields++;
         }
       })
@@ -158,6 +160,7 @@ export class CompanyComponent implements OnInit {
         password: '',
         place: '',
         username: '',
+        confirmed: null,
       };
     }
   }

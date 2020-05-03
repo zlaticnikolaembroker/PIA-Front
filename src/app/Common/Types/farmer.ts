@@ -1,3 +1,5 @@
+import { Nullable } from './nullable';
+
 export interface Farmer {
     id: number,
     name: string,
@@ -8,4 +10,5 @@ export interface Farmer {
     date: Date,
     place: string,
     phone: string,
+    confirmed: Nullable<boolean>;
 }

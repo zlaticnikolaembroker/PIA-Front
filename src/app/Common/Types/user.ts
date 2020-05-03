@@ -15,6 +15,7 @@ export class User {
     lastname: Nullable<string>;
     phone: Nullable<string>;
     fullname: Nullable<string>;
+    confirmed: Nullable<boolean>;
     static toFarmer(user: User): Farmer {
         return {
             id: user.id,
@@ -26,6 +27,7 @@ export class User {
             phone: user.phone,
             place: user.place,
             username: user.username,
+            confirmed: user.confirmed,
         } as Farmer;
     };
     static toCompany(user: User): Company {
@@ -37,6 +39,7 @@ export class User {
             password: user.password,
             place: user.place,
             username: user.username,
+            confirmed: user.confirmed,
         } as Company;
     };
     static toAdmin(user: User): Admin {
@@ -45,6 +48,7 @@ export class User {
             password: user.password,
             username: user.username,
             email: user.email,
+            confirmed: user.confirmed,
         } as Admin;
     }
 };

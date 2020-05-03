@@ -15,8 +15,7 @@ export class AdminComponent implements OnInit {
 
   passRegex = new RegExp("^(((?=.*[a-z])(?=.*[A-Z]))|((?=.*[a-z])(?=.*[0-9]))|((?=.*[A-Z])(?=.*[0-9])))(?=.{6,})");
 
-  constructor(private router: Router, private http: HttpClient) { 
-  }
+  constructor(private router: Router, private http: HttpClient) { }
 
   tempUser: Nullable<Admin>;
   message: string;
@@ -24,6 +23,7 @@ export class AdminComponent implements OnInit {
   username: string;
   password: string;
   email:string;
+  confirmed: Nullable<boolean>;
 
   ngOnInit(): void {
     this.tempUser = this.user;
@@ -33,7 +33,10 @@ export class AdminComponent implements OnInit {
     if(this.user === null) {
       return true;
     }
-    if (this.user.email === this.tempUser.email && this.user.password === this.tempUser.password && this.user.username === this.tempUser.username) {
+    if (this.user.email === this.tempUser.email && 
+      this.user.password === this.tempUser.password && 
+      this.user.username === this.tempUser.username && 
+      this.user.confirmed === this.tempUser.confirmed) {
       this.message = "User not edited";
       return false;
     }
@@ -127,6 +130,7 @@ export class AdminComponent implements OnInit {
         username: this.username,
         password: this.password,
         email: this.email,
+        confirmed: this.confirmed,
         role_id: 1,
       })
         .subscribe((data) => {
