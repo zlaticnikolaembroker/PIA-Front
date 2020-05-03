@@ -26,6 +26,7 @@ import { OrderComponent } from './Company/Components/order/order.component';
 import { AddProductComponent } from './Company/Components/add-product/add-product.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReportComponent } from './Company/Components/report/report.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,6 +47,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProductComponent,
     OrderComponent,
     AddProductComponent,
+    ReportComponent,
   ],
   imports: [
     BrowserModule,

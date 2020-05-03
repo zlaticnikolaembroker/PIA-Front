@@ -14,6 +14,7 @@ import { UserComponent } from './Admin/Components/user/user.component';
 import { OrderComponent } from './Company/Components/order/order.component';
 import { ProductComponent } from './Company/Components/product/product.component';
 import { AddProductComponent } from './Company/Components/add-product/add-product.component';
+import { ReportComponent } from './Company/Components/report/report.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
   { path: 'company/orders/:orderId', component: OrderComponent },
   { path: 'company/products/:productId', component: ProductComponent },
   { path: 'company/add-product', component: AddProductComponent },
+  { path: 'company/report', component: ReportComponent },
   { path: 'farmer', component: FarmerDashboardComponent },
   { path: '**', component: PageNotFoundComponent},
 ];
