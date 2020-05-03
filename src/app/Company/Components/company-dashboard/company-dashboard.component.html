@@ -13,6 +13,9 @@
             Available
         </div>
         <div class="company-column-product">
+            Archived
+        </div>
+        <div class="company-column-product">
             Details
         </div>
     </div>
@@ -27,6 +30,10 @@
                 </div>
                 <div class="company-column-product">
                     {{product.available}}
+                </div>
+                <div class="company-column-product">
+                    <input type="checkbox" [checked]="product.archived"
+                    [disabled]="true">
                 </div>
                 <div class="company-column-product">
                     <button (click) = "handleProductDetailsClicked(product)">Details</button>
