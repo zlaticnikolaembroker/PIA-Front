@@ -92,4 +92,8 @@ export class CompanyDashboardComponent implements OnInit {
   handleAddProductClicked() {
     this.router.navigate(['/company/add-product'])
   }
+
+  handleCheckReportClicked() {
+    this.router.navigate(['/company/report'])
+  }
 }
