@@ -4,7 +4,6 @@ import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 interface Orders {
@@ -29,7 +28,7 @@ export class ReportComponent implements OnInit {
   title = 'Bar Chart';
   private width: number;
   private height: number;
-  private margin = {top: 20, right: 10, bottom: 30, left: 40};
+  private margin = {top: 20, right: 10, bottom: 30, left: 80};
 
   private x: any;
   private y: any;
@@ -42,6 +41,8 @@ export class ReportComponent implements OnInit {
     this.generateDays();
   }
 
+  orders: number[];
+
   private compareDates(date1: Date, date2: Date): boolean {
     if (date1.getDate() == date2.getDate() && 
         date1.getFullYear() == date2.getFullYear() && 
@@ -51,7 +52,7 @@ export class ReportComponent implements OnInit {
     return false;
   }
 
-  private generateDays() {///company/report/:id
+  private generateDays() {//company/orders/:id
     for(let i =0; i < 30; i++){
       let newDate = new Date();
       newDate.setDate(newDate.getDate() - i)
@@ -73,6 +74,13 @@ export class ReportComponent implements OnInit {
       this.initAxis();
       this.drawAxis();
       this.drawBars();
+    });
+    this.http.get('http://localhost:3000/company/orders/' + this.cookieService.get('userId'))
+    .subscribe((data: any[]) => {
+      this.orders = [];
+      data.forEach((element) => {
+        this.orders.push(+element.id);
+      });
     });
   }
 

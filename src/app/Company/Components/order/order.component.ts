@@ -1,7 +1,8 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import * as jsPDF from 'jspdf';
+import { Nullable } from 'src/app/Common/Types/nullable';
 
 @Component({
   selector: 'app-order',
@@ -11,17 +12,11 @@ import * as jsPDF from 'jspdf';
 export class OrderComponent implements OnInit {
 
   orderDetails;
+  @Input() orderId: Nullable<number>;
   @ViewChild('pdfTable') private pdfTable: ElementRef;
 
   constructor(private http: HttpClient, private route: ActivatedRoute) {
-    this.route.params.subscribe( params => {
-      if (params['orderId']) {
-        this.http.get('http://localhost:3000/company/get_order_details/' + +params['orderId']).subscribe((data) => {
-         this.orderDetails = data;
-         console.log(data);
-      });
-      }
-    });
+    console.log(this.orderId);
    }
 
    public downloadAsPDF() {
@@ -44,6 +39,22 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.orderId);
+    if (!this.orderId) {
+      this.route.params.subscribe( params => {
+        if (params['orderId']) {
+          this.http.get('http://localhost:3000/company/get_order_details/' + +params['orderId']).subscribe((data) => {
+           this.orderDetails = data;
+        });
+        }
+      }); 
+      } else {
+        console.log(this.orderId);
+        console.log(+this.orderId);
+        this.http.get('http://localhost:3000/company/get_order_details/' + this.orderId).subscribe((data) => {
+           this.orderDetails = data;
+        });
+      }
   }
 
 }

@@ -106,5 +106,5 @@
             </div>
         </div>
     </div>
-    <button (click) = "downloadAsPDF()">Download</button>
+    <button *ngIf="!orderId" (click) = "downloadAsPDF()">Download</button>
 </div>
