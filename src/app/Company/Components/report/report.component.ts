@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ViewChild, ElementRef } from '@angular/core';
 import * as d3 from 'd3-selection';
 import * as d3Scale from 'd3-scale';
 import * as d3Array from 'd3-array';
 import * as d3Axis from 'd3-axis';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import * as jsPDF from 'jspdf';
 
 interface Orders {
   date: Date;
@@ -24,6 +25,7 @@ interface CompanyOrderData {
 })
 export class ReportComponent implements OnInit {
 
+  @ViewChild('report') private report: ElementRef;
   STATISTICS: Orders[] = [];
   title = 'Bar Chart';
   private width: number;
@@ -125,6 +127,25 @@ export class ReportComponent implements OnInit {
           .attr('y', (d) => this.y(d.orders) )
           .attr('width', this.x.bandwidth())
           .attr('height', (d) => this.height - this.y(d.orders) );
+  }
+
+  public downloadAsPDF() {
+    const doc = new jsPDF();
+
+    const specialElementHandlers = {
+      '#editor': function (element, renderer) {
+        return true;
+      }
+    };
+
+    const pdfTable = this.report.nativeElement;
+
+    doc.fromHTML(pdfTable.innerHTML, 15, 15, {
+      width: 190,
+      'elementHandlers': specialElementHandlers
+    });
+
+    doc.save('report.pdf');
   }
 
 }

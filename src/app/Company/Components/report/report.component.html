@@ -1,5 +1,7 @@
-<h2>{{ title }}</h2>
-<svg width="1200" height="700"></svg>
-<div *ngFor="let order of orders">
-    <app-order [orderId]="order"></app-order>
+<div #report>
+    <svg width="1200" height="700"></svg>
+    <button (click)="downloadAsPDF()">Download report</button>
+    <div *ngFor="let order of orders">
+        <app-order [orderId]="order"></app-order>
+    </div>
 </div>

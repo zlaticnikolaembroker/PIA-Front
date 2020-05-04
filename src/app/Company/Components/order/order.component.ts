@@ -15,9 +15,7 @@ export class OrderComponent implements OnInit {
   @Input() orderId: Nullable<number>;
   @ViewChild('pdfTable') private pdfTable: ElementRef;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute) {
-    console.log(this.orderId);
-   }
+  constructor(private http: HttpClient, private route: ActivatedRoute) {  }
 
    public downloadAsPDF() {
     const doc = new jsPDF();
@@ -39,7 +37,6 @@ export class OrderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.orderId);
     if (!this.orderId) {
       this.route.params.subscribe( params => {
         if (params['orderId']) {
@@ -49,8 +46,6 @@ export class OrderComponent implements OnInit {
         }
       }); 
       } else {
-        console.log(this.orderId);
-        console.log(+this.orderId);
         this.http.get('http://localhost:3000/company/get_order_details/' + this.orderId).subscribe((data) => {
            this.orderDetails = data;
         });
