@@ -80,7 +80,7 @@
         <div *ngFor="let order of orders">
             <div class="company-row">
                 <div class="company-column-order">
-                    {{order.farmername}}
+                    {{order.name}}
                 </div>
                 <div class="company-column-order">
                     <input type="date"  [ngModel]="order.date_of_order | date:'yyyy-MM-dd'" 
@@ -88,7 +88,9 @@
                 </div>
                 <div class="company-column-order">
                     <div *ngIf="order.status !== 'Received'">
-                        {{order.status}}
+                        <select (change)="changeStatus($event, order.id)" [(ngModel)]="order.status">
+                            <option *ngFor="let status of posibleStatuses">{{status}}</option>
+                        </select>
                     </div>
                     <div *ngIf="order.status == 'Received'">
                         <button (click) = "orderChangeStatus(order.id, true)">Accept</button>
@@ -105,6 +107,7 @@
             </div>
         </div>
     </div>
+      
     <div class="company-row">
         <div class="company-column-order">
             <button (click) = "handleCheckReportClicked()">Check report</button>

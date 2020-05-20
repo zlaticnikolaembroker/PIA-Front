@@ -13,6 +13,7 @@ import { Router } from '@angular/router';
 })
 export class CompanyDashboardComponent implements OnInit {
 
+  posibleStatuses = ["On Wait", "Rejected" , "Done" , "In Progress"]
   products: Product[];
   orders: OrderDetails[];
 
@@ -84,9 +85,10 @@ export class CompanyDashboardComponent implements OnInit {
         } 
         return {
           ...order,
-          status: acceptOrder === true ? 'On wait' : 'Rejected',
+          status: acceptOrder === true ? 'On Wait' : 'Rejected',
         };
       });
+      console.log(this.orders);
     });
   }
   handleAddProductClicked() {
@@ -95,5 +97,15 @@ export class CompanyDashboardComponent implements OnInit {
 
   handleCheckReportClicked() {
     this.router.navigate(['/company/report'])
+  }
+
+  changeStatus(e, id) {
+    this.http.post('http://localhost:3000/company/orders/status', {
+      id,
+      status: e.target.value,
+    })
+    .subscribe(() => {
+      
+    });
   }
 }
