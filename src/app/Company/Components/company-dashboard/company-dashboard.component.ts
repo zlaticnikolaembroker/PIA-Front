@@ -78,17 +78,17 @@ export class CompanyDashboardComponent implements OnInit {
       id: orderId,
       acceptOrder,
     })
-    .subscribe(() => {
+    .subscribe((result) => {
+      console.log(result);
       this.orders = this.orders.map((order) => {
         if(order.id !== orderId) {
           return order;
         } 
         return {
           ...order,
-          status: acceptOrder === true ? 'On Wait' : 'Rejected',
+          status: acceptOrder === false ? 'Rejected' : result === true ? 'In Progress'  : 'On Wait',
         };
       });
-      console.log(this.orders);
     });
   }
   handleAddProductClicked() {
