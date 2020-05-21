@@ -5,6 +5,7 @@ import { Product } from 'src/app/Common/Types/product';
 import { OrderDetails } from '../../types/OrderDetails';
 import { Nullable } from 'src/app/Common/Types/nullable';
 import { Router } from '@angular/router';
+import { type } from 'os';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -79,7 +80,6 @@ export class CompanyDashboardComponent implements OnInit {
       acceptOrder,
     })
     .subscribe((result) => {
-      console.log(result);
       this.orders = this.orders.map((order) => {
         if(order.id !== orderId) {
           return order;
@@ -104,8 +104,18 @@ export class CompanyDashboardComponent implements OnInit {
       id,
       status: e.target.value,
     })
-    .subscribe(() => {
-      
+    .subscribe((result) => {
+      if (!isNaN(+result)) {
+        this.orders = this.orders.map((order) => {
+          if (order.id === result) {
+            return {
+              ...order,
+              status: "In Progress",
+            }
+          }
+          return order;
+        })
+      }
     });
   }
 }
