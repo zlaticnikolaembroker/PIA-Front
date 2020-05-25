@@ -7,4 +7,7 @@ export interface Product {
     available: number;
     company_id: number;
     archived: Nullable<boolean>;
+    type: string;
+    time_to_grow: number;
+    acceleration_time: number;
 }

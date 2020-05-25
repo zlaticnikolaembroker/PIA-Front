@@ -32,7 +32,7 @@ export class ProductComponent implements OnInit {
           this.tempProductDetails = {
             ...data,
             averagerating: +(+data.averagerating).toFixed(2),
-          }
+          };
         });
       }
     });
@@ -85,6 +85,9 @@ export class ProductComponent implements OnInit {
         name: this.productDetails.name,
         price: this.productDetails.price,
         archived: this.productDetails.archived,
+        type: this.productDetails.type,
+        time_to_grow: this.productDetails.time_to_grow,
+        acceleretion_time: this.productDetails.acceleration_time,
       })
       .subscribe((data) => {
         this.message = "Product successfully updated.";

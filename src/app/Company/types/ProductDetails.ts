@@ -8,4 +8,7 @@ export interface ProductDetails{
     comments: Nullable<string>;
     averagerating: Nullable<number>;
     archived: Nullable<boolean>;
+    type: string;
+    time_to_grow: number;
+    acceleration_time: number;
 }
