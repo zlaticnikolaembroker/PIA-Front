@@ -16,6 +16,8 @@ export class ProductComponent implements OnInit {
   productId: number;
   archived: Nullable<boolean>;
 
+  posibleStatuses = ['Seedling' , 'Preparation'];
+
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
     this.message = '';
   }
@@ -87,7 +89,7 @@ export class ProductComponent implements OnInit {
         archived: this.productDetails.archived,
         type: this.productDetails.type,
         time_to_grow: this.productDetails.time_to_grow,
-        acceleretion_time: this.productDetails.acceleration_time,
+        acceleration_time: this.productDetails.acceleration_time,
       })
       .subscribe((data) => {
         this.message = "Product successfully updated.";
@@ -97,6 +99,10 @@ export class ProductComponent implements OnInit {
 
   handleBackClicked() {
     this.router.navigate(['company']);
+  }
+
+  changeType(e) {
+    this.productDetails.type = e.target.value; 
   }
 
 }

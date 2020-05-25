@@ -41,6 +41,34 @@
     </div>
     <div class="product-row">
         <div class="product-column-title">
+            Type:
+        </div>
+        <div class ="product-column-value">
+            <select (change)="changeType($event)" [(ngModel)]="productDetails.type">
+                <option *ngFor="let status of posibleStatuses">{{status}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Time to grow:
+        </div>
+        <div class ="product-column-value">
+            <div class ="product-column-value">
+                <input type="number" [(ngModel)]="productDetails.time_to_grow" name="time_to_grow">
+            </div>
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Acceleration time:
+        </div>
+        <div class ="product-column-value">
+            <input type="number" [(ngModel)]="productDetails.acceleration_time" name="acceleration_time">
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
             <button (click) = "handleUpdate()">Update</button>
         </div>
         <div class ="product-column-value">
