@@ -49,6 +49,18 @@ export class ProductComponent implements OnInit {
       this.message = 'Value for price have to be a valid number.'
       return false;
     }
+    if ((this.productDetails.acceleration_time && this.productDetails.acceleration_time <=0) || (this.productDetails.time_to_grow && this.productDetails.time_to_grow <= 0)) {
+      this.message = 'Invalid value for Acceleration Time or Time to Grow';
+      return false;
+    }
+    if (this.productDetails.type == 'Preparation' && (this.productDetails.acceleration_time == null || this.productDetails.time_to_grow != null)) {
+      this.message = 'Product with "Preparation" type has only "Acceleration Time" value';
+      return false;
+    }
+    if (this.productDetails.type == 'Seedling' && (this.productDetails.acceleration_time != null || this.productDetails.time_to_grow == null)) {
+      this.message = 'Product with "Seedling" type has only "Time to grow" value';
+      return false;
+    }
     return true;
   }
 
