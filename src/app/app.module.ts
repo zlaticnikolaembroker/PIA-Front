@@ -11,7 +11,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { PageNotFoundComponent } from './Common/Components/page-not-found/page-not-found.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admin-dashboard.component';
-import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
+import { FarmerDashboardComponent } from './Farmer/Components/farmer-dashboard/farmer-dashboard.component';
 import { CompanyDashboardComponent } from './Company/Components/company-dashboard/company-dashboard.component';
 import { RecaptchaModule } from 'ng-recaptcha';
 import { RegistrationRequestsComponent } from './Admin/Components/registration-requests/registration-requests.component';

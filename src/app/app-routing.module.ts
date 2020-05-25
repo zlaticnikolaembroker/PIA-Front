@@ -5,7 +5,7 @@ import { LoginComponent } from './Common/Components/login/login.component';
 import { RegisterComponent } from './Common/Components/register/register.component';
 import { PageNotFoundComponent } from './Common/Components/page-not-found/page-not-found.component';
 import { AdminDashboardComponent } from './Admin/Components/admin-dashboard/admin-dashboard.component';
-import { FarmerDashboardComponent } from './Farmer/farmer-dashboard/farmer-dashboard.component';
+import { FarmerDashboardComponent } from './Farmer/Components/farmer-dashboard/farmer-dashboard.component';
 import { CompanyDashboardComponent } from './Company/Components/company-dashboard/company-dashboard.component';
 import { RegistrationRequestsComponent } from './Admin/Components/registration-requests/registration-requests.component';
 import { UserListComponent } from './Admin/Components/user-list/user-list.component';
