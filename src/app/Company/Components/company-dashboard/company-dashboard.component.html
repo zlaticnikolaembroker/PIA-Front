@@ -16,6 +16,15 @@
             Archived
         </div>
         <div class="company-column-product">
+            Type
+        </div>
+        <div class="company-column-product">
+            Time to grow
+        </div>
+        <div class="company-column-product">
+            Acceleration time
+        </div>
+        <div class="company-column-product">
             Details
         </div>
     </div>
@@ -34,6 +43,15 @@
                 <div class="company-column-product">
                     <input type="checkbox" [checked]="product.archived"
                     [disabled]="true">
+                </div>
+                <div class="company-column-product">
+                    {{product.type}}
+                </div>
+                <div class="company-column-product">
+                    {{product.time_to_grow}}
+                </div>
+                <div class="company-column-product">
+                    {{product.acceleration_time}}
                 </div>
                 <div class="company-column-product">
                     <button (click) = "handleProductDetailsClicked(product)">Details</button>

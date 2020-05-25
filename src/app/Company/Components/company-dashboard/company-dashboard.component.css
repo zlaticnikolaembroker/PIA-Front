@@ -3,7 +3,7 @@
     padding: auto;
     margin: auto;
     margin-top: 5%;
-    width: 40%;
+    width: 60%;
 }
 
 .company-row{
@@ -16,7 +16,7 @@
 }
 
 .company-column-product{
-    width: 20%;
+    width: 12.5%;
 }
 
 .company-column-order{
