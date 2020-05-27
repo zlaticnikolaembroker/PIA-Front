@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Garden } from '../../types/Garden';
+import { Seedling } from '../../types/Seedling';
 
 @Component({
   selector: 'app-garden',
@@ -14,13 +15,29 @@ export class GardenComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
   }
 
+  private seedlingsMap: Seedling[][];
+
+  private createSeedlingMap() {
+    this.seedlingsMap = [];
+    for (let i = 0; i < this.garden.width; i++) {
+      this.seedlingsMap[i] = [];
+      for (let j=0; j < this.garden.height; j++) {
+        this.seedlingsMap[i][j] = this.garden.seedlings.find((value) => {
+          if (value.x == i+1 && value.y == j+1) {
+            return value;
+          }
+        })
+      }
+    }
+  }
+
   ngOnInit(): void {
     this.route.params.subscribe( params => {
       if (params['gardenId']) {
         this.http.get('http://localhost:3000/farmer/garden/' + +params['gardenId']).subscribe((data: Garden) => {
-        this.garden = data;
-        console.log(this.garden);  
-      });
+          this.garden = data;
+          this.createSeedlingMap();
+        });
       }
     });
   }
