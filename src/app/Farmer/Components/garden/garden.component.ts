@@ -15,6 +15,7 @@ export class GardenComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
   }
 
+  hoveredSeedling: Seedling;
   seedlingsMap: Seedling[][];
 
   private createSeedlingMap() {
@@ -32,6 +33,7 @@ export class GardenComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.hoveredSeedling = null;
     this.route.params.subscribe( params => {
       if (params['gardenId']) {
         this.http.get('http://localhost:3000/farmer/garden/' + +params['gardenId']).subscribe((data: Garden) => {
@@ -82,8 +84,12 @@ export class GardenComponent implements OnInit {
     });
   }
 
-  handleHover(){
-    console.log("hover");
+  handleHover(seedling){
+    this.hoveredSeedling = seedling;
+  }
+
+  handleMouseOut() {
+    this.hoveredSeedling = null;
   }
 
 }

@@ -31,7 +31,7 @@
             <tbody>
                 <tr *ngFor="let array of seedlingsMap">
                     <td *ngFor="let seedling of array">
-                        <div class="garden-column-order" (mouseover)="handleHover()" *ngIf="seedling">
+                        <div class="garden-column-order" (mouseover)="handleHover(seedling)" (mouseout)="handleMouseOut()" *ngIf="seedling">
                             {{seedling.name}}
                         </div>
                         <div class="garden-column-order" *ngIf="!seedling">
