@@ -1,3 +1,5 @@
+import { Seedling } from './Seedling';
+
 export interface Garden {
     id: number, 
     name: string,
@@ -8,4 +10,5 @@ export interface Garden {
     temperature: number,
     height: number,
     width: number,
+    seedlings: Seedling[],
 }
