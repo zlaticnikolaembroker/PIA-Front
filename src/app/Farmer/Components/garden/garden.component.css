@@ -22,7 +22,7 @@
     margin: 20px;
 }
 
-.garden-row-info{
+.garden-row{
     width: 100%;
     display: flex;
     flex-flow: row;
@@ -31,8 +31,16 @@
     text-align: center;
 }
 
-.garden-column-order{
-    width: 20%;
+table{
+    width: 100%;
+}
+
+tr{
+    margin: 10px, 5px;
+}
+
+td {
+    margin:10px, 10px;
 }
 
 .message{

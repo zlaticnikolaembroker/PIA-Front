@@ -1,31 +1,45 @@
 <div class="garden-container" *ngIf="garden">
     <div class="garden-container-info">
-        <div class="garden-row-info">
+        <div class="garden-row">
             <b>Name</b> : {{garden.name}}
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <b>Producer</b> : {{garden.producer}}
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <b>Free Slots</b> : {{garden.free_slots}}
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <b>Occupied Slots</b> : {{garden.occupied_slots}}
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <b>Water</b> : {{garden.water}}
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <button (click) = "addWater()">Add</button> &nbsp; <button (click) = "substractWater()">Substract</button>
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <b>Temperature</b> : {{garden.temperature}}
         </div>
-        <div class="garden-row-info">
+        <div class="garden-row">
             <button (click) = "addTemp()">Add</button> &nbsp; <button (click) = "substractTemp()">Substract</button>
         </div>
     </div>
+    
     <div class="garden-container-seedlings">
-        Seedlings
+        <table>
+            <tbody>
+                <tr *ngFor="let array of seedlingsMap">
+                    <td *ngFor="let seedling of array">
+                        <div class="garden-column-order" (mouseover)="handleHover()" *ngIf="seedling">
+                            {{seedling.name}}
+                        </div>
+                        <div class="garden-column-order" *ngIf="!seedling">
+                            Empty
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
 </div>

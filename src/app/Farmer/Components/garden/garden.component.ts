@@ -15,7 +15,7 @@ export class GardenComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
   }
 
-  private seedlingsMap: Seedling[][];
+  seedlingsMap: Seedling[][];
 
   private createSeedlingMap() {
     this.seedlingsMap = [];
@@ -80,6 +80,10 @@ export class GardenComponent implements OnInit {
     .subscribe(() => {
       this.garden.temperature--;
     });
+  }
+
+  handleHover(){
+    console.log("hover");
   }
 
 }
