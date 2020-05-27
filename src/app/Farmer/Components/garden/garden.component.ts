@@ -25,4 +25,44 @@ export class GardenComponent implements OnInit {
     });
   }
 
+  addWater() {
+    this.http.post('http://localhost:3000/farmer/garden/water_change', {
+      id: this.garden.id,
+      temp_change: 1,
+    })
+    .subscribe(() => {
+      this.garden.water++;
+    });
+  }
+
+  substractWater() {
+    this.http.post('http://localhost:3000/farmer/garden/water_change', {
+      id: this.garden.id,
+      temp_change: -1,
+    })
+    .subscribe(() => {
+      this.garden.water--;
+    });
+  }
+
+  addTemp() {
+    this.http.post('http://localhost:3000/farmer/garden/temperature_change', {
+      id: this.garden.id,
+      temp_change: 1,
+    })
+    .subscribe(() => {
+      this.garden.temperature++;
+    });
+  }
+
+  substractTemp() {
+    this.http.post('http://localhost:3000/farmer/garden/temperature_change', {
+      id: this.garden.id,
+      temp_change: -1,
+    })
+    .subscribe(() => {
+      this.garden.temperature--;
+    });
+  }
+
 }

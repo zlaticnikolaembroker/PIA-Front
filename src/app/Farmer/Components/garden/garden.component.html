@@ -1,22 +1,28 @@
 <div class="garden-container" *ngIf="garden">
     <div class="garden-container-info">
         <div class="garden-row-info">
-            Name : {{garden.name}}
+            <b>Name</b> : {{garden.name}}
         </div>
         <div class="garden-row-info">
-            Producer : {{garden.producer}}
+            <b>Producer</b> : {{garden.producer}}
         </div>
         <div class="garden-row-info">
-            Free Slots : {{garden.free_slots}}
+            <b>Free Slots</b> : {{garden.free_slots}}
         </div>
         <div class="garden-row-info">
-            Occupied Slots : {{garden.occupied_slots}}
+            <b>Occupied Slots</b> : {{garden.occupied_slots}}
         </div>
         <div class="garden-row-info">
-            Water : {{garden.water}}
+            <b>Water</b> : {{garden.water}}
         </div>
         <div class="garden-row-info">
-            Temperature : {{garden.temperature}}
+            <button (click) = "addWater()">Add</button> &nbsp; <button (click) = "substractWater()">Substract</button>
+        </div>
+        <div class="garden-row-info">
+            <b>Temperature</b> : {{garden.temperature}}
+        </div>
+        <div class="garden-row-info">
+            <button (click) = "addTemp()">Add</button> &nbsp; <button (click) = "substractTemp()">Substract</button>
         </div>
     </div>
     <div class="garden-container-seedlings">
