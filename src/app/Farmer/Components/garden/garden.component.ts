@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Garden } from '../../types/Garden';
 
 @Component({
   selector: 'app-garden',
@@ -7,9 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GardenComponent implements OnInit {
 
-  constructor() { }
+  constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
+  }
 
   ngOnInit(): void {
+    this.route.params.subscribe( params => {
+      if (params['gardenId']) {
+        this.http.get('http://localhost:3000/farmer/garden/' + +params['gardenId']).subscribe((data: Garden[]) => {
+          console.log(data);
+      });
+      }
+    });
   }
 
 }
