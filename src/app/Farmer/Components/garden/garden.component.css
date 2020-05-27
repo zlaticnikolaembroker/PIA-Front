@@ -1,0 +1,57 @@
+.garden-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+    width: 90%;
+}
+
+.garden-container-info {
+    float: left;
+    width: 15%;
+    background-color: #45aba6;
+    padding: 2.5%;
+    margin: 20px;
+}
+
+.garden-container-seedlings {
+    float: left;
+    width: 60%;
+    background-color: #45aba6;
+    padding: 2.5%;
+    margin: 20px;
+}
+
+.garden-row-info{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.garden-column-order{
+    width: 20%;
+}
+
+.message{
+    color: darkred;
+}
+
+.btn {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.default {color: black;}
+
+.header{
+    background-color: #45aba6;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+    font-weight: bold;
+    font-size: medium;
+}

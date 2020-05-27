@@ -6,6 +6,7 @@ export interface Garden {
     place: string,
     free_slots: number,
     occupied_slots: number,
+    producer: string,
     water: number,
     temperature: number,
     height: number,

@@ -1,1 +1,25 @@
-<p>garden works!</p>
+<div class="garden-container" *ngIf="garden">
+    <div class="garden-container-info">
+        <div class="garden-row-info">
+            Name : {{garden.name}}
+        </div>
+        <div class="garden-row-info">
+            Producer : {{garden.producer}}
+        </div>
+        <div class="garden-row-info">
+            Free Slots : {{garden.free_slots}}
+        </div>
+        <div class="garden-row-info">
+            Occupied Slots : {{garden.occupied_slots}}
+        </div>
+        <div class="garden-row-info">
+            Water : {{garden.water}}
+        </div>
+        <div class="garden-row-info">
+            Temperature : {{garden.temperature}}
+        </div>
+    </div>
+    <div class="garden-container-seedlings">
+        Seedlings
+    </div>
+</div>
