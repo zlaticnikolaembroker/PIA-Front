@@ -21,7 +21,7 @@ export class FarmerDashboardComponent implements OnInit {
   }
 
   detailsClicked(id) {
-    console.log(id);
+    this.router.navigate(['farmer/garden/' + +id])
   }
 
   warehouseClicked(id) {
