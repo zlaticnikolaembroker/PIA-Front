@@ -6,4 +6,6 @@ export interface Garden {
     occupied_slots: number,
     water: number,
     temperature: number,
+    height: number,
+    width: number,
 }
