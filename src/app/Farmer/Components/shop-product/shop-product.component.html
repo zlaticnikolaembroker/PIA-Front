@@ -1,1 +1,114 @@
-<p>shop-product works!</p>
+<div *ngIf="product" class="product-container">
+    <br />
+    <div class="product-row">
+        <div class="product-column-title">
+        </div>
+        <div class ="product-column-value">
+            <button (click) = "handleBackClicked()">Back to Shop</button>
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Name:
+        </div>
+        <div class ="product-column-value">
+            {{product.name}}
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Price:
+        </div>
+        <div class ="product-column-value">
+            {{product.price}}
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Available:
+        </div>
+        <div class ="product-column-value">
+            {{product.available}}
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Type:
+        </div>
+        <div class ="product-column-value">
+            {{product.type}}
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Time to grow:
+        </div>
+        <div class ="product-column-value">
+            {{product.time_to_grow}}
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Acceleration time:
+        </div>
+        <div class ="product-column-value">
+            {{product.acceleration_time}}
+        </div>
+    </div>
+    <div class="product-row">
+        <div class="product-column-title">
+            Avarage rating:
+        </div>
+        <div *ngIf = "product.averagerating" style="font-weight: bolder; font-size: larger;" class ="product-column-value">
+            {{product.averagerating}}
+        </div>
+        <div *ngIf = "!product.averagerating" class ="product-column-value">
+            No ratings yet for this product.
+        </div>
+    </div>
+    <br />
+    <div class="product-row">
+        <div class="product-column-title">
+            Comments:
+        </div>
+    </div>
+    <div *ngIf = "product.comments && product.comments.length > 0">
+        <div *ngFor = "let comment of product.comments">
+            <div class ="product-row">
+                <div class="product-column-comment">
+                    <b>Username:</b> {{comment.username}}
+                </div>
+            </div>
+            <div class ="product-row">
+                <div class="product-column-comment">
+                    <b>Rating:</b> {{comment.rating}}
+                </div>
+            </div>
+            <div class ="product-row">
+                <div class="product-column-comment">
+                    <b>Comment:</b> {{comment.comment}}
+                </div>
+            </div>
+            <br />
+        </div>
+    </div>
+    <div *ngIf = "!product.comments || product.comments.length === 0" class ="product-row">
+        No comments yet for this product.
+    </div>
+    <br />
+    <div class="product-row">
+        <div class ="product-column-value">
+            <input type="number" [(ngModel)]="amountOfOrder" name="amountOfOrder" required>
+        </div>
+        <div class="product-column-title">
+            <button (click) = "handleOrderClicked()">Order</button>
+        </div>
+    </div>
+    <br />
+    <div class="product-row" *ngIf="message">
+        <div class="message">
+            {{message}}
+        </div>
+        <br />
+    </div>
+</div>

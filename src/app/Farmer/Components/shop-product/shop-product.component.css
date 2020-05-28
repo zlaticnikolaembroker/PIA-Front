@@ -1,0 +1,43 @@
+.product-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+    width: 35%;
+    min-width: 450px;
+}
+
+.product-row{
+    width: 90%;
+    display: flex;
+    flex-flow: row;
+    margin: auto;
+    padding: auto;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.product-column-title{
+    font-size: medium;
+    font-weight: bold;
+    float: left;
+    width: 30%;
+}
+
+.product-column-value{
+    float: left;
+    width: 70%;
+}
+
+.product-column-comment{
+    float: left;
+    width: 90%;
+    margin: auto;
+    font-size: medium;
+}
+
+.message{
+    color: darkred;
+    font-size: medium;
+    font-weight: bold;
+}
