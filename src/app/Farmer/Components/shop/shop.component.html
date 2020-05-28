@@ -4,6 +4,17 @@
     </div>
     <div class="shop-row-garden">
         <div class="shop-column-garden">
+            <input type="checkbox" [checked]="showAll" (change)="handleShowAll()"/><div>Show All</div>
+        </div>
+        <div class="shop-column-garden">
+            <input type="checkbox" [checked]="showSeedlings" (change)="handleShowSeedlings()"/><div>Show Seedlings</div>
+        </div>
+        <div class="shop-column-garden">
+            <input type="checkbox"  [checked]="showPreparations"(change)="handleShowPreparations()"/><div>Show Preparations</div>
+        </div>
+    </div>
+    <div class="shop-row-garden">
+        <div class="shop-column-garden">
             <button class="btn default" (click) = "sort('name')"><b>Name</b> </button>
         </div>
         <div class="shop-column-garden">

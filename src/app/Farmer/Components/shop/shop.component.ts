@@ -8,12 +8,22 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ShopComponent implements OnInit {
 
+  showAll: boolean;
+  showSeedlings: boolean;
+  showPreparations: boolean;
   private lastSortingParameter: string = '';
-  constructor(private http: HttpClient) { }
+  private allProducts;
   products;
+
+  constructor(private http: HttpClient) { }
+  
   ngOnInit(): void {
+    this.showAll = true;
+    this.showPreparations = true;
+    this.showSeedlings = true;
     this.http.get('http://localhost:3000/farmer/online_shop').subscribe((data) => {
           this.products = data;
+          this.allProducts = data;
       });
   }
 
@@ -34,6 +44,31 @@ export class ShopComponent implements OnInit {
       return 0;
     });
     this.lastSortingParameter =  this.lastSortingParameter == field ? null : field;
+  }
+
+  handleShowPreparations() {
+    this.showAll = this.showAll ? false : this.showAll;
+    this.showPreparations = !this.showPreparations;
+    if (this.showSeedlings && this.showPreparations) this.showAll = true;
+    this.filterProductsToShow();
+  }
+
+  handleShowAll() {
+    this.showPreparations = this.showSeedlings = this.showAll = !this.showAll;
+    this.filterProductsToShow();
+  }
+
+  handleShowSeedlings() {
+    this.showAll = this.showAll ? false : this.showAll;
+    this.showSeedlings = !this.showSeedlings;
+    if (this.showSeedlings && this.showPreparations) this.showAll = true;
+    this.filterProductsToShow();
+  }
+
+  filterProductsToShow() {
+    this.products = this.allProducts.filter((product) => {
+      return (product.type == 'Seedling' && this.showSeedlings) || (product.type == 'Preparation' && this.showPreparations);
+     })
   }
 
 }
