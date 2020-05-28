@@ -1,1 +1,59 @@
-<p>shop works!</p>
+<div class="shop-container">
+    <div class="shop-row header">
+        Gardens:
+    </div>
+    <div class="shop-row-garden">
+        <div class="shop-column-garden">
+            <b>Name</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Price</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Available</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Type</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Time to grow</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Acceleration time</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Average rating</b>
+        </div>
+        <div class="shop-column-garden">
+            <b>Details/Order</b>
+        </div>
+    </div>
+    <div *ngIf="products">
+        <div *ngFor="let product of products" class="shop-row-garden">
+            <div class="shop-column-garden">
+                Name
+            </div>
+            <div class="shop-column-garden">
+                Price
+            </div>
+            <div class="shop-column-garden">
+                Available
+            </div>
+            <div class="shop-column-garden">
+                Type
+            </div>
+            <div class="shop-column-garden">
+                Time to grow
+            </div>
+            <div class="shop-column-garden">
+                Acceleration time
+            </div>
+            <div class="shop-column-garden">
+                Average rating
+            </div>
+            <div class="shop-column-garden">
+                Details/Order
+            </div>
+        </div>
+    </div>
+</div>

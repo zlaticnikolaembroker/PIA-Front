@@ -32,4 +32,8 @@ export class FarmerDashboardComponent implements OnInit {
     console.log(id);
   }
 
+  handleShopClicked() {
+    this.router.navigate(['/farmer/online_shop'])
+  }
+
 }

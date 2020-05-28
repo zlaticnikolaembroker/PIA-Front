@@ -1,0 +1,41 @@
+.shop-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+    width: 70%;
+}
+
+.shop-row-garden{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.shop-column-garden{
+    width: 12.5%;
+}
+
+.message{
+    color: darkred;
+}
+
+.btn {
+    border: none;
+    background-color: inherit;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.default {color: black;}
+
+.header{
+    background-color: #45aba6;
+    padding-top: 0.2%;
+    padding-bottom: 0.2%;
+    font-weight: bold;
+    font-size: medium;
+}
