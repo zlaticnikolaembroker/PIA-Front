@@ -4,25 +4,28 @@
     </div>
     <div class="shop-row-garden">
         <div class="shop-column-garden">
-            <b>Name</b>
+            <button class="btn default" (click) = "sort('name')"><b>Name</b> </button>
         </div>
         <div class="shop-column-garden">
-            <b>Price</b>
+            <button class="btn default" (click)="sort('price')"><b>Price</b> </button>
         </div>
         <div class="shop-column-garden">
-            <b>Available</b>
+            <button class="btn default" (click) = "sort('available')"><b>Available</b> </button>
         </div>
         <div class="shop-column-garden">
-            <b>Type</b>
+            <button class="btn default" (click) = "sort('type')"><b>Type</b> </button>
         </div>
         <div class="shop-column-garden">
-            <b>Time to grow</b>
+            <button class="btn default" (click) = "sort('time_to_grow')"><b>Time to grow</b> </button>
         </div>
         <div class="shop-column-garden">
-            <b>Acceleration time</b>
+            <button class="btn default" (click) = "sort('acceleration_time')"><b>Acceleration time</b> </button>
         </div>
         <div class="shop-column-garden">
-            <b>Average rating</b>
+            <button class="btn default" (click) = "sort('average_rating')"><b>Average rating</b> </button>
+        </div>
+        <div class="shop-column-garden">
+            <button class="btn default" (click) = "sort('producer')"><b>Producer</b> </button>
         </div>
         <div class="shop-column-garden">
             <b>Details/Order</b>
@@ -30,29 +33,32 @@
     </div>
     <div *ngIf="products">
         <div *ngFor="let product of products" class="shop-row-garden">
-            <div class="shop-column-garden">
-                Name
+            <div class="shop-column-garden btn">
+                {{product.name}}
+            </div>
+            <div class="shop-column-garden ">
+                {{product.price}}
             </div>
             <div class="shop-column-garden">
-                Price
+                {{product.available}}
             </div>
             <div class="shop-column-garden">
-                Available
+                {{product.type}}
             </div>
             <div class="shop-column-garden">
-                Type
+                {{product.time_to_grow}}
             </div>
             <div class="shop-column-garden">
-                Time to grow
+                {{product.acceleration_time}}
             </div>
             <div class="shop-column-garden">
-                Acceleration time
+                {{product.average_rating}}
             </div>
             <div class="shop-column-garden">
-                Average rating
+                {{product.producer}}
             </div>
             <div class="shop-column-garden">
-                Details/Order
+                <button>Details/Order</button>
             </div>
         </div>
     </div>
