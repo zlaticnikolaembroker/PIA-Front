@@ -137,11 +137,19 @@ export class ShopComponent implements OnInit {
 
   checkOrder() :[]{
     this.message = null;
+    const companiesInOrder = (new Set(this.products.map(element => element.company_id)));
+    if(companiesInOrder.size > 0) {
+      this.message = "Please order from one company at a time";
+      return [];
+    }
     this.products.forEach(element => {
       if (element.available < element.orderAmount) {
         this.message = "Not enough avaible amount for:" + element.name;
       }
     });
+    if (this.message) {
+      return [];
+    }
     this.products.forEach(element => {
       if (element.orderAmount < 0) {
         this.message = "Amount can't be zero.";
