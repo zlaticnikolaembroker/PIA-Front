@@ -41,7 +41,32 @@ export class ShopComponent implements OnInit {
   companies: CompanyProducts[] = [];
 
   constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) { }
-  
+  private filterCompanyProduct() {
+    this.companies = [];
+    const distinctCompanies = (new Set(this.products.map(element => element.company_id)));
+    distinctCompanies.forEach((company) => {
+      this.companies.push({
+        company_id: company,
+        company_name: company,
+        products: this.products.filter(product => {
+          return product.company_id == company;
+        }),
+      } as CompanyProducts);
+    });
+    this.companies = this.companies.map(company => {
+      return {
+        ...company,
+        products: company.products ? company.products : [],
+      }
+    });
+    this.companies = this.companies.map(company => {
+      return {
+        ...company,
+        // @ts-ignore
+        company_name: company.products.length > 0 ? company.products[0].producer : company.company_name,
+      }
+    })
+  }
   ngOnInit(): void {
     this.showAll = true;
     this.showPreparations = true;
@@ -55,48 +80,28 @@ export class ShopComponent implements OnInit {
               orderAmount: 0,
             }
           });
-          const distinctCompanies = (new Set(this.products.map(element => element.company_id)));
-          distinctCompanies.forEach((company) => {
-            this.companies.push({
-              company_id: company,
-              company_name: company,
-              products: this.products.filter(product => {
-                return product.company_id == company;
-              }),
-            } as CompanyProducts);
-          });
-          this.companies = this.companies.map(company => {
-            return {
-              ...company,
-              products: company.products ? company.products : [],
-            }
-          });
-          this.companies = this.companies.map(company => {
-            return {
-              ...company,
-              // @ts-ignore
-              company_name: company.products.length > 0 ? company.products[0].producer : company.company_name,
-            }
-          })
+          this.filterCompanyProduct();
       });
   }
 
   sort(field) {
-    this.products = this.products.sort((a, b) => {
-      if (!a[field]) {
-        return this.lastSortingParameter == field ? 1 : -1;
-      }
-      if (!b[field]) {
-        return this.lastSortingParameter == field ? -1 : 1;
-      }
-      if (a[field] > b[field]) {
-        return this.lastSortingParameter == field ? -1 : 1;
-      }
-      if (a[field] < b[field]) {
-        return this.lastSortingParameter == field ? 1 : -1;
-      }
-      return 0;
-    });
+    this.companies.forEach(company => {
+      company.products = company.products.sort((a, b) => {
+        if (!a[field]) {
+          return this.lastSortingParameter == field ? 1 : -1;
+        }
+        if (!b[field]) {
+          return this.lastSortingParameter == field ? -1 : 1;
+        }
+        if (a[field] > b[field]) {
+          return this.lastSortingParameter == field ? -1 : 1;
+        }
+        if (a[field] < b[field]) {
+          return this.lastSortingParameter == field ? 1 : -1;
+        }
+        return 0;
+      })
+    })
     this.lastSortingParameter =  this.lastSortingParameter == field ? null : field;
   }
 
@@ -122,7 +127,8 @@ export class ShopComponent implements OnInit {
   filterProductsToShow() {
     this.products = this.allProducts.filter((product) => {
       return (product.type == 'Seedling' && this.showSeedlings) || (product.type == 'Preparation' && this.showPreparations);
-     })
+    });
+    this.filterCompanyProduct();
   }
 
   productClicked(id) {
