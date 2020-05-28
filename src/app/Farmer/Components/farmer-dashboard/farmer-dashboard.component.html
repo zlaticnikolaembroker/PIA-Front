@@ -55,5 +55,11 @@
                 <button (click)="warehouseClicked(garden.id)">Werehouse</button>
             </div>
         </div>
+        <div *ngFor="let garden of gardensToMaintenance">
+            <div class = "farmer-row-garden">
+                <div class="message">Garden {{garden.name}} requires maintenance</div>
+            </div>
+
+        </div>
     </div>
 </div>
