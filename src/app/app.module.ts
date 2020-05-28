@@ -29,6 +29,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportComponent } from './Company/Components/report/report.component';
 import { GardenComponent } from './Farmer/Components/garden/garden.component';
 import { ShopComponent } from './Farmer/Components/shop/shop.component';
+import { ShopProductComponent } from './Farmer/Components/shop-product/shop-product.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,6 +53,7 @@ import { ShopComponent } from './Farmer/Components/shop/shop.component';
     ReportComponent,
     GardenComponent,
     ShopComponent,
+    ShopProductComponent,
   ],
   imports: [
     BrowserModule,
