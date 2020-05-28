@@ -20,7 +20,9 @@
 }
 
 .message{
+    float: left;
     color: darkred;
+    width: 80%;
 }
 
 .btn {

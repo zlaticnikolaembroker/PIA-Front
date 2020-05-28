@@ -96,19 +96,4 @@
         No comments yet for this product.
     </div>
     <br />
-    <div class="product-row">
-        <div class ="product-column-value">
-            <input type="number" [(ngModel)]="amountOfOrder" name="amountOfOrder" required>
-        </div>
-        <div class="product-column-title">
-            <button (click) = "handleOrderClicked()">Order</button>
-        </div>
-    </div>
-    <br />
-    <div class="product-row" *ngIf="message">
-        <div class="message">
-            {{message}}
-        </div>
-        <br />
-    </div>
 </div>

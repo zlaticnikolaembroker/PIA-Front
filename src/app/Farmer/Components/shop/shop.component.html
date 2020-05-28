@@ -43,34 +43,50 @@
         </div>
     </div>
     <div *ngIf="products">
-        <div *ngFor="let product of products" class="shop-row-garden">
-            <div class="shop-column-garden btn">
-                {{product.name}}
+        <div *ngFor="let company of companies">
+            <div class = "shop-row-garden">
+                &nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>{{company.company_name}}:</u></i></b>
             </div>
-            <div class="shop-column-garden ">
-                {{product.price}}
+            <div *ngFor="let product of company.products" class="shop-row-garden">
+                <div class="shop-column-garden">
+                    {{product.name}}
+                </div>
+                <div class="shop-column-garden ">
+                    {{product.price}}
+                </div>
+                <div class="shop-column-garden">
+                    {{product.available}}
+                </div>
+                <div class="shop-column-garden">
+                    {{product.type}}
+                </div>
+                <div class="shop-column-garden">
+                    {{product.time_to_grow}}
+                </div>
+                <div class="shop-column-garden">
+                    {{product.acceleration_time}}
+                </div>
+                <div class="shop-column-garden">
+                    {{product.average_rating}}
+                </div>
+                <div class="shop-column-garden">
+                    {{product.producer}}
+                </div>
+                <div class="shop-column-garden">
+                    <button (click) = "productClicked(product.id)">Details</button>
+                </div>
+                <div class="shop-column-garden">
+                    <input type="number" [(ngModel)]="product.orderAmount">
+                </div>
             </div>
-            <div class="shop-column-garden">
-                {{product.available}}
-            </div>
-            <div class="shop-column-garden">
-                {{product.type}}
-            </div>
-            <div class="shop-column-garden">
-                {{product.time_to_grow}}
-            </div>
-            <div class="shop-column-garden">
-                {{product.acceleration_time}}
-            </div>
-            <div class="shop-column-garden">
-                {{product.average_rating}}
-            </div>
-            <div class="shop-column-garden">
-                {{product.producer}}
-            </div>
-            <div class="shop-column-garden">
-                <button (click) = "productClicked(product.id)">Details/Order</button>
-            </div>
+        </div>
+    </div>
+    <div class="shop-row-garden">
+        <div class="shop-column-garden">
+            <button (click)= "makeOrder()">Make order</button>
+        </div>
+        <div class="message" *ngIf="message">
+            {{message}}
         </div>
     </div>
 </div>
