@@ -28,6 +28,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReportComponent } from './Company/Components/report/report.component';
 import { GardenComponent } from './Farmer/Components/garden/garden.component';
+import { ShopComponent } from './Farmer/Components/shop/shop.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +51,7 @@ import { GardenComponent } from './Farmer/Components/garden/garden.component';
     AddProductComponent,
     ReportComponent,
     GardenComponent,
+    ShopComponent,
   ],
   imports: [
     BrowserModule,
