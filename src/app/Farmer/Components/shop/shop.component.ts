@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -15,7 +16,7 @@ export class ShopComponent implements OnInit {
   private allProducts;
   products;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
   
   ngOnInit(): void {
     this.showAll = true;
@@ -69,6 +70,10 @@ export class ShopComponent implements OnInit {
     this.products = this.allProducts.filter((product) => {
       return (product.type == 'Seedling' && this.showSeedlings) || (product.type == 'Preparation' && this.showPreparations);
      })
+  }
+
+  productClicked(id) {
+    this.router.navigate(['/farmer/online_shop/' + id])
   }
 
 }

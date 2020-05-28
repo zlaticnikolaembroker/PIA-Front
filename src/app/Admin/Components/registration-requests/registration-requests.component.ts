@@ -30,16 +30,16 @@ export class RegistrationRequestsComponent implements OnInit {
 
   ngOnInit(): void {
     this.http.get('http://localhost:3000/users_unconfirmed').subscribe((data: User[]) => {
-          if (data && data !== null) {
-            data.forEach((user: User) => {
-              if (user.role_id == 2) {
-                this.companyList.push(User.toCompany(user));
-              } else {
-                this.farmerList.push(User.toFarmer(user));
-              }
-            })
-          }
-      });
+        if (data && data !== null) {
+          data.forEach((user: User) => {
+            if (user.role_id == 2) {
+              this.companyList.push(User.toCompany(user));
+            } else {
+              this.farmerList.push(User.toFarmer(user));
+            }
+          })
+        }
+    });
   }
 
 }
