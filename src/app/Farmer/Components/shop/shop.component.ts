@@ -174,7 +174,7 @@ export class ShopComponent implements OnInit {
             // @ts-ignore
             amount: product.orderAmount,
             // @ts-ignore
-             price: product.price,
+            price: product.price,
            }
          }),
         }).subscribe((data) => {
