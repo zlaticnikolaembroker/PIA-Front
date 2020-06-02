@@ -8,13 +8,6 @@
         </div>
         
     </div>
-    <div *ngIf="products">
-        <div *ngFor="let product of products" class="warehouse-row-garden">
-            <div class="warehouse-column-garden">
-                {{product.name}}
-            </div>
-        </div>
-    </div>
     <br />
     <br />
     <button (click) = "onlineShopClicked()">Online shop</button>

@@ -1,95 +1,104 @@
 <div class="shop-container">
-    <div class="shop-row header">
-        Gardens:
-    </div>
-    <div class="shop-row-garden">
-        <div class="shop-column-garden">
-            <input type="checkbox" [checked]="showAll" (change)="handleShowAll()"/><div>Show All</div>
+    <div *ngIf="gardenSpecified === true">
+        <div class="shop-row header">
+            Gardens:
         </div>
-        <div class="shop-column-garden">
-            <input type="checkbox" [checked]="showSeedlings" (change)="handleShowSeedlings()"/><div>Show Seedlings</div>
-        </div>
-        <div class="shop-column-garden">
-            <input type="checkbox"  [checked]="showPreparations"(change)="handleShowPreparations()"/><div>Show Preparations</div>
-        </div>
-    </div>
-    <div class="shop-row-garden">
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('name')"><b>Name</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click)="sort('price')"><b>Price</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('available')"><b>Available</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('type')"><b>Type</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('time_to_grow')"><b>Time to grow</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('acceleration_time')"><b>Acceleration time</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('average_rating')"><b>Average rating</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <button class="btn default" (click) = "sort('producer')"><b>Producer</b> </button>
-        </div>
-        <div class="shop-column-garden">
-            <b>Details</b>
-        </div>
-        <div class="shop-column-garden">
-            <b>Order amount</b>
-        </div>
-    </div>
-    <div *ngIf="products">
-        <div *ngFor="let company of companies">
-            <div class = "shop-row-garden">
-                &nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>{{company.company_name}}:</u></i></b>
+        <div class="shop-row-garden">
+            <div class="shop-column-garden">
+                <input type="checkbox" [checked]="showAll" (change)="handleShowAll()"/><div>Show All</div>
             </div>
-            <div *ngFor="let product of company.products" class="shop-row-garden">
-                <div class="shop-column-garden">
-                    {{product.name}}
-                </div>
-                <div class="shop-column-garden ">
-                    {{product.price}}
-                </div>
-                <div class="shop-column-garden">
-                    {{product.available}}
-                </div>
-                <div class="shop-column-garden">
-                    {{product.type}}
-                </div>
-                <div class="shop-column-garden">
-                    {{product.time_to_grow}}
-                </div>
-                <div class="shop-column-garden">
-                    {{product.acceleration_time}}
-                </div>
-                <div class="shop-column-garden">
-                    {{product.average_rating}}
-                </div>
-                <div class="shop-column-garden">
-                    {{product.producer}}
-                </div>
-                <div class="shop-column-garden">
-                    <button (click) = "productClicked(product.id)">Details</button>
-                </div>
-                <div class="shop-column-garden">
-                    <input type="number" [(ngModel)]="product.orderAmount">
-                </div>
+            <div class="shop-column-garden">
+                <input type="checkbox" [checked]="showSeedlings" (change)="handleShowSeedlings()"/><div>Show Seedlings</div>
+            </div>
+            <div class="shop-column-garden">
+                <input type="checkbox"  [checked]="showPreparations"(change)="handleShowPreparations()"/><div>Show Preparations</div>
             </div>
         </div>
-    </div>
-    <div class="shop-row-garden">
-        <div class="shop-column-garden">
-            <button (click)= "makeOrder()">Make order</button>
+        <div class="shop-row-garden">
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('name')"><b>Name</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click)="sort('price')"><b>Price</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('available')"><b>Available</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('type')"><b>Type</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('time_to_grow')"><b>Time to grow</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('acceleration_time')"><b>Acceleration time</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('average_rating')"><b>Average rating</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <button class="btn default" (click) = "sort('producer')"><b>Producer</b> </button>
+            </div>
+            <div class="shop-column-garden">
+                <b>Details</b>
+            </div>
+            <div class="shop-column-garden">
+                <b>Order amount</b>
+            </div>
         </div>
-        <div class="message" *ngIf="message">
-            {{message}}
+        <div *ngIf="products">
+            <div *ngFor="let company of companies">
+                <div class = "shop-row-garden">
+                    &nbsp;&nbsp;&nbsp;&nbsp;<b><i><u>{{company.company_name}}:</u></i></b>
+                </div>
+                <div *ngFor="let product of company.products" class="shop-row-garden">
+                    <div class="shop-column-garden">
+                        {{product.name}}
+                    </div>
+                    <div class="shop-column-garden ">
+                        {{product.price}}
+                    </div>
+                    <div class="shop-column-garden">
+                        {{product.available}}
+                    </div>
+                    <div class="shop-column-garden">
+                        {{product.type}}
+                    </div>
+                    <div class="shop-column-garden">
+                        {{product.time_to_grow}}
+                    </div>
+                    <div class="shop-column-garden">
+                        {{product.acceleration_time}}
+                    </div>
+                    <div class="shop-column-garden">
+                        {{product.average_rating}}
+                    </div>
+                    <div class="shop-column-garden">
+                        {{product.producer}}
+                    </div>
+                    <div class="shop-column-garden">
+                        <button (click) = "productClicked(product.id)">Details</button>
+                    </div>
+                    <div class="shop-column-garden">
+                        <input type="number" [(ngModel)]="product.orderAmount">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="shop-row-garden">
+            <div class="shop-column-garden">
+                <button (click)= "makeOrder()">Make order</button>
+            </div>
+            <div class="message" *ngIf="message">
+                {{message}}
+            </div>
+        </div>
+    </div>
+    <div *ngIf="gardenSpecified === false">
+        <div class="shop-row-garden">
+            <div class="message">
+                Please go to the online shop through warehouse.
+            </div>
         </div>
     </div>
 </div>

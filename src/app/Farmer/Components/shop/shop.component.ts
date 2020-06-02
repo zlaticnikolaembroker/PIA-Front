@@ -32,7 +32,11 @@ export class ShopComponent implements OnInit {
 
   companies: CompanyProducts[] = [];
 
-  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) { }
+  gardenSpecified = false;
+
+  constructor(private http: HttpClient, private router: Router, private cookieService: CookieService) {
+    this.gardenSpecified = this.cookieService.get('garden_id').length > 0 ;
+  }
   private filterCompanyProduct() {
     this.companies = [];
     const distinctCompanies = (new Set(this.products.map(element => element.company_id)));
