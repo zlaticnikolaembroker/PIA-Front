@@ -30,6 +30,7 @@ import { ReportComponent } from './Company/Components/report/report.component';
 import { GardenComponent } from './Farmer/Components/garden/garden.component';
 import { ShopComponent } from './Farmer/Components/shop/shop.component';
 import { ShopProductComponent } from './Farmer/Components/shop-product/shop-product.component';
+import { WarehouseComponent } from './Farmer/Components/warehouse/warehouse.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,6 +55,7 @@ import { ShopProductComponent } from './Farmer/Components/shop-product/shop-prod
     GardenComponent,
     ShopComponent,
     ShopProductComponent,
+    WarehouseComponent,
   ],
   imports: [
     BrowserModule,
