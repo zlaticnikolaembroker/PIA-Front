@@ -106,7 +106,7 @@
                 </div>
                 <div class="company-column-order">
                     <div *ngIf="order.status !== 'Received'">
-                        <select (change)="changeStatus($event, order.id)" [(ngModel)]="order.status">
+                        <select [disabled]="order.status == 'Rejected' || order.status == 'Done'" (change)="changeStatus($event, order.id)" [(ngModel)]="order.status">
                             <option *ngFor="let status of posibleStatuses">{{status}}</option>
                         </select>
                     </div>
