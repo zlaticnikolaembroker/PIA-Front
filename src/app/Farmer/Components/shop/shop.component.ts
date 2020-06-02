@@ -167,6 +167,7 @@ export class ShopComponent implements OnInit {
          farmer_id: +this.cookieService.get('userId'),
           // @ts-ignore
           company_id: productsForOrder[0].company_id,
+          garden_id: this.cookieService.get('garden_id'), 
           products: productsForOrder.map(product => {
             return {
             // @ts-ignore
