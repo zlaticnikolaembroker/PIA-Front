@@ -8,12 +8,6 @@ interface Product {
   price: number;
 }
 
-interface Order {
-  farmer_id: number;
-  company_id: number;
-  products: Product[];
-}
-
 interface CompanyProducts {
   company_id: number;
   company_name: string;
@@ -35,8 +29,6 @@ export class ShopComponent implements OnInit {
   products;
 
   message: string = null;
-
-  order: Order = null;
 
   companies: CompanyProducts[] = [];
 
@@ -67,7 +59,7 @@ export class ShopComponent implements OnInit {
       }
     })
   }
-  ngOnInit(): void {
+  private init() {
     this.showAll = true;
     this.showPreparations = true;
     this.showSeedlings = true;
@@ -82,6 +74,9 @@ export class ShopComponent implements OnInit {
           });
           this.filterCompanyProduct();
       });
+  }
+  ngOnInit(): void {
+    this.init();
   }
 
   sort(field) {
@@ -138,7 +133,7 @@ export class ShopComponent implements OnInit {
   checkOrder() :[]{
     this.message = null;
     const companiesInOrder = (new Set(this.products.map(element => element.company_id)));
-    if(companiesInOrder.size > 0) {
+    if(companiesInOrder.size > 1) {
       this.message = "Please order from one company at a time";
       return [];
     }
@@ -168,8 +163,24 @@ export class ShopComponent implements OnInit {
   makeOrder() {
     const productsForOrder = this.checkOrder();
     if (productsForOrder.length > 0) {
-
-    }
+       this.http.post('http://localhost:3000/farmer/create_order',{
+         farmer_id: +this.cookieService.get('userId'),
+          // @ts-ignore
+          company_id: productsForOrder[0].company_id,
+          products: productsForOrder.map(product => {
+            return {
+            // @ts-ignore
+            product_id: product.id,
+            // @ts-ignore
+            amount: product.orderAmount,
+            // @ts-ignore
+             price: product.price,
+           }
+         }),
+        }).subscribe((data) => {
+          this.init();
+        });
+  }
   }
 
 }
