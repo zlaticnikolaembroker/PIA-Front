@@ -18,6 +18,7 @@ import { ReportComponent } from './Company/Components/report/report.component';
 import { GardenComponent } from './Farmer/Components/garden/garden.component';
 import { ShopComponent } from './Farmer/Components/shop/shop.component';
 import { ShopProductComponent } from './Farmer/Components/shop-product/shop-product.component';
+import { WarehouseComponent } from './Farmer/Components/warehouse/warehouse.component';
 
 
 const routes: Routes = [
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'farmer/garden/:gardenId', component: GardenComponent },
   { path: 'farmer/online_shop', component: ShopComponent },
   { path: 'farmer/online_shop/:productId', component: ShopProductComponent },
+  { path: 'farmer/warehouse', component: WarehouseComponent},
   { path: '**', component: PageNotFoundComponent},
 ];
 

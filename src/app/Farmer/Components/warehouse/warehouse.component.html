@@ -1,1 +1,67 @@
-<p>warehouse works!</p>
+<div class="warehouse-container">
+    <div class="warehouse-row header">
+        Products:
+    </div>
+    <div class="warehouse-row-garden">
+        <div class="warehouse-column-garden">
+            Name
+        </div>
+        <div class="warehouse-column-garden">
+            Place
+        </div>
+        <div class="warehouse-column-garden">
+            Occupied slots
+        </div>
+        <div class="warehouse-column-garden">
+            Free slots
+        </div>
+        <div class="warehouse-column-garden">
+            Water(liters)
+        </div>
+        <div class="warehouse-column-garden">
+            Temperature(Celsius)
+        </div>
+        <div class="warehouse-column-garden">
+            Details
+        </div>
+        <div class="warehouse-column-garden">
+            Werehouse
+        </div>
+    </div>
+    <div *ngIf="products">
+        <div *ngFor="let product of gardens" class="warehouse-row-garden">
+            <div class="warehouse-column-garden">
+                {{product.name}}
+            </div>
+            <div class="warehouse-column-garden">
+                {{product.place}}
+            </div>
+            <div class="warehouse-column-garden">
+                {{product.occupied_slots ? garden.occupied_slots : 0}}
+            </div>
+            <div class="warehouse-column-garden">
+                {{product.free_slots}}
+            </div>
+            <div class="warehouse-column-garden">
+                {{product.water}}
+            </div>
+            <div class="warehouse-column-garden">
+                {{product.temperature}}
+            </div>
+            <div class="warehouse-column-garden">
+                <button (click)="detailsClicked(product.id)">Details</button>
+            </div>
+            <div class="warehouse-column-garden">
+                <button (click)="warehouseClicked(product.id)">Werehouse</button>
+            </div>
+        </div>
+        <div *ngFor="let garden of gardensToMaintenance">
+            <div class = "warehouse-row-garden">
+                <div class="message">Garden {{garden.name}} requires maintenance</div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <br />
+    <button (click) = "onlineShopClicked()">Online shop</button>
+</div>

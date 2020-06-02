@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-warehouse',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WarehouseComponent implements OnInit {
 
-  constructor() { }
+  constructor(private cookieService: CookieService, private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  onlineShopClicked() {
+    this.router.navigate(['/farmer/online_shop'])
   }
 
 }

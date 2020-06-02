@@ -30,10 +30,7 @@ export class FarmerDashboardComponent implements OnInit {
 
   warehouseClicked(id) {
     this.cookieService.set('garden_id', id);
-  }
-
-  handleShopClicked() {
-    this.router.navigate(['/farmer/online_shop'])
+    this.router.navigate(['/farmer/warehouse'])
   }
 
 }
