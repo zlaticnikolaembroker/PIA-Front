@@ -29,7 +29,7 @@ export class FarmerDashboardComponent implements OnInit {
   }
 
   warehouseClicked(id) {
-    console.log(id);
+    this.cookieService.set('garden_id', id);
   }
 
   handleShopClicked() {
