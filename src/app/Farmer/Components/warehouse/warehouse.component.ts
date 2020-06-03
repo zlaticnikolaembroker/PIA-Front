@@ -18,4 +18,8 @@ export class WarehouseComponent implements OnInit {
     this.router.navigate(['/farmer/online_shop'])
   }
 
+  currentOrdersClicked(){
+    this.router.navigate(['/farmer/orders'])
+  }
+
 }
