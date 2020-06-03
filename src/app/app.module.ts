@@ -31,6 +31,7 @@ import { GardenComponent } from './Farmer/Components/garden/garden.component';
 import { ShopComponent } from './Farmer/Components/shop/shop.component';
 import { ShopProductComponent } from './Farmer/Components/shop-product/shop-product.component';
 import { WarehouseComponent } from './Farmer/Components/warehouse/warehouse.component';
+import { OrdersComponent } from './Farmer/Components/orders/orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -56,6 +57,7 @@ import { WarehouseComponent } from './Farmer/Components/warehouse/warehouse.comp
     ShopComponent,
     ShopProductComponent,
     WarehouseComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,
