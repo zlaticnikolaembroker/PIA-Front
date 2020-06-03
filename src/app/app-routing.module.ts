@@ -43,6 +43,7 @@ const routes: Routes = [
   { path: 'farmer/online_shop/:productId', component: ShopProductComponent },
   { path: 'farmer/warehouse', component: WarehouseComponent},
   { path: 'farmer/orders', component: OrdersComponent},
+  { path: 'farmer/orders/:orderId', component: OrderComponent },
   { path: '**', component: PageNotFoundComponent},
 ];
 
