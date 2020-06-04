@@ -4,9 +4,47 @@
     </div>
     <div class="warehouse-row-garden">
         <div class="warehouse-column-garden">
-            Name
+            <b>Name</b>
         </div>
-        
+        <div class="warehouse-column-garden">
+            <b>Amount available</b>
+        </div>
+        <div class="warehouse-column-garden">
+            <b>Type</b>
+        </div>
+        <div class="warehouse-column-garden">
+            <b>Time to Grow</b>
+        </div>
+        <div class="warehouse-column-garden">
+            <b>Acceleration time</b>
+        </div>
+        <div class="warehouse-column-garden">
+            <b>Company name</b>
+        </div>
+    </div>
+    <div *ngIf="products">
+        <div *ngFor="let product of products">
+            <div class="warehouse-row-garden">
+                <div class="warehouse-column-garden">
+                    {{product.name}}
+                </div>
+                <div class="warehouse-column-garden">
+                    {{product.amount}}
+                </div>
+                <div class="warehouse-column-garden">
+                    {{product.type}}
+                </div>
+                <div class="warehouse-column-garden">
+                    {{product.time_to_grow}}
+                </div>
+                <div class="warehouse-column-garden">
+                    {{product.acceleration_time}}
+                </div>
+                <div class="warehouse-column-garden">
+                    {{product.fullname}}
+                </div>
+            </div>
+        </div>
     </div>
     <br />
     <br />
