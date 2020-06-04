@@ -15,8 +15,6 @@ export class OrdersComponent implements OnInit {
   constructor(private cookieService: CookieService, private http: HttpClient, private router: Router) {
     this.http.get('http://localhost:3000/farmer/orders/' + +this.cookieService.get("garden_id")).subscribe((data: []) => {
       this.orders = data;
-      console.log(this.cookieService.getAll());
-      console.log(data);
     });
    }
 

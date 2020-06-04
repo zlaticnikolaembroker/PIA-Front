@@ -1,5 +1,39 @@
 <div class="warehouse-container">
     <div class="warehouse-row header">
+        Filters:
+    </div>
+    <div class="warehouse-row-garden">
+        <div class="warehouse-column-garden">
+            <b>Name:</b> 
+        </div>
+        <div class="warehouse-column-garden">
+            <input type="text" [(ngModel)]="filterName" name="filtername" (ngModelChange)="handleFilterChange()">
+        </div>
+    </div>
+    <div class="warehouse-row-garden">
+        <div class="warehouse-column-garden">
+            <b>Min Amount:</b> 
+        </div>
+        <div class="warehouse-column-garden">
+            <input type="number" [(ngModel)]="filterAmountMin" name="filterAmountMin" (ngModelChange)="handleFilterChange()">
+        </div>
+        <div class="warehouse-column-garden"></div>
+        <div class="warehouse-column-garden">
+            <b>Max Amount:</b> 
+        </div>
+        <div class="warehouse-column-garden">
+            <input type="number" [(ngModel)]="filterAmountMax" name="filterAmountMax" (ngModelChange)="handleFilterChange()">
+        </div>
+    </div>
+    <div class="warehouse-row-garden">
+        <div class="warehouse-column-garden">
+            <b>Company name:</b> 
+        </div>
+        <div class="warehouse-column-garden">
+            <input type="text" [(ngModel)]="filterCompanyName" name="filterCompanyName" (ngModelChange)="handleFilterChange()">
+        </div>
+    </div>
+    <div class="warehouse-row header">
         Products:
     </div>
     <div class="warehouse-row-garden">

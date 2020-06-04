@@ -13,9 +13,18 @@ export class WarehouseComponent implements OnInit {
   private lastSortingParameter: string = '';
   products: [];
 
+  allProducts: [];
+
+  //filter inputs
+  filterName: string;
+  filterAmountMin: number;
+  filterAmountMax: number;
+  filterCompanyName: string;
+
   constructor(private cookieService: CookieService, private router: Router, private http: HttpClient) {
     this.http.get('http://localhost:3000/farmer/products/' + +this.cookieService.get('garden_id')).subscribe((data: []) => {
         this.products = data;
+        this.allProducts = data;
     });
    }
 
@@ -47,6 +56,32 @@ export class WarehouseComponent implements OnInit {
       return 0;
     })
     this.lastSortingParameter =  this.lastSortingParameter == field ? null : field;
+  }
+
+  handleFilterChange() {
+    this.products = this.allProducts;
+    if (this.filterName) {
+      //@ts-ignore
+      this.products = this.products.filter((product) => {
+        //@ts-ignore
+        return product.name.includes(this.filterName);
+      });
+    }
+    if (this.filterAmountMax && this.filterAmountMin && (!isNaN(this.filterAmountMax) && !isNaN(this.filterAmountMin))) {
+      //@ts-ignore
+      this.products = this.products.filter((product) => {
+        //@ts-ignore
+        return product.amount >= this.filterAmountMin && product.amount <= this.filterAmountMax;
+      });
+    }
+
+    if (this.filterCompanyName){
+      //@ts-ignore
+      this.products = this.products.filter((product) => {
+        //@ts-ignore
+        return product.fullname.includes(this.filterCompanyName);
+      });
+    }
   }
 
 }
