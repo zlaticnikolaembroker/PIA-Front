@@ -114,6 +114,9 @@ export class AddProductComponent implements OnInit {
             name: element.name,
             available: element.available,
             price: element.price,
+            type: element.type,
+            time_to_grow: element.type === 'Seedling' ? element.time_to_grow : null,
+            acceleration_time: element.type === 'Seedling' ? null : element.acceleration_time,
           });
         });
       } else {
@@ -121,6 +124,9 @@ export class AddProductComponent implements OnInit {
           name: json.name,
           available: json.available,
           price: json.price,
+          type: json.type,
+          time_to_grow: json.type === 'Seedling' ? json.time_to_grow: null,
+          acceleration_time: json.type === 'Seedling' ? null : json.acceleration_time,
         });
       }
       let somethingWrong = false;
@@ -150,10 +156,26 @@ export class AddProductComponent implements OnInit {
           somethingWrong = true;
           return;
         }
+        if (product.type != 'Seedling' && product.type != 'Preparation') {
+          self.message2 += ('Field "type" has to be Seedling or Preparation:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
+        if (product.type == 'Seedling' && isNaN(product.time_to_grow)) {
+          self.message2 += ('Product with type Seedling has to have "time to grow" value:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
+        if (product.type != 'Seedling' && isNaN(product.acceleration_time)) {
+          self.message2 += ('Product with type Preparation has to have "acceleration value" value:' + (index + 1) + '\n');
+          somethingWrong = true;
+          return;
+        }
       });
       if (somethingWrong) {
         return;
       } else {   
+        console.log(productsToInsert);
         function insertProduct(productIndex) {
           self.http.post('http://localhost:3000/company/product',{
             ...productsToInsert[productIndex],
