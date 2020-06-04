@@ -20,6 +20,7 @@ import { ShopComponent } from './Farmer/Components/shop/shop.component';
 import { ShopProductComponent } from './Farmer/Components/shop-product/shop-product.component';
 import { WarehouseComponent } from './Farmer/Components/warehouse/warehouse.component';
 import { OrdersComponent } from './Farmer/Components/orders/orders.component';
+import { SeedlingComponent } from './Farmer/Components/seedling/seedling.component';
 
 
 const routes: Routes = [
@@ -44,6 +45,7 @@ const routes: Routes = [
   { path: 'farmer/warehouse', component: WarehouseComponent},
   { path: 'farmer/orders', component: OrdersComponent},
   { path: 'farmer/orders/:orderId', component: OrderComponent },
+  { path: 'farmer/seedlings/:seedling_id', component: SeedlingComponent },
   { path: '**', component: PageNotFoundComponent},
 ];
 

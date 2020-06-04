@@ -1,1 +1,43 @@
-<p>seedling works!</p>
+<div class="seedling-container">
+    <div *ngIf="seedling">
+        <div class="seedling-row">
+            <div class="seedling-column">
+                &nbsp;<b>Name:</b>
+            </div>
+            <div class="seedling-column">
+                {{seedling.name}}
+            </div>
+        </div>
+        <div class="seedling-row">
+            <div class="seedling-column">
+                &nbsp;<b>Progress:</b>
+            </div>
+            <div class="seedling-column">
+                <progress value={{seedling.progress}} max="1"> {{seedling.progress}}% </progress>
+            </div>
+        </div>
+        <div class="seedling-row">
+            <div class="seedling-column">
+                &nbsp;<b>Row:</b>
+            </div>
+            <div class="seedling-column">
+                {{seedling.x}}
+            </div>
+        </div><div class="seedling-row">
+            <div class="seedling-column">
+                &nbsp;<b>Column:</b>
+            </div>
+            <div class="seedling-column">
+                {{seedling.y}}
+            </div>
+        </div>
+        <div class="seedling-row">
+            <div class="seedling-column">
+                &nbsp;<b>Producer:</b>
+            </div>
+            <div class="seedling-column">
+                {{seedling.producer}}
+            </div>
+        </div>
+    </div>
+</div>

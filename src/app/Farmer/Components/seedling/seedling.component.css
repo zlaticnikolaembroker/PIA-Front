@@ -1,0 +1,25 @@
+.seedling-container{
+    background-color: blanchedalmond;
+    padding: auto;
+    margin: auto;
+    margin-top: 5%;
+    width: 20%;
+}
+
+.seedling-row{
+    width: 100%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}
+
+.seedling-column{
+    width: 50%;
+    display: flex;
+    flex-flow: row;
+    margin: 10px 0;
+    align-items: center;
+    text-align: center;
+}

@@ -85,12 +85,16 @@ export class GardenComponent implements OnInit {
   }
 
   handleHover(seedling){
-    console.log(seedling);
     this.hoveredSeedling = seedling;
   }
 
   handleMouseOut() {
     this.hoveredSeedling = null;
+  }
+
+  handleSeedlingClicked(seedling) {
+    console.log(seedling);
+    this.router.navigate(['/farmer/seedlings/' + seedling.id]);
   }
 
 }
