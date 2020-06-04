@@ -39,5 +39,26 @@
                 {{seedling.producer}}
             </div>
         </div>
+        <div class="seedling-row" *ngIf="seedling.progress < 1.0">
+            <div class="seedling-column">
+                &nbsp;<b>Select preparation:</b>
+            </div>
+            <div class="seedling-column">
+                <select (change)="changePreparation($event)" [(ngModel)]="preparation">
+                    <option *ngFor="let preparation of preparations" value={{preparation.id}}>{{preparation.name}} : {{[preparation.acceleration_time]}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="seedling-row" *ngIf="seedling.progress < 1.0">
+            <div class="seedling-column">
+                &nbsp;<b>Use preparation:</b>
+            </div>
+            <div class="seedling-column">
+                <button (click)="usePreparation()">Use Preparation</button>
+            </div>
+        </div>
+        <div *ngIf="message.length > 0" class="seedling-row message">
+            {{message}}
+        </div>
     </div>
 </div>

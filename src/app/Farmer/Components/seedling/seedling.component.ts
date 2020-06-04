@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-seedling',
@@ -10,17 +11,55 @@ import { ActivatedRoute } from '@angular/router';
 export class SeedlingComponent implements OnInit {
 
   seedling;
-  constructor(private http: HttpClient, private route: ActivatedRoute) { 
+  preparations: [];
+  preparation;
+  message: string = '';
+
+  selectedPreparationId: number = null;
+
+  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { 
+    this.init();
+  }
+
+  private init() {
     this.route.params.subscribe( params => {
       if(params['seedling_id']) {
         this.http.get('http://localhost:3000/farmer/seedling/' + params['seedling_id']).subscribe((data) => {
           this.seedling = data;
+        });
+        this.http.get('http://localhost:3000/farmer/garden/preparations/' + this.cookieService.get("garden_id")).subscribe((data: []) => {
+          this.preparations = data;
         });
       }
     });
   }
 
   ngOnInit(): void {
+  }
+
+  changePreparation(event) {
+    this.selectedPreparationId = +event.target.value;
+  }
+
+  usePreparation() {
+    this.message = '';
+    if (this.selectedPreparationId === null) {
+      this.message = "Please, select preparation";
+      return;
+    }
+
+    this.http.post('http://localhost:3000/farmer/use_preparation', {
+      preparation_id: this.selectedPreparationId,
+      seedling_id: this.seedling.id,
+      garden_id: +this.cookieService.get("garden_id"),
+      acceleration_time: this.preparations.find(preparation => {
+        //@ts-ignore
+        return preparation.id === this.selectedPreparationId;
+        //@ts-ignore
+      }).acceleration_time,
+    }).subscribe(() => {
+      this.init();
+    });
   }
 
 }
