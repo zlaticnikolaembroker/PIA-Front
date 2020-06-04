@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Component({
@@ -17,7 +17,7 @@ export class SeedlingComponent implements OnInit {
 
   selectedPreparationId: number = null;
 
-  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService) { 
+  constructor(private http: HttpClient, private route: ActivatedRoute, private cookieService: CookieService, private router: Router) { 
     this.init();
   }
 
@@ -59,6 +59,20 @@ export class SeedlingComponent implements OnInit {
       }).acceleration_time,
     }).subscribe(() => {
       this.init();
+    });
+  }
+
+  private back() {
+    setTimeout(() => {
+      this.router.navigate(['/farmer/garden/' + +this.cookieService.get("garden_id")])
+    }, 2500);
+  }
+
+  handleRemove() {
+    this.http.post('http://localhost:3000/farmer/remove_seeding', {
+      seedling_id: this.seedling.id,
+    }).subscribe(() => {
+      this.back();
     });
   }
 

@@ -57,6 +57,14 @@
                 <button (click)="usePreparation()">Use Preparation</button>
             </div>
         </div>
+        <div class="seedling-row" *ngIf="seedling.progress >= 1.0">
+            <div class="seedling-column">
+                &nbsp;<b>Remove the seedling</b>
+            </div>
+            <div class="seedling-column">
+                <button (click)="handleRemove()">Remove</button>
+            </div>
+        </div>
         <div *ngIf="message.length > 0" class="seedling-row message">
             {{message}}
         </div>
