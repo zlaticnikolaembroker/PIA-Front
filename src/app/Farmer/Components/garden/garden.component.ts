@@ -85,6 +85,7 @@ export class GardenComponent implements OnInit {
   }
 
   handleHover(seedling){
+    console.log(seedling);
     this.hoveredSeedling = seedling;
   }
 

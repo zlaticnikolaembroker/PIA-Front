@@ -175,7 +175,6 @@ export class AddProductComponent implements OnInit {
       if (somethingWrong) {
         return;
       } else {   
-        console.log(productsToInsert);
         function insertProduct(productIndex) {
           self.http.post('http://localhost:3000/company/product',{
             ...productsToInsert[productIndex],
