@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
-import { promise } from 'protractor';
 
 @Component({
   selector: 'app-add-product',
@@ -15,9 +14,14 @@ export class AddProductComponent implements OnInit {
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
+  fourthFormGroup: FormGroup;
+  fifthFormGroup: FormGroup;
+
   message: string;
   message2: string;
   files: FileList;
+
+  types: string[] = ['Preparation', 'Seedling'];
 
   constructor(private _formBuilder: FormBuilder, 
       private http: HttpClient, 
@@ -34,6 +38,12 @@ export class AddProductComponent implements OnInit {
     });
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: [0, Validators.min(0)]
+    });
+    this.fourthFormGroup = this._formBuilder.group({
+      fourthCtrl: ['', Validators.minLength(1)]
+    });
+    this.fifthFormGroup = this._formBuilder.group({
+      fifthCtrl: [0, Validators.min(0)]
     });
   }
   ngOnInit(): void {
@@ -57,6 +67,16 @@ export class AddProductComponent implements OnInit {
       return false;
     }
 
+    if (this.fourthFormGroup.get('fourthCtrl').status === 'INVALID') {
+      this.message = 'Invalid type value.';
+      return false;
+    }
+
+    if (this.fifthFormGroup.get('fifthCtrl').status === 'INVALID') {
+      this.message = this.fourthFormGroup.get('fourthCtrl').value == 'Seedling' ?  'Invalid time to grow value.' : 'Invalid acceleration time value.';
+      return false;
+    }
+
     return true;
   }
 
@@ -67,6 +87,9 @@ export class AddProductComponent implements OnInit {
         price: this.secondFormGroup.get('secondCtrl').value,
         available: this.thirdFormGroup.get('thirdCtrl').value,
         company_id: +this.cookieService.get('userId'),
+        type: this.fourthFormGroup.get('fourthCtrl').value.length > 0 ? this.fourthFormGroup.get('fourthCtrl').value : this.types[0],
+        time_to_grow: this.fourthFormGroup.get('fourthCtrl').value == 'Seedling' ? this.fifthFormGroup.get('fifthCtrl').value : null,
+        acceleration_time: this.fourthFormGroup.get('fourthCtrl').value == 'Seedling' ? null : this.fifthFormGroup.get('fifthCtrl').value,
       })
         .subscribe((data) => {
           this.message = 'Product successfully inserted';

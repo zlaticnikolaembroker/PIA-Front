@@ -5,7 +5,6 @@ import { Product } from 'src/app/Common/Types/product';
 import { OrderDetails } from '../../types/OrderDetails';
 import { Nullable } from 'src/app/Common/Types/nullable';
 import { Router } from '@angular/router';
-import { type } from 'os';
 
 @Component({
   selector: 'app-company-dashboard',

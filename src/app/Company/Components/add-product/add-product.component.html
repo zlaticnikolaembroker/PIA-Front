@@ -33,6 +33,33 @@
       </form>
     </mat-step>
 
+    <mat-step [stepControl]="fourthFormGroup" label="Type" [completed]="false">
+      <form [formGroup]="fourthFormGroup">
+        <ng-template matStepLabel>Fill out type of product:</ng-template>
+          <select formControlName="fourthCtrl">
+            <option *ngFor="let type of types">
+              {{ type }}
+            </option>
+          </select>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="fifthFormGroup" label="Available" [completed]="false">
+      <form [formGroup]="fifthFormGroup">
+        <ng-template matStepLabel *ngIf="this.fourthFormGroup.get('fourthCtrl').value == 'Seedling'">Fill out number of days for the Seedling to grow:</ng-template>
+        <ng-template matStepLabel *ngIf="this.fourthFormGroup.get('fourthCtrl').value != 'Seedling'">Fill out number of days this preparation will accelerate Seedling grow:</ng-template>
+          <input type="number" matInput formControlName="fifthCtrl" placeholder="Available" required>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+          <button mat-button matStepperPrevious>Back</button>
+        </div>
+      </form>
+    </mat-step>
+
     <mat-step [completed]="false">
       <ng-template matStepLabel>Finish</ng-template>
       <div>
