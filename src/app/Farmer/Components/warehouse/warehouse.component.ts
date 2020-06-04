@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WarehouseComponent implements OnInit {
 
+  private lastSortingParameter: string = '';
   products: [];
 
   constructor(private cookieService: CookieService, private router: Router, private http: HttpClient) {
@@ -27,6 +28,25 @@ export class WarehouseComponent implements OnInit {
 
   currentOrdersClicked(){
     this.router.navigate(['/farmer/orders'])
+  }
+
+  sort(field) {
+    this.products = this.products.sort((a, b) => {
+      if (!a[field]) {
+        return this.lastSortingParameter == field ? 1 : -1;
+      }
+      if (!b[field]) {
+        return this.lastSortingParameter == field ? -1 : 1;
+      }
+      if (a[field] > b[field]) {
+        return this.lastSortingParameter == field ? -1 : 1;
+      }
+      if (a[field] < b[field]) {
+        return this.lastSortingParameter == field ? 1 : -1;
+      }
+      return 0;
+    })
+    this.lastSortingParameter =  this.lastSortingParameter == field ? null : field;
   }
 
 }

@@ -4,22 +4,22 @@
     </div>
     <div class="warehouse-row-garden">
         <div class="warehouse-column-garden">
-            <b>Name</b>
+            <button class="btn default" (click)="sort('name')"><b>Name</b> </button>
         </div>
         <div class="warehouse-column-garden">
-            <b>Amount available</b>
+            <button class="btn default" (click)="sort('amount')"><b>Amount available</b></button>
         </div>
         <div class="warehouse-column-garden">
-            <b>Type</b>
+            <button class="btn default" (click)="sort('type')"><b>Type</b></button>
         </div>
         <div class="warehouse-column-garden">
-            <b>Time to Grow</b>
+            <button class="btn default" (click)="sort('time_to_grow')"><b>Time to Grow</b></button>
         </div>
         <div class="warehouse-column-garden">
-            <b>Acceleration time</b>
+            <button class="btn default" (click)="sort('acceleration_time')"><b>Acceleration time</b></button>
         </div>
         <div class="warehouse-column-garden">
-            <b>Company name</b>
+            <button class="btn default" (click)="sort('fullname')"><b>Company name</b></button>
         </div>
     </div>
     <div *ngIf="products">
