@@ -24,6 +24,24 @@
         <div class="garden-row">
             <button (click) = "addTemp()">Add</button> &nbsp; <button (click) = "substractTemp()">Substract</button>
         </div>
+        <div class="garden-row">
+            <b>Select seedling:</b>
+            <select [(ngModel)]="selectedSeedling">
+                <option *ngFor="let seedling of seedlings" value={{seedling.id}}>{{seedling.name}}</option>
+            </select>
+        </div>
+        <div class="garden-row">
+            <b>Select slot:</b>
+            <select [(ngModel)]="selectedSlot">
+                <option *ngFor="let slot of emptySlosts">{{slot.x}}:{{slot.y}}</option>
+            </select>
+        </div>
+        <div class="garden-row">
+            <button (click) = "addSeedling()">Plant Seedling</button>
+        </div>
+        <div class="garden-row message" *ngIf="message.length > 0">
+            {{message}}
+        </div>
     </div>
     
     <div class="garden-container-seedlings">

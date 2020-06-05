@@ -5,4 +5,6 @@ export interface Seedling {
     x: number,
     y: number,
     producer: string,
+    company_id: number,
+    time_to_grow: number,
 }

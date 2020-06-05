@@ -4,6 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Garden } from '../../types/Garden';
 import { Seedling } from '../../types/Seedling';
 
+interface Slot {
+  x: number,
+  y: number,
+}
+
 @Component({
   selector: 'app-garden',
   templateUrl: './garden.component.html',
@@ -15,8 +20,16 @@ export class GardenComponent implements OnInit {
   constructor(private http: HttpClient, private route: ActivatedRoute, private router: Router) { 
   }
 
+  selectedSlot;
+  message: string = '';
+
   hoveredSeedling: Seedling;
   seedlingsMap: Seedling[][];
+
+  emptySlosts: Slot[] = [];
+
+  seedlings: Seedling[];
+  selectedSeedling: Seedling;
 
   private createSeedlingMap() {
     this.seedlingsMap = [];
@@ -30,6 +43,16 @@ export class GardenComponent implements OnInit {
         })
       }
     }
+    this.seedlingsMap.forEach((row, i) => {
+      row.forEach((column, j) => {
+        if (!column) {
+          this.emptySlosts.push({
+            x: i + 1,
+            y: j + 1,
+          });
+        }
+      })
+    });
   }
 
   ngOnInit(): void {
@@ -39,6 +62,9 @@ export class GardenComponent implements OnInit {
         this.http.get('http://localhost:3000/farmer/garden/' + +params['gardenId']).subscribe((data: Garden) => {
           this.garden = data;
           this.createSeedlingMap();
+        });
+        this.http.get('http://localhost:3000/farmer/garden/seedlings/' + +params['gardenId']).subscribe((data: Seedling[]) => {
+          this.seedlings = data;
         });
       }
     });
@@ -95,6 +121,40 @@ export class GardenComponent implements OnInit {
   handleSeedlingClicked(seedling) {
     console.log(seedling);
     this.router.navigate(['/farmer/seedlings/' + seedling.id]);
+  }
+
+  addSeedling() {
+    this.message = '';
+    if (!this.selectedSlot) {
+      this.message = "Please, select slot before planting";
+      return;
+    }
+    if (!this.selectedSeedling) {
+      this.message = "Please, select seedling before planting";
+      return;
+    }
+    const SelectedSeedling = this.seedlings.find((s) => {
+      //@ts-ignore
+      return s.id == this.selectedSeedling;
+    });
+    this.http.post('http://localhost:3000/farmer/plant_seedling', {
+      x: (+this.selectedSlot.split(':')[0]),
+      y: (+this.selectedSlot.split(':')[1]),
+      garden_id: this.garden.id,
+      seedling_id: SelectedSeedling.id,
+      company_id: SelectedSeedling.company_id,
+      name: SelectedSeedling.name,
+      time_to_grow: SelectedSeedling.time_to_grow,
+    })
+    .subscribe(() => {
+      this.ngOnInit();
+      this.selectedSeedling = null;
+      this.selectedSlot = null;
+    });
+  }
+
+  changeStatus(e) {
+    console.log((e.target.value as Slot).x);
   }
 
 }
